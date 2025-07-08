@@ -338,12 +338,36 @@
   
 </li>
       
-        <li class="md-nav__item ">
-  <a href="#borrow" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#borrow" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Borrow
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Borrow" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#how-it-works_1" class="md-nav__link" >
+    <span class="md-ellipsis">
+      How It Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#how-do-i-supply-assets_1" class="md-nav__link" >
+    <span class="md-ellipsis">
+      How Do I Supply Assets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -917,7 +941,7 @@
 <p><strong>Determining Interest Rates:</strong> Interest rates for suppliers are primarily influenced by the borrow utilization rate, which reflects the proportion of assets borrowed relative to the total pool supply. Governance parameters, such as the collateral factor and interest rates, can also be adjusted through community decisions.</p>
 <p><strong>Dynamic Rate Updates:</strong> As tokens are supplied, borrowed, repaid, or withdrawn from the liquidity pool, interest rates are updated in real time. These adjustments are guided by on-chain data, including token balances, oracle-determined prices, and the borrow utilization ratio.</p>
 <h3 id="how-do-i-supply-assets">How Do I Supply Assets<a class="headerlink" href="#how-do-i-supply-assets" title="Permanent link">&para;</a></h3>
-<p>Supplying can be done with a user interface <a href="JustLend SBM">JustLend SBM</a>. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:</p>
+<p>Supplying can be done with a user interface <a href="https://app.justlend.org/homeNew?lang=en-US">JustLend SBM</a>. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:</p>
 <ul>
 <li><code>Supply APY:</code> the annual rewards from the jTokens users receive by supplying assets, which influenced by the borrow utilization rate and fluctuated by the time;</li>
 <li><code>Total Supply:</code> the total supply in the market. As the total supply changes, the Supply APY will also change accordingly;</li>
@@ -929,10 +953,68 @@
 <li>Navigate to the "SBM" and choose the asset you want to supply. For example, if you want to supply TRX, click 「Supply」 on the TRX market.</li>
 <li>Specify the amount you want to supply. The selected assets are transferred directly from your wallet to JustLend DAO protocol, earning interest immediately. This interest will be automatically added to your Supply Balance.</li>
 </ol>
+<p><br></p>
 <h2 id="borrow"><strong>Borrow</strong><a class="headerlink" href="#borrow" title="Permanent link">&para;</a></h2>
+<p>The JustLend DAO offers user an efficient way to access liquidity by using their supplied assets as collateral. This approach unlocks capital without requiring users to sell their holdings, making it a powerful tool for managing financial needs. However, borrowers must remain vigilant about potential risks, especially liquidation.</p>
+<h3 id="how-it-works_1">How It Works<a class="headerlink" href="#how-it-works_1" title="Permanent link">&para;</a></h3>
+<p>Borrowing on JustLend DAO is simple and dynamic. Users can leverage their deposited assets to borrow tokens, with interest rates determined by the protocol’s utilization rate—the percentage of supplied liquidity currently borrowed. As borrowing demand increases, utilization rates rise, leading to higher interest rates. This dynamic adjustment ensures a balanced ecosystem that benefits both borrowers and suppliers.</p>
+<p><strong>Dynamic Interest Rates:</strong> Interest rates are influenced by protocol mechanics and community governance, adapting to changes in borrowing activity. This system allows the platform to respond effectively to market conditions.</p>
+<p><strong>Reserve Parameters:</strong> Each reserve in the JustLend DAO Protocol is designed with specific parameters to attract both borrowers and suppliers, ensuring a steady flow of liquidity.</p>
+<p><strong>Liquidation Risk:</strong> Borrowers face liquidation if their risk value over the required threshold. To mitigate this, it’s essential to monitor collateralisation levels and maintain a healthy health factor.</p>
+<h3 id="how-do-i-supply-assets_1">How Do I Supply Assets<a class="headerlink" href="#how-do-i-supply-assets_1" title="Permanent link">&para;</a></h3>
+<p>Borrowing can be done with a user interface <a href="https://app.justlend.org/homeNew?lang=en-US">JustLend SBM</a>. Before we walk through the steps of a borrowing sequence, let’s cover some key parameters:</p>
+<ul>
+<li><code>Borrow APY:</code> the cost of borrowing assets in the JustLend DAO Protocol, which can vary based on the overall utilization of the liquidity pool；</li>
+<li><code>Total Borrow:</code> the total borrow amount in the market. As the total borrow changes, the borrow APY will also change accordingly;</li>
+<li><code>Borrowers:</code> the amount of users participating in the borrow market;</li>
+<li><code>Collateral Factor:</code> the amount of asset you can borrow compared to the value of jTokens you own. It determines the maximum amount you can borrow based on your supplied asset in this market;</li>
+<li><code>Borrow limit:</code> the minimum amount required to participate in the borrowing market;</li>
+<li><code>Liquidation:</code> a borrowing account becomes insolvent when the borrow balance exceeds the amount allowed by the collateral factor. Other users can repay a portion of its outstanding borrow in exchange for a portion of its collateral, with a liquidation incentive.</li>
+</ul>
+<h4 id="supply-assets_1">Supply Assets<a class="headerlink" href="#supply-assets_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</li>
+<li>Navigate to the "SBM" and choose the asset you want to borrow from the supported assets listed on the markets. For example, if you want to borrow TRX, click 「Borrow」 on the TRX market.</li>
+<li>Specify the amount you want to borrow and confirm the transaction.</li>
+</ol>
+<p><br></p>
 <h2 id="withdraw"><strong>Withdraw</strong><a class="headerlink" href="#withdraw" title="Permanent link">&para;</a></h2>
+<p>JustLend DAO empowers users to manage their assets effectively by enabling the withdrawal of supplied tokens. Suppliers can withdraw their tokens as long as there is sufficient liquidity in the reserve. The withdrawal amount is determined by the availability of underlying assets and the user’s ability to maintain a sufficient collateral ratio for any active borrow positions.</p>
+<p>When withdrawing with an active borrow position, it’s essential to carefully manage your collateralisation ratio to avoid liquidation. Reducing collateral will decrease the health status and increasing the risk of liquidation.</p>
+<h4 id="to-stay-safe">To stay safe:<a class="headerlink" href="#to-stay-safe" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Monitor Your Risk Value:</strong> Ensure your risk value remains health even after the withdrawal;</li>
+<li><strong>Stay Below the Liquidation Threshold:</strong> Check that your account maintains sufficient collateral to avoid crossing the liquidation parameters;</li>
+<li><strong>Plan Withdrawals Carefully:</strong> Assess the impact of each withdrawal on your overall borrow position to prevent unintentional liquidation risks.</li>
+</ul>
+<h4 id="withdraw-assets">Withdraw Assets:<a class="headerlink" href="#withdraw-assets" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</li>
+<li>Navigate to the "SBM" and choose the supplied asset you want to withdraw, click 「Withdraw」.</li>
+<li>Specify the amount you want to withdraw and confirm the transaction.</li>
+</ol>
+<p><br></p>
 <h2 id="repay"><strong>Repay</strong><a class="headerlink" href="#repay" title="Permanent link">&para;</a></h2>
+<p>Repaying borrowed tokens is a critical aspect of managing borrow positions on the JustLend DAO Protocol. With flexible repayment options and user-friendly tools, JustLend DAO makes it easy for borrowers to maintain healthy collateralisation ratios and prevent liquidation risks.</p>
+<p>Borrowers can repay their loans using the same tokens they borrowed or through jTokens (collateral tokens) of the same underlying asset. Here are some benefits of repayment:</p>
+<ul>
+<li>By reducing the outstanding borrow amount, repayment strengthens the collateralisation ratio, ensuring the position remains adequately collateralised;</li>
+<li>A higher collateralisation ratio minimizes the risk of liquidation by maintaining a safe margin between the collateral value and the borrowed amount;</li>
+<li>Repayment allows borrowers to safely withdraw a portion of their collateral, offering greater flexibility in managing their assets.</li>
+</ul>
+<h4 id="repay-assets">Repay Assets:<a class="headerlink" href="#repay-assets" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</li>
+<li>Navigate to the "SBM" and choose the borrowed asset you want to withdraw, click 「Repay」.</li>
+<li>Specify the amount you want to repay and confirm the transaction.</li>
+</ol>
+<p><br></p>
 <h2 id="liquidations"><strong>Liquidations</strong><a class="headerlink" href="#liquidations" title="Permanent link">&para;</a></h2>
+<p>Liquidation is determined by <strong>Risk Value</strong>, which is a critical metric within the JustLend DAO Protocol that measures the safety of a borrow position. It is calculated as:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview"> Risk\ Value = \frac{Total\ Borrow}{Borrow\ Limit} </div>
+<script type="math/tex; mode=display"> Risk\ Value = \frac{Total\ Borrow}{Borrow\ Limit} </script>
+</div>
 <h2 id="risks"><strong>Risks</strong><a class="headerlink" href="#risks" title="Permanent link">&para;</a></h2>
 <h2 id="staked-trx"><strong>Staked TRX</strong><a class="headerlink" href="#staked-trx" title="Permanent link">&para;</a></h2>
 <h2 id="energy-rental"><strong>Energy Rental</strong><a class="headerlink" href="#energy-rental" title="Permanent link">&para;</a></h2>
