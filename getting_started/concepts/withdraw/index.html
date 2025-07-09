@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#withdraw" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -348,6 +353,18 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Withdraw
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -358,6 +375,32 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item ">
+  <a href="#withdraw" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Withdraw
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1477,7 +1520,21 @@
 
   <h1>Withdraw</h1>
 
-
+<h2 id="withdraw"><strong>Withdraw</strong><a class="headerlink" href="#withdraw" title="Permanent link">&para;</a></h2>
+<p>JustLend DAO empowers users to manage their assets effectively by enabling the withdrawal of supplied tokens. Suppliers can withdraw their tokens as long as there is sufficient liquidity in the reserve. The withdrawal amount is determined by the availability of underlying assets and the user’s ability to maintain a sufficient collateral ratio for any active borrow positions.</p>
+<p>When withdrawing with an active borrow position, it’s essential to carefully manage your collateralisation ratio to avoid liquidation. Reducing collateral will decrease the health status and increasing the risk of liquidation.</p>
+<h4 id="to-stay-safe">To stay safe:<a class="headerlink" href="#to-stay-safe" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Monitor Your Risk Value:</strong> Ensure your risk value remains health even after the withdrawal;</li>
+<li><strong>Stay Below the Liquidation Threshold:</strong> Check that your account maintains sufficient collateral to avoid crossing the liquidation parameters;</li>
+<li><strong>Plan Withdrawals Carefully:</strong> Assess the impact of each withdrawal on your overall borrow position to prevent unintentional liquidation risks.</li>
+</ul>
+<h4 id="withdraw-assets">Withdraw Assets:<a class="headerlink" href="#withdraw-assets" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</li>
+<li>Navigate to the "SBM" and choose the supplied asset you want to withdraw, click 「Withdraw」.</li>
+<li>Specify the amount you want to withdraw and confirm the transaction.</li>
+</ol>
 
 
 

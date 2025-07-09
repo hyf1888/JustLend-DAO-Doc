@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#energy-rental" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -458,6 +463,18 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Energy Rental
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -468,6 +485,56 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item has-children">
+  <a href="#energy-rental" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
+    <span class="md-ellipsis">
+      Energy Rental
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Energy Rental" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#placing-an-order" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Placing An Order
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#cost-estimation" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Cost Estimation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1477,7 +1544,184 @@
 
   <h1>Energy Rental</h1>
 
-
+<h2 id="energy-rental"><strong>Energy Rental</strong><a class="headerlink" href="#energy-rental" title="Permanent link">&para;</a></h2>
+<p>JustLend DAO integrates the energy rental protocol, which aims to provide users with a more convenient and cheaper way to obtain energy. The energy rental protocol is open to all TRON network users and supports one-to-many renting, enabling users to rent energy not only for themselves but also for others. The user-friendly interface is designed to accommodate users managing multiple orders seamlessly.</p>
+<p>When renting energy, you need to specify three key parameters based on your requirements, which are <strong>Rental Amount</strong>, <strong>Rental Duration</strong> and <strong>Receiving Address</strong>.</p>
+<ul>
+<li><strong>Rental Amount:</strong> the amount of energy you need.</li>
+<li>The actual energy rented is calculated based on the corresponding proxy TRX amount. Due to market fluctuations, the rented energy amount may experience slight changes during the transaction;</li>
+<li><strong>Note:</strong> the energy used will be fully restored after 24 hours and can be used again;</li>
+<li>
+<p>If you are not sure about the amount of energy you need, please refer to: One USDT transfer transaction ≈ 120,000 energy. (may fluctuate according to market trading conditions).</p>
+</li>
+<li>
+<p><strong>Rental Duration:</strong> this is the time you need to use the energy.</p>
+</li>
+<li>Supports renting by the hour or by the day, with a maximum single rental period of <strong>30</strong> days；</li>
+<li>Rental duration is calculated at the time of placing the order. Market price fluctuations may result in slight increases or decreases in actual usage time;</li>
+<li>
+<p><strong>Note:</strong> Shorter rental durations are more affected by market price volatility. If the rental duration is less than 3 hours, please be sure to cancel the rent immediately after completing the transaction. This will prevent early liquidation due to price fluctuations and avoid unnecessary losses.</p>
+</li>
+<li>
+<p><strong>Receiving Address:</strong> the address where the rented energy will be allocated.</p>
+</li>
+<li>If you rent for yourself, this field is not required. If renting for another address, this field is required.</li>
+<li><strong>Note:</strong> Renting for contract addresses is not supported.</li>
+</ul>
+<h3 id="placing-an-order">Placing An Order<a class="headerlink" href="#placing-an-order" title="Permanent link">&para;</a></h3>
+<p>Once the parameters are set, you can place an order to proceed with the transaction. The rental protocol will require a prepayment, which includes a <strong>deposit</strong> and <strong>rental fee</strong>:</p>
+<ul>
+<li><strong>Deposit Fee:</strong> calculated as <strong>0.05%</strong> of the TRX required for the rental energy, with a minimum deposit of <strong>40</strong> TRX.</li>
+<li>
+<p>If the rent order is returned on time, the deposit is fully refunded. If not returned before expiry, the order may be liquidated, and the deposit will be forfeited to community liquidators as a reward.</p>
+</li>
+<li>
+<p><strong>Rental Fee:</strong> includes <strong>Occupation Fee</strong> (charges based on the rental duration) and <strong>Usage Fee</strong> (charges based on the rental amount):</p>
+</li>
+<li>
+<p><strong>Occupation Fee:</strong> the energy you use is charged based on the time you use. The longer you use, the more you will be charged.</p>
+<ul>
+<li>The prepayment includes the occupancy fee for your entire rental time. If you terminate the rent early, the occupancy fee will be refunded in proportion to the occupancy time.</li>
+</ul>
+</li>
+<li>
+<p><strong>Usage Fee:</strong> the cost of your energy usage fee is charged as one day's rental fee based on the amount of energy you rent.</p>
+</li>
+<li>Since it takes <strong>24</strong> hours for energy to recover after use, the usage fee is charged based on 1 day.</li>
+<li>when you return to the energy:<ul>
+<li>If the energy has been fully restored, the usage fee will be fully refunded;</li>
+<li>If the energy has been used up, <strong>0.5</strong> days of usage fee will be deducted from your account;</li>
+<li>If part of the energy has been used, your usage fee will be deducted proportionally.</li>
+</ul>
+</li>
+</ul>
+<p>After completing the rental transaction, you can manage your orders via the energy rental interface. Options include returning the rent, extending the rent order, viewing the actual energy received, and checking the remaining rental duration.</p>
+<p>We recommend users customize their leasing plans based on their specific needs:
+* <strong>For single transactions</strong>, we recommend returning the energy immediately after use. This avoids liquidation and helps save on occupation fees.
+* <strong>For users with regular daily transactions</strong>, we suggest opting for a long-term hassle-free rental plan by renting energy for 30 days based on daily energy consumption. With the 24-hour full restoration rule, there is no need to rent excessive amounts of energy.</p>
+<h3 id="cost-estimation">Cost Estimation<a class="headerlink" href="#cost-estimation" title="Permanent link">&para;</a></h3>
+<p>To provide a clearer understanding of the costs involved in transferring USDT by renting energy versus directly burning TRX, we present the following cost estimates through two examples:</p>
+<p><strong>Scenario 1: Renting 200k Energy for One Day to Transfer USDT</strong></p>
+<p>After renting 200k energy for one day, the USDT transfer is completed, and the rental is terminated immediately. The costs associated with this scenario are based on the prepayment and potential refund formulas previously outlined.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Receiver holding USDT</th>
+<th>Receiver without USDT</th>
+<th>Calculation details</th>
+<th>Txn example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rent energy cost</td>
+<td>- 65.363749</td>
+<td>- 65.363749</td>
+<td>65.363749 for rent 200k energy</td>
+<td><a href="https://tronscan.org/#/transaction/b8a791fe0ef2025f04a9d47c060b1f731b63b466799b7e6360d1cb070463b962">rentTxn</a></td>
+</tr>
+<tr>
+<td>rent energy gas</td>
+<td>- 2.153090</td>
+<td>- 2.153090</td>
+<td>1.77009 burn for energy; 0.383 burn for bandwidth</td>
+<td><a href="https://tronscan.org/#/transaction/b8a791fe0ef2025f04a9d47c060b1f731b63b466799b7e6360d1cb070463b962">rentTxn</a></td>
+</tr>
+<tr>
+<td>transfer USDT gas</td>
+<td>- 0.345000</td>
+<td>- 0.345000</td>
+<td>0.345 for USDT bandwidth whatever holding USDT or not</td>
+<td><a href="https://tronscan.org/#/transaction/2b620fd06b3b9128b111fbc1f699de87bf9473b13ef29a6104aa882efd66007c">noUsdtTxn</a>; <a href="https://tronscan.org/#/transaction/c0ceca04635d6505554916b6f47c2513c1673364daf283d8e36e17d677ef1173">holdingUsdtTxn</a></td>
+</tr>
+<tr>
+<td>return energy gas</td>
+<td>- 0.378000</td>
+<td>- 0.378000</td>
+<td>return txn just burn bandwidth for gas</td>
+<td><a href="https://tronscan.org/#/transaction/d5fe0d5a05cfcc9ceef70d47b85f4acf7109e8e1ff027503fa092cf13124b8d6">holdingUsdtReturnTxn</a>; <a href="https://tronscan.org/#/transaction/534739159370a9966f5dee98b0045774c9079f8c9c0df583883f7abe5fe0fcf1">noUsdtTxn</a></td>
+</tr>
+<tr>
+<td>refund</td>
+<td>60.413664</td>
+<td>59.262775</td>
+<td>return TRX when end rent</td>
+<td></td>
+</tr>
+<tr>
+<td>total energy rent cost</td>
+<td>- 7.826175</td>
+<td>- 8.977064</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total cost (in USD)</td>
+<td>- $1.57</td>
+<td>- $1.80</td>
+<td>0.20USDpreTRX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scenario 2: Directly Burning TRX to Transfer USDT Without Energy</strong></p>
+<p>In this scenario, TRX is burned directly to facilitate the USDT transfer without renting any energy. The cost incurred here is solely dependent on the amount of TRX burned for the transaction.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Receiver holding USDT</th>
+<th>Receiver without USDT</th>
+<th>Calculation details</th>
+<th>Txn example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>burn TRX cost</td>
+<td>- 27.344700</td>
+<td>- 55.064700</td>
+<td>130,285 energy for notholding USDT; 64,285 energy for holding USDT; 345 bandwidth cost 0.345 TRX</td>
+<td><a href="https://tronscan.org/#/transaction/774e9f5601306ff6ff0b70f76944f37da52528cd7cd64d22b9b0903b447a28e8">transfer to a without USDT address</a>; <a href="https://tronscan.org/#/transaction/c0ceca04635d6505554916b6f47c2513c1673364daf283d8e36e17d677ef1173">transfer to a holding USDT address</a></td>
+</tr>
+<tr>
+<td>total cost (in USD)</td>
+<td>- $5.4689</td>
+<td>- $11.0129</td>
+<td>0.20USDpreTRX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparison Insight</strong></p>
+<p>By comparing these two scenarios, it becomes evident that the cost of using rented energy for transaction cost is significantly lower than the cost of directly burning TRX. Additionally, the presence of USDT in the receiving address affects the computational load of the contract, which in turn impacts the overall transaction cost.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Receiver holding USDT</th>
+<th>Receiver without USDT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rent energy cost</td>
+<td>$1.57</td>
+<td>$1.80</td>
+</tr>
+<tr>
+<td>burn TRX cost</td>
+<td>$5.4689</td>
+<td>$ 11.0129</td>
+</tr>
+<tr>
+<td>save</td>
+<td>- $3.8989</td>
+<td>- $9.2129</td>
+</tr>
+</tbody>
+</table>
 
 
 
