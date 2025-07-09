@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#energy-rental" class="md-skip">
+        <a href="#placing-an-order" class="md-skip">
           Skip to content
         </a>
       
@@ -499,17 +499,7 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item has-children">
-  <a href="#energy-rental" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
-    <span class="md-ellipsis">
-      Energy Rental
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Energy Rental" hidden>
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item ">
+        <li class="md-nav__item ">
   <a href="#placing-an-order" class="md-nav__link" >
     <span class="md-ellipsis">
       Placing An Order
@@ -517,18 +507,13 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item ">
+      
+        <li class="md-nav__item ">
   <a href="#cost-estimation" class="md-nav__link" >
     <span class="md-ellipsis">
       Cost Estimation
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1544,54 +1529,61 @@
 
   <h1>Energy Rental</h1>
 
-<h2 id="energy-rental"><strong>Energy Rental</strong><a class="headerlink" href="#energy-rental" title="Permanent link">&para;</a></h2>
 <p>JustLend DAO integrates the energy rental protocol, which aims to provide users with a more convenient and cheaper way to obtain energy. The energy rental protocol is open to all TRON network users and supports one-to-many renting, enabling users to rent energy not only for themselves but also for others. The user-friendly interface is designed to accommodate users managing multiple orders seamlessly.</p>
 <p>When renting energy, you need to specify three key parameters based on your requirements, which are <strong>Rental Amount</strong>, <strong>Rental Duration</strong> and <strong>Receiving Address</strong>.</p>
 <ul>
-<li><strong>Rental Amount:</strong> the amount of energy you need.</li>
+<li>
+<p><strong>Rental Amount:</strong> the amount of energy you need.</p>
+<ul>
 <li>The actual energy rented is calculated based on the corresponding proxy TRX amount. Due to market fluctuations, the rented energy amount may experience slight changes during the transaction;</li>
 <li><strong>Note:</strong> the energy used will be fully restored after 24 hours and can be used again;</li>
-<li>
-<p>If you are not sure about the amount of energy you need, please refer to: One USDT transfer transaction ≈ 120,000 energy. (may fluctuate according to market trading conditions).</p>
+<li>If you are not sure about the amount of energy you need, please refer to: One USDT transfer transaction ≈ 120,000 energy. (may fluctuate according to market trading conditions).</li>
+</ul>
 </li>
 <li>
 <p><strong>Rental Duration:</strong> this is the time you need to use the energy.</p>
-</li>
+<ul>
 <li>Supports renting by the hour or by the day, with a maximum single rental period of <strong>30</strong> days；</li>
 <li>Rental duration is calculated at the time of placing the order. Market price fluctuations may result in slight increases or decreases in actual usage time;</li>
-<li>
-<p><strong>Note:</strong> Shorter rental durations are more affected by market price volatility. If the rental duration is less than 3 hours, please be sure to cancel the rent immediately after completing the transaction. This will prevent early liquidation due to price fluctuations and avoid unnecessary losses.</p>
+<li><strong>Note:</strong> Shorter rental durations are more affected by market price volatility. If the rental duration is less than 3 hours, please be sure to cancel the rent immediately after completing the transaction. This will prevent early liquidation due to price fluctuations and avoid unnecessary losses.</li>
+</ul>
 </li>
 <li>
 <p><strong>Receiving Address:</strong> the address where the rented energy will be allocated.</p>
-</li>
+<ul>
 <li>If you rent for yourself, this field is not required. If renting for another address, this field is required.</li>
 <li><strong>Note:</strong> Renting for contract addresses is not supported.</li>
+</ul>
+</li>
 </ul>
 <h3 id="placing-an-order">Placing An Order<a class="headerlink" href="#placing-an-order" title="Permanent link">&para;</a></h3>
 <p>Once the parameters are set, you can place an order to proceed with the transaction. The rental protocol will require a prepayment, which includes a <strong>deposit</strong> and <strong>rental fee</strong>:</p>
 <ul>
-<li><strong>Deposit Fee:</strong> calculated as <strong>0.05%</strong> of the TRX required for the rental energy, with a minimum deposit of <strong>40</strong> TRX.</li>
 <li>
-<p>If the rent order is returned on time, the deposit is fully refunded. If not returned before expiry, the order may be liquidated, and the deposit will be forfeited to community liquidators as a reward.</p>
+<p><strong>Deposit Fee:</strong> calculated as <strong>0.05%</strong> of the TRX required for the rental energy, with a minimum deposit of <strong>40</strong> TRX.</p>
+<ul>
+<li>If the rent order is returned on time, the deposit is fully refunded. If not returned before expiry, the order may be liquidated, and the deposit will be forfeited to community liquidators as a reward.</li>
+</ul>
 </li>
 <li>
 <p><strong>Rental Fee:</strong> includes <strong>Occupation Fee</strong> (charges based on the rental duration) and <strong>Usage Fee</strong> (charges based on the rental amount):</p>
-</li>
-<li>
-<p><strong>Occupation Fee:</strong> the energy you use is charged based on the time you use. The longer you use, the more you will be charged.</p>
 <ul>
+<li><strong>Occupation Fee:</strong> the energy you use is charged based on the time you use. The longer you use, the more you will be charged.<ul>
 <li>The prepayment includes the occupancy fee for your entire rental time. If you terminate the rent early, the occupancy fee will be refunded in proportion to the occupancy time.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <p><strong>Usage Fee:</strong> the cost of your energy usage fee is charged as one day's rental fee based on the amount of energy you rent.</p>
-</li>
+<ul>
 <li>Since it takes <strong>24</strong> hours for energy to recover after use, the usage fee is charged based on 1 day.</li>
 <li>when you return to the energy:<ul>
 <li>If the energy has been fully restored, the usage fee will be fully refunded;</li>
 <li>If the energy has been used up, <strong>0.5</strong> days of usage fee will be deducted from your account;</li>
 <li>If part of the energy has been used, your usage fee will be deducted proportionally.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
