@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#sbm" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -843,6 +848,20 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SBM
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -854,6 +873,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item ">
+  <a href="#query-interface" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Query Interface
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item ">
+  <a href="#write-interface" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Write Interface
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item ">
+  <a href="#error-code-and-failure-info" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Error Code And Failure info
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1475,9 +1540,21 @@
 
 
 
-  <h1>SBM</h1>
-
-
+<h1 id="sbm">SBM<a class="headerlink" href="#sbm" title="Permanent link">&para;</a></h1>
+<p>The JustLend DAO Supply and Borrow Market (SBM) is a decentralized  liquidity pool where users can participate as suppliers, borrowers or liquidators. Suppliers provide liquidity to a market and can earn interest on the assets provided, where borrowers are able to borrow in a collateralize assets way.</p>
+<p>The SBM contract is the main user-facing contract. Most user interactions with the JustLend DAO Protocol occur via the Ctoken contract. It exposes the liquidity management methods that can be invoked using either Solidity or Web3 libraries.</p>
+<p><code>Ctoken.sol:</code> allows users to:</p>
+<ul>
+<li>Supply</li>
+<li>Borrow</li>
+<li>Withdraw</li>
+<li>Reapy</li>
+<li>Liquidation</li>
+</ul>
+<p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol">Github</a>.</p>
+<h2 id="query-interface"><strong>Query Interface</strong><a class="headerlink" href="#query-interface" title="Permanent link">&para;</a></h2>
+<h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
+<h2 id="error-code-and-failure-info"><strong>Error Code And Failure info</strong><a class="headerlink" href="#error-code-and-failure-info" title="Permanent link">&para;</a></h2>
 
 
 

@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#price-oracle" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -909,6 +914,20 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Price Oracle
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -920,6 +939,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item ">
+  <a href="#contracts-abi" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Contracts ABI
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1475,9 +1522,17 @@
 
 
 
-  <h1>Price Oracle</h1>
-
-
+<h1 id="price-oracle">Price Oracle<a class="headerlink" href="#price-oracle" title="Permanent link">&para;</a></h1>
+<p>Blockchain-powered smart contracts, by their inherent design, cannot directly access information from external systems. To bridge this critical gap and ensure the integrity of financial operations, the JustLend DAO protocol relies on robust and decentralized price feeds.
+We secure various markets by leveraging a multi-source price aggregation strategy, utilizing <a href="https://chain.link/">Chainlink</a> Data Feeds, <a href="https://winklink.org/#/home">WinkLink</a>Data Feeds, and <a href="https://sun.io/#/home">SUN.io</a> DEX as price sources. The prices from all three sources are aggregated offchain before feeding the accurate token valuation.</p>
+<p><code>SimplePriceOracle.sol:</code> allows users to:</p>
+<ul>
+<li>Price Poster</li>
+<li>Get Asset Price</li>
+<li>Set Price</li>
+</ul>
+<p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/SimplePriceOracle.sol">Github</a>.</p>
+<h2 id="contracts-abi"><strong>Contracts ABI</strong><a class="headerlink" href="#contracts-abi" title="Permanent link">&para;</a></h2>
 
 
 

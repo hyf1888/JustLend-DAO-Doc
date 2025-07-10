@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#interest-rate-model" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -865,6 +870,20 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Interest Rate Model
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -876,6 +895,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item ">
+  <a href="#whitepaper-rate-model" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Whitepaper Rate Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item ">
+  <a href="#jump-rate-model" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Jump Rate Model
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1475,9 +1531,19 @@
 
 
 
-  <h1>Interest Rate Model</h1>
+<h1 id="interest-rate-model">Interest Rate Model<a class="headerlink" href="#interest-rate-model" title="Permanent link">&para;</a></h1>
+<p>JustLend DAO's interest rate model aims to maximize the utilization of assets while effectively managing liquidity risks. Therefore, the parameter utilization rate U of each market is particularly important, as it reflects the true situation of the available assets in each market. As the utilization rate approaches 100%, assets become scarce, making borrowing impossible.  Meanwhile, suppliers may be unable to withdraw their liquidity due to the lack of available assets. The formula of the utilization U is defined as:</p>
+<div style="text-align: center; font-size: 20px;">
+    _U = Total Borrows / Total Supply_
+</div>
 
-
+<p>To calibrate the interest rate model around an optimal utilization rate which reflects the real conditions, JustLend DAO provides variable interest rates for markets through two distinct interest models:</p>
+<ul>
+<li><code>WhitePaperInterestRateModel:</code> a simple interest rate model where the borrowing rate is directly tied to the utilization rate;</li>
+<li><code>JumpRateModelV2::</code> operates differently, as the interest rate jumps to a higher tier when the utilization rate surpasses a certain threshold.</li>
+</ul>
+<h3 id="whitepaper-rate-model"><strong>Whitepaper Rate Model</strong><a class="headerlink" href="#whitepaper-rate-model" title="Permanent link">&para;</a></h3>
+<h3 id="jump-rate-model"><strong>Jump Rate Model</strong><a class="headerlink" href="#jump-rate-model" title="Permanent link">&para;</a></h3>
 
 
 

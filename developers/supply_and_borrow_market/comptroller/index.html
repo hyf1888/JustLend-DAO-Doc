@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#comptroller" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -931,6 +936,20 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Comptroller
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -942,6 +961,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item ">
+  <a href="#markets" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Markets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item ">
+  <a href="#collateral-liquidation" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Collateral &amp; Liquidation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1475,9 +1531,19 @@
 
 
 
-  <h1>Comptroller</h1>
-
-
+<h1 id="comptroller">Comptroller<a class="headerlink" href="#comptroller" title="Permanent link">&para;</a></h1>
+<p>The Comptroller is the risk management module of the JustLend DAO protocol. It determines how much collateral should users keep to avoid liquidation.
+The Comptroller is implemented as an upgradable contract. The entrance is <a href="https://tronscan.org/#/contract/TGjYzgCyPobsNS9n6WcbdLVR9dH7mWqFx7/code">Unitroller</a>; the implementation is <a href="https://tronscan.org/#/contract/TJZi9eWzCLGBi9tuwvPxnaZTGa2iUpRc8v/code">Comptroller</a>.</p>
+<p><code>Comptroller.sol:</code> allows users to:</p>
+<ul>
+<li>Markets</li>
+<li>Get Assets In</li>
+<li>Get Account Liquidation</li>
+<li>Liquidation Incentive</li>
+</ul>
+<p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/Comptroller.sol">Github</a>.</p>
+<h2 id="markets"><strong>Markets</strong><a class="headerlink" href="#markets" title="Permanent link">&para;</a></h2>
+<h2 id="collateral-liquidation"><strong>Collateral &amp; Liquidation</strong><a class="headerlink" href="#collateral-liquidation" title="Permanent link">&para;</a></h2>
 
 
 

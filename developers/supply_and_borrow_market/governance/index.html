@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#governance" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -887,6 +892,20 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Governance
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -898,6 +917,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item ">
+  <a href="#proposals" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Proposals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item ">
+  <a href="#poll-vote" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Poll &amp; Vote
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1475,9 +1531,21 @@
 
 
 
-  <h1>Governance</h1>
-
-
+<h1 id="governance">Governance<a class="headerlink" href="#governance" title="Permanent link">&para;</a></h1>
+<p>JustLend DAO protocol is governed and upgraded by JST holders. There are three components included in the governance system: <a href="https://tronscan.org/#/token20/TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9">JST</a>(<a href="https://tronscan.org/#/contract/TXk9LnTnLN7oH96H3sKxJayMxLxR9M4ZD6/code">WJST</a>) token,
+governance module(<a href="https://tronscan.org/#/contract/TEqiF5JbhDPD77yjEfnEMncGRZNDt2uogD/code">GovernorBravo</a>) and <a href="https://tronscan.org/#/contract/TRWNvb15NmfNKNLhQpxefFz7cNjrYjEw7x">Timelock</a>. The governance of the JustLend DAO protocol is through proposals, whose process can be summarized as proposal posting-voting-taking effect.</p>
+<p><code>GovernorBravoDelegate.sol:</code> allows users to:</p>
+<ul>
+<li>Propose</li>
+<li>Queue</li>
+<li>Execute</li>
+<li>Cancel</li>
+<li>Deposit</li>
+<li>Vote</li>
+</ul>
+<p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/Governance/Bravo/GovernorBravoDelegate.sol">Github</a>.</p>
+<h2 id="proposals"><strong>Proposals</strong><a class="headerlink" href="#proposals" title="Permanent link">&para;</a></h2>
+<h2 id="poll-vote"><strong>Poll &amp; Vote</strong><a class="headerlink" href="#poll-vote" title="Permanent link">&para;</a></h2>
 
 
 
