@@ -891,12 +891,126 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item ">
-  <a href="#query-interface" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#query-interface" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Query Interface
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Query Interface" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#exchangerate" class="md-nav__link" >
+    <span class="md-ellipsis">
+      ExchangeRate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#get-cash" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Get Cash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#total-borrows" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Total Borrows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#borrow-balance" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Borrow Balance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#borrow-rate" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Borrow Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#total-supply" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Total Supply
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#underlying-balance" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Underlying Balance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#supply-rate" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Supply Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#total-reserves" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Total Reserves
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#reserve-factor" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Reserve Factor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#liquidation-incentive" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Liquidation Incentive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#get-account-liquidity" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Get Account Liquidity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1487,6 +1601,85 @@
 </ul>
 <p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol">Github</a>.</p>
 <h2 id="query-interface"><strong>Query Interface</strong><a class="headerlink" href="#query-interface" title="Permanent link">&para;</a></h2>
+<h3 id="exchangerate"><strong>ExchangeRate</strong><a class="headerlink" href="#exchangerate" title="Permanent link">&para;</a></h3>
+<p>Calling this method accrues interest and returns the up-to-date exchange rate.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">exchangeRateCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> calculated exchange rate scaled by 1e18.</p>
+<h3 id="get-cash"><strong>Get Cash</strong><a class="headerlink" href="#get-cash" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the total amount of underlying balance currently available to this market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCash</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The quantity of underlying assets owned by this contract.</p>
+<h3 id="total-borrows"><strong>Total Borrows</strong><a class="headerlink" href="#total-borrows" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the sum of the currently loaned-outs and the accrued interests.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalBorrowsCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The total borrows with interest.</p>
+<h3 id="borrow-balance"><strong>Borrow Balance</strong><a class="headerlink" href="#borrow-balance" title="Permanent link">&para;</a></h3>
+<p>Calling this method accrues interest to the updated borrowIndex and then calculates the account's borrow balance using the updated borrowIndex.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowBalanceCurrent</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>account:</code> the address whose balance should be calculated after updating borrowIndex.
+* <strong>Returns:</strong> The total borrows with interest.</p>
+<h3 id="borrow-rate"><strong>Borrow Rate</strong><a class="headerlink" href="#borrow-rate" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the current per-block borrow interest rate for this jToken.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The borrow interest rate per block, scaled by 1e18.</p>
+<h3 id="total-supply"><strong>Total Supply</strong><a class="headerlink" href="#total-supply" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the total number of tokens in circulation.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The supply of tokens.</p>
+<h3 id="underlying-balance"><strong>Underlying Balance</strong><a class="headerlink" href="#underlying-balance" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the underlying balance of the owner.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceOfUnderlying</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>owner:</code> the address of the account.
+* <strong>Returns:</strong> The amount of underlying owned by owner.</p>
+<h3 id="supply-rate"><strong>Supply Rate</strong><a class="headerlink" href="#supply-rate" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the current per-block supply interest rate for this jToken.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The supply interest rate per block, scaled by 1e18.</p>
+<h3 id="total-reserves"><strong>Total Reserves</strong><a class="headerlink" href="#total-reserves" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the reserves. Reserve represents a portion of historical interest set aside as cash which can be withdrawn or transferred through the protocol's governance.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalReserves</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The total amount of reserves.</p>
+<h3 id="reserve-factor"><strong>Reserve Factor</strong><a class="headerlink" href="#reserve-factor" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the current reserve factor.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">reserveFactorMantissa</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The current reserve factor.</p>
+<h3 id="liquidation-incentive"><strong>Liquidation Incentive</strong><a class="headerlink" href="#liquidation-incentive" title="Permanent link">&para;</a></h3>
+<p>By calling the liquidationIncentiveMantissa function of the Unitroller contract, liquidation incentives can be inquired. Liquidators will be given a proportion of the borrower's collateral as an incentive, which is defined as liquidation incentive. This is to encourage liquidators to perform liquidation of underwater accounts.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidationIncentiveMantissa</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A
+* <strong>Returns:</strong> The liquidationIncentive, scaled by 1e18, is multiplied by the closed borrow amount from the liquidator to determine how much collateral can be seized.</p>
+<h3 id="get-account-liquidity"><strong>Get Account Liquidity</strong><a class="headerlink" href="#get-account-liquidity" title="Permanent link">&para;</a></h3>
+<p>By calling the getAccountLiquidity function of the Unitroller contract, account information can be accessed through an account's address to determine whether the account should be liquidated or not.
+<div class="highlight"><pre><span></span><code>getAccountLiquidity<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>account:</code> user address.
+* <strong>Returns:</strong> The amount of underlying owned by owner.
+    * <code>error:</code> error code, 0 means success.
+    * <code>liquidity:</code> liquidity.
+    * <code>shortfall:</code> When the value is bigger than 0, the current account does not meet the market requirement for collateralization and needs to be liquidated.</p>
+<p>Note: There should be at most one non-zero value between liquidity and shortfall.</p>
 <h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
 <h2 id="error-code-and-failure-info"><strong>Error Code And Failure info</strong><a class="headerlink" href="#error-code-and-failure-info" title="Permanent link">&para;</a></h2>
 
