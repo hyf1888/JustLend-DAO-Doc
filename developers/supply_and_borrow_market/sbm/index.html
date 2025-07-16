@@ -1014,21 +1014,132 @@
   
 </li>
       
-        <li class="md-nav__item ">
-  <a href="#write-interface" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#write-interface" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Write Interface
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Write Interface" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#borrow" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Borrow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#repayborrow" class="md-nav__link" >
+    <span class="md-ellipsis">
+      repayBorrow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#repayborrowbehalf" class="md-nav__link" >
+    <span class="md-ellipsis">
+      repayBorrowBehalf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#mint" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Mint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#redeem" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Redeem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#redeemunderlying" class="md-nav__link" >
+    <span class="md-ellipsis">
+      RedeemUnderlying
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#transfer" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Transfer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#liquidate-borrowjtrc20" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Liquidate Borrow（jTrc20）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#liquidate-borrowjtrx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Liquidate Borrow（jTRX）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
-        <li class="md-nav__item ">
-  <a href="#error-code-and-failure-info" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#error-code-and-failure-info" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Error Code And Failure info
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Error Code And Failure info" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#error-code" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Error code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#failure-info" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Failure info
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1681,7 +1792,538 @@
     * <code>shortfall:</code> When the value is bigger than 0, the current account does not meet the market requirement for collateralization and needs to be liquidated.</p>
 <p>Note: There should be at most one non-zero value between liquidity and shortfall.</p>
 <h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
+<h3 id="borrow"><strong>Borrow</strong><a class="headerlink" href="#borrow" title="Permanent link">&para;</a></h3>
+<p>Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>borrowAmount:</code> the amount of the underlying asset to borrow.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<h4 id="event"><strong>Event</strong><a class="headerlink" href="#event" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code>Borrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
+</code></pre></div>
+* Emits when user successfully borrow.
+    * <code>borrower:</code> address of borrow assets account;
+    * <code>borrowAmount:</code> the amount of borrowed assets;
+    * <code>accountBorrows:</code> the account borrow the assets;
+    * <code>totalBorrows:</code> total borrow assets form the account;
+    * <code>borrowIndex:</code> the index of this borrow order.</p>
+<h3 id="repayborrow"><strong>repayBorrow</strong><a class="headerlink" href="#repayborrow" title="Permanent link">&para;</a></h3>
+<p>Calling this method repays their own borrow.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repayBorrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>amount:</code> the amount of the asset to repay.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<h4 id="event_1"><strong>Event</strong><a class="headerlink" href="#event_1" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code>RepayBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">payer</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
+</code></pre></div>
+* Emits when user successfully repay borrow.
+    * <code>payer:</code> operate repay borrow;
+    * <code>borrower:</code> address of borrow assets account;
+    * <code>repayAmount:</code> the amount of repaid assets;
+    * <code>accountBorrows:</code> the account borrow the assets;
+    * <code>totalBorrows:</code> total borrow assets form the account;
+    * <code>borrowIndex:</code> the index of this borrow order.</p>
+<h3 id="repayborrowbehalf"><strong>repayBorrowBehalf</strong><a class="headerlink" href="#repayborrowbehalf" title="Permanent link">&para;</a></h3>
+<p>Calling this method repays their own borrow.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repayBorrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>borrower:</code> the account with the debt being paid off.
+    * <code>msg.value:</code> the amount to repay.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<h3 id="mint"><strong>Mint</strong><a class="headerlink" href="#mint" title="Permanent link">&para;</a></h3>
+<p>Calling this method supplies assets into the market and receives jTokens in exchange.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>msg.value:</code> the amount of TRX to supply.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<h4 id="event_2"><strong>Event</strong><a class="headerlink" href="#event_2" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code>Mint<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">minter</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">mintAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">mintTokens</span><span class="p">)</span>
+</code></pre></div>
+* Emits when user successfully mint.
+    * <code>minter:</code> operate supply assets into the market;
+    * <code>mintAmount:</code> the amount of supplied assets;
+    * <code>mintTokens:</code> the tokens need to mint.</p>
+<h3 id="redeem"><strong>Redeem</strong><a class="headerlink" href="#redeem" title="Permanent link">&para;</a></h3>
+<p>Calling this method redeems jTokens in exchange for the underlying asset and accrues interest whether or not the operation succeeds.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">redeem</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemTokens</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>redeemTokens:</code>  the number of jTokens to redeem into underlying.
+* <strong>Returns:</strong> 0 for success, reverts on error.</p>
+<h4 id="event_3"><strong>Event</strong><a class="headerlink" href="#event_3" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code>Redeem<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">redeemer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemTokens</span><span class="p">)</span>
+</code></pre></div>
+* Emits when user successfully redeem.
+    * <code>redeemer:</code> operate redeem jTokens;
+    * <code>redeemAmount:</code> the amount of redeem assets;
+    * <code>redeemTokens:</code> the tokens need to redeem.</p>
+<h3 id="redeemunderlying"><strong>RedeemUnderlying</strong><a class="headerlink" href="#redeemunderlying" title="Permanent link">&para;</a></h3>
+<p>Calling this method redeems jTokens in exchange for a specified amount of underlying asset.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">redeemUnderlying</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>redeemAmount:</code> the amount of underlying to redeem.
+* <strong>Returns:</strong> 0 for success, reverts on error.</p>
+<h3 id="transfer"><strong>Transfer</strong><a class="headerlink" href="#transfer" title="Permanent link">&para;</a></h3>
+<p>Calling this method transfers a specified amount of jtokens to the destination. This action will fail if the account's liquidity become negative due to the transfer.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">transfer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">dst</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>dst:</code> the receiver's address.
+    * <code>amount:</code> amount of token to be transferred.
+* <strong>Returns:</strong> A boolean value indicating whether or not the transfer succeeded.</p>
+<h3 id="liquidate-borrowjtrc20"><strong>Liquidate Borrow（jTrc20）</strong><a class="headerlink" href="#liquidate-borrowjtrc20" title="Permanent link">&para;</a></h3>
+<p>By calling liquidateBorrow function of the corresponding jTrc20 contract (e.g. jUSDT), accounts whose liquidity does not meet the market requirement for collateralization will be liquidated by other users to restore the account liquidity to a normal level (i.e. higher than the market requirement for collateralization). In the event of liquidation, liquidators may repay part or 50% of the loan for the borrower. Liquidators will be given a proportion of the borrower's collateral as an incentive.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidateBorrow</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">jTokenCollateral</span><span class="p">)</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>borrower:</code> address of a liquidated account.
+    * <code>repayAmount:</code> amount of token to be repaid in the event of liquidation (measured in the borrowed asset).
+    * <code>jTokenCollateral:</code> address of the jTOKEN contract to set aside the collateralized asset of a borrower.
+* <strong>Returns:</strong> 0 on success, otherwise an Error code.</p>
+<h3 id="liquidate-borrowjtrx"><strong>Liquidate Borrow（jTRX）</strong><a class="headerlink" href="#liquidate-borrowjtrx" title="Permanent link">&para;</a></h3>
+<p>By calling the liquidateBorrow function of the jTRX contract, accounts whose liquidity does not meet the market requirement for collateralization will be liquidated by other users to restore the account liquidity to a normal level (i.e., higher than the market requirement for collateralization). In the event of liquidation, liquidators may repay part or 50% of the loan for the borrower. Liquidators will be given a proportion of the borrower's collateral as an incentive.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidateBorrow</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">jTokenCollateral</span><span class="p">)</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>borrower:</code> address of a liquidated account.
+    * <code>jTokenCollateral:</code> address of the jTRX contract to set aside the collateralized asset of a borrower.
+    * <code>msg.value:</code> amount of TRX to be repaid in the event of liquidation.
+* <strong>Returns:</strong> No return. If any error occurs, the transaction will be reverted.</p>
+<h4 id="event_4"><strong>Event</strong><a class="headerlink" href="#event_4" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code>LiquidateBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">liquidator</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">cTokenCollateral</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">seizeTokens</span><span class="p">)</span>
+</code></pre></div>
+* Emits when user successfully liquidate borrow order.
+    * <code>liquidator:</code> operate liquidation;
+    * <code>borrower:</code> address of a liquidated account;
+    * <code>repayAmount:</code> the amount of repaid assets;
+    * <code>cTokenCollateral:</code> address of the jTRX contract to set aside the collateralized asset of a borrower；
+    * <code>seizeTokens:</code> the tokens need to be liquidated.</p>
 <h2 id="error-code-and-failure-info"><strong>Error Code And Failure info</strong><a class="headerlink" href="#error-code-and-failure-info" title="Permanent link">&para;</a></h2>
+<h3 id="error-code"><strong>Error code</strong><a class="headerlink" href="#error-code" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>NO_ERROR</td>
+<td>Not a failure.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>UNAUTHORIZED</td>
+<td>The sender is not authorized to perform this action.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>BAD_INPUT</td>
+<td>An invalid argument was supplied by the caller.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>COMPTROLLER_REJECTION</td>
+<td>The action would violate the comptroller policy.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>COMPTROLLER_CALCULATION_ERROR</td>
+<td>An internal calculation has failed in the comptroller.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>INTEREST_RATE_MODEL_ERROR</td>
+<td>The interest rate model returned an invalid value.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>INVALID_ACCOUNT_PAIR</td>
+<td>The specified combination of accounts is invalid.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>INVALID_CLOSE_AMOUNT_REQUESTED</td>
+<td>The amount to liquidate is invalid.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>INVALID_COLLATERAL_FACTOR</td>
+<td>The collateral factor is invalid.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>MATH_ERROR</td>
+<td>A math calculation error occurred.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MARKET_NOT_FRESH</td>
+<td>Interest has not been properly accrued.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>MARKET_NOT_LISTED</td>
+<td>The market is not currently listed by its comptroller.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>TOKEN_INSUFFICIENT_ALLOWANCE</td>
+<td>ERC-20 contract must allow Money Market contract to call transferFrom. The current allowance is either 0 or less than the requested supply, repayBorrow or liquidate amount.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>TOKEN_INSUFFICIENT_BALANCE</td>
+<td>Caller does not have sufficient balance in the ERC-20 contract to complete the desired action.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>TOKEN_INSUFFICIENT_CASH</td>
+<td>The market does not have a sufficient cash balance to complete the transaction. You may attempt this transaction again later.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>TOKEN_TRANSFER_IN_FAILED</td>
+<td>Failure in ERC-20 when transfering token into the market.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>TOKEN_TRANSFER_OUT_FAILED</td>
+<td>Failure in ERC-20 when transfering token out of the market.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="failure-info"><strong>Failure info</strong><a class="headerlink" href="#failure-info" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>ACCEPT_ADMIN_PENDING_ADMIN_CHECK</td>
+</tr>
+<tr>
+<td>1</td>
+<td>ACCRUE_INTEREST_ACCUMULATED_INTEREST_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ACCRUE_INTEREST_BORROW_RATE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ACCRUE_INTEREST_NEW_BORROW_INDEX_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ACCRUE_INTEREST_NEW_TOTAL_BORROWS_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>5</td>
+<td>ACCRUE_INTEREST_NEW_TOTAL_RESERVES_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ACCRUE_INTEREST_SIMPLE_INTEREST_FACTOR_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>7</td>
+<td>BORROW_ACCUMULATED_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>8</td>
+<td>BORROW_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>9</td>
+<td>BORROW_CASH_NOT_AVAILABLE</td>
+</tr>
+<tr>
+<td>10</td>
+<td>BORROW_FRESHNESS_CHECK</td>
+</tr>
+<tr>
+<td>11</td>
+<td>BORROW_NEW_TOTAL_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>12</td>
+<td>BORROW_NEW_ACCOUNT_BORROW_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>13</td>
+<td>BORROW_MARKET_NOT_LISTED</td>
+</tr>
+<tr>
+<td>14</td>
+<td>BORROW_COMPTROLLER_REJECTION</td>
+</tr>
+<tr>
+<td>15</td>
+<td>LIQUIDATE_ACCRUE_BORROW_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>16</td>
+<td>LIQUIDATE_ACCRUE_COLLATERAL_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>17</td>
+<td>LIQUIDATE_COLLATERAL_FRESHNESS_CHECK</td>
+</tr>
+<tr>
+<td>18</td>
+<td>LIQUIDATE_COMPTROLLER_REJECTION</td>
+</tr>
+<tr>
+<td>19</td>
+<td>LIQUIDATE_COMPTROLLER_CALCULATE_AMOUNT_SEIZE_FAILED</td>
+</tr>
+<tr>
+<td>20</td>
+<td>LIQUIDATE_CLOSE_AMOUNT_IS_UINT_MAX</td>
+</tr>
+<tr>
+<td>21</td>
+<td>LIQUIDATE_CLOSE_AMOUNT_IS_ZERO</td>
+</tr>
+<tr>
+<td>22</td>
+<td>LIQUIDATE_FRESHNESS_CHECK</td>
+</tr>
+<tr>
+<td>23</td>
+<td>LIQUIDATE_LIQUIDATOR_IS_BORROWER</td>
+</tr>
+<tr>
+<td>24</td>
+<td>LIQUIDATE_REPAY_BORROW_FRESH_FAILED</td>
+</tr>
+<tr>
+<td>25</td>
+<td>LIQUIDATE_SEIZE_BALANCE_INCREMENT_FAILED</td>
+</tr>
+<tr>
+<td>26</td>
+<td>LIQUIDATE_SEIZE_BALANCE_DECREMENT_FAILED</td>
+</tr>
+<tr>
+<td>27</td>
+<td>LIQUIDATE_SEIZE_COMPTROLLER_REJECTION</td>
+</tr>
+<tr>
+<td>28</td>
+<td>LIQUIDATE_SEIZE_LIQUIDATOR_IS_BORROWER</td>
+</tr>
+<tr>
+<td>29</td>
+<td>LIQUIDATE_SEIZE_TOO_MUCH</td>
+</tr>
+<tr>
+<td>30</td>
+<td>MINT_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>31</td>
+<td>MINT_COMPTROLLER_REJECTION</td>
+</tr>
+<tr>
+<td>32</td>
+<td>MINT_EXCHANGE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>33</td>
+<td>MINT_EXCHANGE_RATE_READ_FAILED</td>
+</tr>
+<tr>
+<td>34</td>
+<td>MINT_FRESHNESS_CHECK</td>
+</tr>
+<tr>
+<td>35</td>
+<td>MINT_NEW_ACCOUNT_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>36</td>
+<td>AMINT_NEW_TOTAL_SUPPLY_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>37</td>
+<td>MINT_TRANSFER_IN_FAILED</td>
+</tr>
+<tr>
+<td>38</td>
+<td>MINT_TRANSFER_IN_NOT_POSSIBLE</td>
+</tr>
+<tr>
+<td>39</td>
+<td>REDEEM_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>40</td>
+<td>REDEEM_COMPTROLLER_REJECTION</td>
+</tr>
+<tr>
+<td>41</td>
+<td>REDEEM_EXCHANGE_TOKENS_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>42</td>
+<td>REDEEM_EXCHANGE_AMOUNT_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>43</td>
+<td>REDEEM_EXCHANGE_RATE_READ_FAILED</td>
+</tr>
+<tr>
+<td>44</td>
+<td>REDEEM_FRESHNESS_CHECK</td>
+</tr>
+<tr>
+<td>45</td>
+<td>REDEEM_NEW_ACCOUNT_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>46</td>
+<td>REDEEM_NEW_TOTAL_SUPPLY_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>47</td>
+<td>REDEEM_TRANSFER_OUT_NOT_POSSIBLE</td>
+</tr>
+<tr>
+<td>48</td>
+<td>REDUCE_RESERVES_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>49</td>
+<td>REDUCE_RESERVES_ADMIN_CHECK</td>
+</tr>
+<tr>
+<td>50</td>
+<td>REDUCE_RESERVES_CASH_NOT_AVAILABLE</td>
+</tr>
+<tr>
+<td>51</td>
+<td>REDUCE_RESERVES_FRESH_CHECK</td>
+</tr>
+<tr>
+<td>52</td>
+<td>REDUCE_RESERVES_VALIDATION</td>
+</tr>
+<tr>
+<td>53</td>
+<td>REPAY_BEHALF_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>54</td>
+<td>REPAY_BORROW_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>55</td>
+<td>REPAY_BORROW_ACCUMULATED_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>56</td>
+<td>REPAY_BORROW_COMPTROLLER_REJECTION</td>
+</tr>
+<tr>
+<td>57</td>
+<td>REPAY_BORROW_FRESHNESS_CHECK</td>
+</tr>
+<tr>
+<td>58</td>
+<td>REPAY_BORROW_NEW_ACCOUNT_BORROW_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>59</td>
+<td>REPAY_BORROW_NEW_TOTAL_BALANCE_CALCULATION_FAILED</td>
+</tr>
+<tr>
+<td>60</td>
+<td>REPAY_BORROW_TRANSFER_IN_NOT_POSSIBLE</td>
+</tr>
+<tr>
+<td>61</td>
+<td>SET_COLLATERAL_FACTOR_OWNER_CHECK</td>
+</tr>
+<tr>
+<td>62</td>
+<td>SET_COLLATERAL_FACTOR_VALIDATION</td>
+</tr>
+<tr>
+<td>63</td>
+<td>SET_COMPTROLLER_OWNER_CHECK</td>
+</tr>
+<tr>
+<td>64</td>
+<td>SET_INTEREST_RATE_MODEL_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>65</td>
+<td>SET_INTEREST_RATE_MODEL_FRESH_CHECK</td>
+</tr>
+<tr>
+<td>66</td>
+<td>SET_INTEREST_RATE_MODEL_OWNER_CHECK</td>
+</tr>
+<tr>
+<td>67</td>
+<td>SET_MAX_ASSETS_OWNER_CHECK</td>
+</tr>
+<tr>
+<td>68</td>
+<td>SET_ORACLE_MARKET_NOT_LISTED</td>
+</tr>
+<tr>
+<td>69</td>
+<td>SET_PENDING_ADMIN_OWNER_CHECK</td>
+</tr>
+<tr>
+<td>70</td>
+<td>SET_RESERVE_FACTOR_ACCRUE_INTEREST_FAILED</td>
+</tr>
+<tr>
+<td>71</td>
+<td>SET_RESERVE_FACTOR_ADMIN_CHECK</td>
+</tr>
+<tr>
+<td>72</td>
+<td>SET_RESERVE_FACTOR_FRESH_CHECK</td>
+</tr>
+<tr>
+<td>73</td>
+<td>SET_RESERVE_FACTOR_BOUNDS_CHECK</td>
+</tr>
+<tr>
+<td>74</td>
+<td>TRANSFER_COMPTROLLER_REJECTION</td>
+</tr>
+<tr>
+<td>75</td>
+<td>TRANSFER_NOT_ALLOWED</td>
+</tr>
+<tr>
+<td>76</td>
+<td>TRANSFER_NOT_ENOUGH</td>
+</tr>
+<tr>
+<td>77</td>
+<td>TRANSFER_TOO_MUCH</td>
+</tr>
+</tbody>
+</table>
 
 
 
