@@ -1715,194 +1715,282 @@
 <h3 id="exchangerate"><strong>ExchangeRate</strong><a class="headerlink" href="#exchangerate" title="Permanent link">&para;</a></h3>
 <p>Calling this method accrues interest and returns the up-to-date exchange rate.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">exchangeRateCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> calculated exchange rate scaled by 1e18.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> calculated exchange rate scaled by 1e18.</li>
+</ul>
 <h3 id="get-cash"><strong>Get Cash</strong><a class="headerlink" href="#get-cash" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the total amount of underlying balance currently available to this market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCash</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The quantity of underlying assets owned by this contract.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The quantity of underlying assets owned by this contract.</li>
+</ul>
 <h3 id="total-borrows"><strong>Total Borrows</strong><a class="headerlink" href="#total-borrows" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the sum of the currently loaned-outs and the accrued interests.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalBorrowsCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The total borrows with interest.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The total borrows with interest.</li>
+</ul>
 <h3 id="borrow-balance"><strong>Borrow Balance</strong><a class="headerlink" href="#borrow-balance" title="Permanent link">&para;</a></h3>
 <p>Calling this method accrues interest to the updated borrowIndex and then calculates the account's borrow balance using the updated borrowIndex.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowBalanceCurrent</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>account:</code> the address whose balance should be calculated after updating borrowIndex.
-* <strong>Returns:</strong> The total borrows with interest.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>account:</code> the address whose balance should be calculated after updating borrowIndex.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> The total borrows with interest.</li>
+</ul>
 <h3 id="borrow-rate"><strong>Borrow Rate</strong><a class="headerlink" href="#borrow-rate" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the current per-block borrow interest rate for this jToken.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The borrow interest rate per block, scaled by 1e18.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The borrow interest rate per block, scaled by 1e18.</li>
+</ul>
 <h3 id="total-supply"><strong>Total Supply</strong><a class="headerlink" href="#total-supply" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the total number of tokens in circulation.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The supply of tokens.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The supply of tokens.</li>
+</ul>
 <h3 id="underlying-balance"><strong>Underlying Balance</strong><a class="headerlink" href="#underlying-balance" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the underlying balance of the owner.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceOfUnderlying</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>owner:</code> the address of the account.
-* <strong>Returns:</strong> The amount of underlying owned by owner.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>owner:</code> the address of the account.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> The amount of underlying owned by owner.</li>
+</ul>
 <h3 id="supply-rate"><strong>Supply Rate</strong><a class="headerlink" href="#supply-rate" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the current per-block supply interest rate for this jToken.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The supply interest rate per block, scaled by 1e18.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The supply interest rate per block, scaled by 1e18.</li>
+</ul>
 <h3 id="total-reserves"><strong>Total Reserves</strong><a class="headerlink" href="#total-reserves" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the reserves. Reserve represents a portion of historical interest set aside as cash which can be withdrawn or transferred through the protocol's governance.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalReserves</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The total amount of reserves.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The total amount of reserves.</li>
+</ul>
 <h3 id="reserve-factor"><strong>Reserve Factor</strong><a class="headerlink" href="#reserve-factor" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the current reserve factor.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">reserveFactorMantissa</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The current reserve factor.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The current reserve factor.</li>
+</ul>
 <h3 id="liquidation-incentive"><strong>Liquidation Incentive</strong><a class="headerlink" href="#liquidation-incentive" title="Permanent link">&para;</a></h3>
 <p>By calling the liquidationIncentiveMantissa function of the Unitroller contract, liquidation incentives can be inquired. Liquidators will be given a proportion of the borrower's collateral as an incentive, which is defined as liquidation incentive. This is to encourage liquidators to perform liquidation of underwater accounts.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidationIncentiveMantissa</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A
-* <strong>Returns:</strong> The liquidationIncentive, scaled by 1e18, is multiplied by the closed borrow amount from the liquidator to determine how much collateral can be seized.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The liquidationIncentive, scaled by 1e18, is multiplied by the closed borrow amount from the liquidator to determine how much collateral can be seized.</li>
+</ul>
 <h3 id="get-account-liquidity"><strong>Get Account Liquidity</strong><a class="headerlink" href="#get-account-liquidity" title="Permanent link">&para;</a></h3>
 <p>By calling the getAccountLiquidity function of the Unitroller contract, account information can be accessed through an account's address to determine whether the account should be liquidated or not.
 <div class="highlight"><pre><span></span><code>getAccountLiquidity<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>account:</code> user address.
-* <strong>Returns:</strong> The amount of underlying owned by owner.
-    * <code>error:</code> error code, 0 means success.
-    * <code>liquidity:</code> liquidity.
-    * <code>shortfall:</code> When the value is bigger than 0, the current account does not meet the market requirement for collateralization and needs to be liquidated.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>account:</code> user address.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> The amount of underlying owned by owner.<ul>
+<li><code>error:</code> error code, 0 means success.</li>
+<li><code>liquidity:</code> liquidity.</li>
+<li><code>shortfall:</code> When the value is bigger than 0, the current account does not meet the market requirement for collateralization and needs to be liquidated.</li>
+</ul>
+</li>
+</ul>
 <p>Note: There should be at most one non-zero value between liquidity and shortfall.</p>
 <h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
 <h3 id="borrow"><strong>Borrow</strong><a class="headerlink" href="#borrow" title="Permanent link">&para;</a></h3>
 <p>Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>borrowAmount:</code> the amount of the underlying asset to borrow.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>borrowAmount:</code> the amount of the underlying asset to borrow.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
 <h4 id="event"><strong>Event</strong><a class="headerlink" href="#event" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>Borrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>Borrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
 </code></pre></div>
-* Emits when user successfully borrow.
-    * <code>borrower:</code> address of borrow assets account;
-    * <code>borrowAmount:</code> the amount of borrowed assets;
-    * <code>accountBorrows:</code> the account borrow the assets;
-    * <code>totalBorrows:</code> total borrow assets form the account;
-    * <code>borrowIndex:</code> the index of this borrow order.</p>
+<ul>
+<li>Emits when user successfully borrow.<ul>
+<li><code>borrower:</code> address of borrow assets account;</li>
+<li><code>borrowAmount:</code> the amount of borrowed assets;</li>
+<li><code>accountBorrows:</code> the account borrow the assets;</li>
+<li><code>totalBorrows:</code> total borrow assets form the account;</li>
+<li><code>borrowIndex:</code> the index of this borrow order.</li>
+</ul>
+</li>
+</ul>
 <h3 id="repayborrow"><strong>repayBorrow</strong><a class="headerlink" href="#repayborrow" title="Permanent link">&para;</a></h3>
 <p>Calling this method repays their own borrow.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repayBorrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>amount:</code> the amount of the asset to repay.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>amount:</code> the amount of the asset to repay.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
 <h4 id="event_1"><strong>Event</strong><a class="headerlink" href="#event_1" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>RepayBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">payer</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>RepayBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">payer</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
 </code></pre></div>
-* Emits when user successfully repay borrow.
-    * <code>payer:</code> operate repay borrow;
-    * <code>borrower:</code> address of borrow assets account;
-    * <code>repayAmount:</code> the amount of repaid assets;
-    * <code>accountBorrows:</code> the account borrow the assets;
-    * <code>totalBorrows:</code> total borrow assets form the account;
-    * <code>borrowIndex:</code> the index of this borrow order.</p>
+<ul>
+<li>Emits when user successfully repay borrow.<ul>
+<li><code>payer:</code> operate repay borrow;</li>
+<li><code>borrower:</code> address of borrow assets account;</li>
+<li><code>repayAmount:</code> the amount of repaid assets;</li>
+<li><code>accountBorrows:</code> the account borrow the assets;</li>
+<li><code>totalBorrows:</code> total borrow assets form the account;</li>
+<li><code>borrowIndex:</code> the index of this borrow order.</li>
+</ul>
+</li>
+</ul>
 <h3 id="repayborrowbehalf"><strong>repayBorrowBehalf</strong><a class="headerlink" href="#repayborrowbehalf" title="Permanent link">&para;</a></h3>
 <p>Calling this method repays their own borrow.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repayBorrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>borrower:</code> the account with the debt being paid off.
-    * <code>msg.value:</code> the amount to repay.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>borrower:</code> the account with the debt being paid off.</li>
+<li><code>msg.value:</code> the amount to repay.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
 <h3 id="mint"><strong>Mint</strong><a class="headerlink" href="#mint" title="Permanent link">&para;</a></h3>
 <p>Calling this method supplies assets into the market and receives jTokens in exchange.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>msg.value:</code> the amount of TRX to supply.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>msg.value:</code> the amount of TRX to supply.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
 <h4 id="event_2"><strong>Event</strong><a class="headerlink" href="#event_2" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>Mint<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">minter</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">mintAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">mintTokens</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>Mint<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">minter</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">mintAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">mintTokens</span><span class="p">)</span>
 </code></pre></div>
-* Emits when user successfully mint.
-    * <code>minter:</code> operate supply assets into the market;
-    * <code>mintAmount:</code> the amount of supplied assets;
-    * <code>mintTokens:</code> the tokens need to mint.</p>
+<ul>
+<li>Emits when user successfully mint.<ul>
+<li><code>minter:</code> operate supply assets into the market;</li>
+<li><code>mintAmount:</code> the amount of supplied assets;</li>
+<li><code>mintTokens:</code> the tokens need to mint.</li>
+</ul>
+</li>
+</ul>
 <h3 id="redeem"><strong>Redeem</strong><a class="headerlink" href="#redeem" title="Permanent link">&para;</a></h3>
 <p>Calling this method redeems jTokens in exchange for the underlying asset and accrues interest whether or not the operation succeeds.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">redeem</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemTokens</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>redeemTokens:</code>  the number of jTokens to redeem into underlying.
-* <strong>Returns:</strong> 0 for success, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>redeemTokens:</code>  the number of jTokens to redeem into underlying.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> 0 for success, reverts on error.</li>
+</ul>
 <h4 id="event_3"><strong>Event</strong><a class="headerlink" href="#event_3" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>Redeem<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">redeemer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemTokens</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>Redeem<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">redeemer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemTokens</span><span class="p">)</span>
 </code></pre></div>
-* Emits when user successfully redeem.
-    * <code>redeemer:</code> operate redeem jTokens;
-    * <code>redeemAmount:</code> the amount of redeem assets;
-    * <code>redeemTokens:</code> the tokens need to redeem.</p>
+<ul>
+<li>Emits when user successfully redeem.<ul>
+<li><code>redeemer:</code> operate redeem jTokens;</li>
+<li><code>redeemAmount:</code> the amount of redeem assets;</li>
+<li><code>redeemTokens:</code> the tokens need to redeem.</li>
+</ul>
+</li>
+</ul>
 <h3 id="redeemunderlying"><strong>RedeemUnderlying</strong><a class="headerlink" href="#redeemunderlying" title="Permanent link">&para;</a></h3>
 <p>Calling this method redeems jTokens in exchange for a specified amount of underlying asset.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">redeemUnderlying</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">redeemAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>redeemAmount:</code> the amount of underlying to redeem.
-* <strong>Returns:</strong> 0 for success, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>redeemAmount:</code> the amount of underlying to redeem.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> 0 for success, reverts on error.</li>
+</ul>
 <h3 id="transfer"><strong>Transfer</strong><a class="headerlink" href="#transfer" title="Permanent link">&para;</a></h3>
 <p>Calling this method transfers a specified amount of jtokens to the destination. This action will fail if the account's liquidity become negative due to the transfer.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">transfer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">dst</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>dst:</code> the receiver's address.
-    * <code>amount:</code> amount of token to be transferred.
-* <strong>Returns:</strong> A boolean value indicating whether or not the transfer succeeded.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>dst:</code> the receiver's address.</li>
+<li><code>amount:</code> amount of token to be transferred.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> A boolean value indicating whether or not the transfer succeeded.</li>
+</ul>
 <h3 id="liquidate-borrowjtrc20"><strong>Liquidate Borrow（jTrc20）</strong><a class="headerlink" href="#liquidate-borrowjtrc20" title="Permanent link">&para;</a></h3>
 <p>By calling liquidateBorrow function of the corresponding jTrc20 contract (e.g. jUSDT), accounts whose liquidity does not meet the market requirement for collateralization will be liquidated by other users to restore the account liquidity to a normal level (i.e. higher than the market requirement for collateralization). In the event of liquidation, liquidators may repay part or 50% of the loan for the borrower. Liquidators will be given a proportion of the borrower's collateral as an incentive.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidateBorrow</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">jTokenCollateral</span><span class="p">)</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>borrower:</code> address of a liquidated account.
-    * <code>repayAmount:</code> amount of token to be repaid in the event of liquidation (measured in the borrowed asset).
-    * <code>jTokenCollateral:</code> address of the jTOKEN contract to set aside the collateralized asset of a borrower.
-* <strong>Returns:</strong> 0 on success, otherwise an Error code.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>borrower:</code> address of a liquidated account.</li>
+<li><code>repayAmount:</code> amount of token to be repaid in the event of liquidation (measured in the borrowed asset).</li>
+<li><code>jTokenCollateral:</code> address of the jTOKEN contract to set aside the collateralized asset of a borrower.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> 0 on success, otherwise an Error code.</li>
+</ul>
 <h3 id="liquidate-borrowjtrx"><strong>Liquidate Borrow（jTRX）</strong><a class="headerlink" href="#liquidate-borrowjtrx" title="Permanent link">&para;</a></h3>
 <p>By calling the liquidateBorrow function of the jTRX contract, accounts whose liquidity does not meet the market requirement for collateralization will be liquidated by other users to restore the account liquidity to a normal level (i.e., higher than the market requirement for collateralization). In the event of liquidation, liquidators may repay part or 50% of the loan for the borrower. Liquidators will be given a proportion of the borrower's collateral as an incentive.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidateBorrow</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">jTokenCollateral</span><span class="p">)</span><span class="w"> </span><span class="kt">payable</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>borrower:</code> address of a liquidated account.
-    * <code>jTokenCollateral:</code> address of the jTRX contract to set aside the collateralized asset of a borrower.
-    * <code>msg.value:</code> amount of TRX to be repaid in the event of liquidation.
-* <strong>Returns:</strong> No return. If any error occurs, the transaction will be reverted.</p>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>borrower:</code> address of a liquidated account.</li>
+<li><code>jTokenCollateral:</code> address of the jTRX contract to set aside the collateralized asset of a borrower.</li>
+<li><code>msg.value:</code> amount of TRX to be repaid in the event of liquidation.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> No return. If any error occurs, the transaction will be reverted.</li>
+</ul>
 <h4 id="event_4"><strong>Event</strong><a class="headerlink" href="#event_4" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>LiquidateBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">liquidator</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">cTokenCollateral</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">seizeTokens</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>LiquidateBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">liquidator</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">cTokenCollateral</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">seizeTokens</span><span class="p">)</span>
 </code></pre></div>
-* Emits when user successfully liquidate borrow order.
-    * <code>liquidator:</code> operate liquidation;
-    * <code>borrower:</code> address of a liquidated account;
-    * <code>repayAmount:</code> the amount of repaid assets;
-    * <code>cTokenCollateral:</code> address of the jTRX contract to set aside the collateralized asset of a borrower；
-    * <code>seizeTokens:</code> the tokens need to be liquidated.</p>
+<ul>
+<li>Emits when user successfully liquidate borrow order.<ul>
+<li><code>liquidator:</code> operate liquidation;</li>
+<li><code>borrower:</code> address of a liquidated account;</li>
+<li><code>repayAmount:</code> the amount of repaid assets;</li>
+<li><code>cTokenCollateral:</code> address of the jTRX contract to set aside the collateralized asset of a borrower；</li>
+<li><code>seizeTokens:</code> the tokens need to be liquidated.</li>
+</ul>
+</li>
+</ul>
 <h2 id="error-code-and-failure-info"><strong>Error Code And Failure info</strong><a class="headerlink" href="#error-code-and-failure-info" title="Permanent link">&para;</a></h2>
 <h3 id="error-code"><strong>Error code</strong><a class="headerlink" href="#error-code" title="Permanent link">&para;</a></h3>
 <table>
