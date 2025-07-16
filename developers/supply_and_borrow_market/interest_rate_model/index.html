@@ -941,14 +941,20 @@
   
 </li>
         
-          <li class="md-nav__item ">
-  <a href="#jump-rate-model" class="md-nav__link" >
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item has-children">
+  <a href="#jump-rate-model" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Jump Rate Model
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Jump Rate Model" hidden>
+      <ul class="md-nav__list">
         
           <li class="md-nav__item ">
   <a href="#borrow-rate_1" class="md-nav__link" >
@@ -1546,7 +1552,7 @@
 <li><code>b:</code> base rate per block (baseRatePerYear / blocksPerYear);</li>
 <li><code>reserve_factor:</code> portion of interest income extracted from the protocol.</li>
 </ul>
-<h3 id="jump-rate-model"><strong>Jump Rate Model</strong><a class="headerlink" href="#jump-rate-model" title="Permanent link">&para;</a></h3>
+<h2 id="jump-rate-model"><strong>Jump Rate Model</strong><a class="headerlink" href="#jump-rate-model" title="Permanent link">&para;</a></h2>
 <p>The Jump Rate Model is quite different with the Whitepaper Rate Model, where the interest rate jumps to a higher tier when the utilization rate exceeds U_optional
 The interest rate is defined as below.</p>
 <h3 id="borrow-rate_1"><strong>Borrow Rate:</strong><a class="headerlink" href="#borrow-rate_1" title="Permanent link">&para;</a></h3>
