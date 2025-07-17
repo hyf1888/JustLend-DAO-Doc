@@ -935,21 +935,132 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item ">
-  <a href="#proposals" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#proposals" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Proposals
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Proposals" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#propose" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Propose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#queue" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Queue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#execute" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Execute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#cancel" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Cancel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#get-actions" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Get Actions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#get-receipt" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Get Receipt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#proposal-state" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Proposal State
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
-        <li class="md-nav__item ">
-  <a href="#poll-vote" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#poll-vote" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Poll &amp; Vote
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Poll &amp; Vote" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#deposit" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Deposit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#cast-vote" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Cast Vote
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#cast-vote-with-reason" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Cast Vote With Reason
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#cast-vote-by-signature" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Cast Vote By Signature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1479,7 +1590,163 @@ governance module(<a href="https://tronscan.org/#/contract/TEqiF5JbhDPD77yjEfnEM
 </ul>
 <p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/Governance/Bravo/GovernorBravoDelegate.sol">Github</a>.</p>
 <h2 id="proposals"><strong>Proposals</strong><a class="headerlink" href="#proposals" title="Permanent link">&para;</a></h2>
+<h3 id="propose"><strong>Propose</strong><a class="headerlink" href="#propose" title="Permanent link">&para;</a></h3>
+<p>Calling this method creates a proposal to change &amp; update the JustLend DAO protocol.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">propose</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>targets<span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>values<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>signatures<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>calldatas<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>targets:</code> target addresses for calls to be made during proposal execution;</li>
+<li><code>values:</code> values to be passed to the calls;</li>
+<li><code>signatures:</code> function signatures;</li>
+<li><code>calldatas:</code> data for each function;</li>
+<li><code>description:</code> a readable message of what exactly the proposal changes.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> the ID of this proposal.</li>
+</ul>
+<h3 id="queue"><strong>Queue</strong><a class="headerlink" href="#queue" title="Permanent link">&para;</a></h3>
+<p>Calling this method moves a successful proposal into the Timelock waiting period. The waiting period begins when this method is successfully called.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">queue</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the successful proposal.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h3 id="execute"><strong>Execute</strong><a class="headerlink" href="#execute" title="Permanent link">&para;</a></h3>
+<p>Calling this method executes the proposal whose waiting period has already been ended. Actions in the proposal will be invoked during the execution.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">execute</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the proposal to be executed.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h3 id="cancel"><strong>Cancel</strong><a class="headerlink" href="#cancel" title="Permanent link">&para;</a></h3>
+<p>Calling this function cancels a proposal. A proposal can be cancelled at any time prior to its execution.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">cancel</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the proposal to be cancelled.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h3 id="get-actions"><strong>Get Actions</strong><a class="headerlink" href="#get-actions" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the actions of an exact proposal.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getActions</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>targets<span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>values<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>signatures<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>calldatas<span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the proposal.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong><ul>
+<li><code>targets:</code> target addresses for calls to be made during proposal execution;</li>
+<li><code>values:</code> values to be passed to the calls;</li>
+<li><code>signatures:</code> function signatures;</li>
+<li><code>calldatas:</code> data for each function.</li>
+</ul>
+</li>
+</ul>
+<h3 id="get-receipt"><strong>Get Receipt</strong><a class="headerlink" href="#get-receipt" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the votes of a specified voter on a proposal.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getReceipt</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">voter</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Receipt<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+
+<span class="kt">struct</span><span class="w"> </span><span class="nv">Receipt</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">hasVoted</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votes</span><span class="p">;</span>
+<span class="p">}}</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the proposal.</li>
+<li><code>voter:</code> address of the specified account.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong><ul>
+<li><code>hasVoted:</code> voted or not;</li>
+<li><code>values:</code> for or against;</li>
+<li><code>signatures:</code> vote count.</li>
+</ul>
+</li>
+</ul>
+<h3 id="proposal-state"><strong>Proposal State</strong><a class="headerlink" href="#proposal-state" title="Permanent link">&para;</a></h3>
+<p>Calling this method returns the state of a specified proposal.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">state</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>ProposalState<span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the specified proposal;</li>
+</ul>
+</li>
+<li><strong>Returns:</strong><ul>
+<li><code>ProposalState:</code> Pending or Active or Canceled; Defeated or Succeeded or Queued; Expired or Executed.</li>
+</ul>
+</li>
+</ul>
 <h2 id="poll-vote"><strong>Poll &amp; Vote</strong><a class="headerlink" href="#poll-vote" title="Permanent link">&para;</a></h2>
+<h3 id="deposit"><strong>Deposit</strong><a class="headerlink" href="#deposit" title="Permanent link">&para;</a></h3>
+<p>Calling this method exchanges JST for WJST at a one-to-one ratio.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sad</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>sad:</code> number of votes(WJST) to exchange.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h3 id="cast-vote"><strong>Cast Vote</strong><a class="headerlink" href="#cast-vote" title="Permanent link">&para;</a></h3>
+<p>Calling this method casts a vote on a proposal. The voting weight will be calculated at the time the proposal's state becomes active.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">castVote</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">votes</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the proposal to vote;</li>
+<li><code>votes:</code> number of the votes to be cast;</li>
+<li><code>support:</code> for or against.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h3 id="cast-vote-with-reason"><strong>Cast Vote With Reason</strong><a class="headerlink" href="#cast-vote-with-reason" title="Permanent link">&para;</a></h3>
+<p>Calling this method casts a vote on a proposal. The reason can be submitted simultaneously.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">castVoteWithReason</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">votes</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>reson<span class="p">)</span><span class="w"> </span><span class="kt">public</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the proposal to vote;</li>
+<li><code>vote:</code> number of the votes to be cast;</li>
+<li><code>support:</code> for or against;</li>
+<li><code>reason:</code> voting reason.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h3 id="cast-vote-by-signature"><strong>Cast Vote By Signature</strong><a class="headerlink" href="#cast-vote-by-signature" title="Permanent link">&para;</a></h3>
+<p>Calling this method casts votes on a specified proposal. Comparing with <code>castVote()</code>, this method allows offline signature.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">castVoteWithReason</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">votes</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>reson<span class="p">)</span><span class="w"> </span><span class="kt">public</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>proposalId:</code> ID of the proposal to vote;</li>
+<li><code>vote:</code> number of the votes to be cast;</li>
+<li><code>support:</code> for or against;</li>
+<li><code>v:</code> recover byte of the signature;</li>
+<li><code>r:</code> half of the ECDSA signature pair;</li>
+<li><code>s:</code> half of the ECDSA signature pair.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
 
 
 
