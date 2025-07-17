@@ -979,21 +979,96 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item ">
-  <a href="#markets" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#markets" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
+    <span class="md-ellipsis">
+      Markets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markets" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#enter-markets" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Enter Markets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#exit-market" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Exit Market
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#get-assets-in" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Get Assets In
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#markets_1" class="md-nav__link" >
     <span class="md-ellipsis">
       Markets
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
-        <li class="md-nav__item ">
-  <a href="#collateral-liquidation" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#collateral-liquidation" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Collateral &amp; Liquidation
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Collateral &amp; Liquidation" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#get-account-liquidity" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Get Account Liquidity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#close-factor-mantissa" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Close Factor Mantissa
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#liquidation-incentive-mantissa" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Liquidation Incentive Mantissa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1477,7 +1552,84 @@ The Comptroller is implemented as an upgradable contract. The entrance is <a hre
 </ul>
 <p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/Comptroller.sol">Github</a>.</p>
 <h2 id="markets"><strong>Markets</strong><a class="headerlink" href="#markets" title="Permanent link">&para;</a></h2>
+<h3 id="enter-markets"><strong>Enter Markets</strong><a class="headerlink" href="#enter-markets" title="Permanent link">&para;</a></h3>
+<p>Calling this method enters a list of markets to supply or borrow.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">enterMarkets</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>cTokens<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>cTokens:</code> address list of the markets to enter.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> for each market, returns 0 for success, otherwise an error code.</li>
+</ul>
+<h3 id="exit-market"><strong>Exit Market</strong><a class="headerlink" href="#exit-market" title="Permanent link">&para;</a></h3>
+<p>Calling this method exits a currently entered market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">exitMarket</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">cTokenAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>cTokenAddress:</code> market address to quit.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> 0 on success, otherwise an error code.</li>
+</ul>
+<h3 id="get-assets-in"><strong>Get Assets In</strong><a class="headerlink" href="#get-assets-in" title="Permanent link">&para;</a></h3>
+<p>Calling this method returns a list of already entered markets.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getAssetsIn</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CToken<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>account:</code> the markets this account enters will be returned.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> markets have been entered by the specified address.</li>
+</ul>
+<h3 id="markets_1"><strong>Markets</strong><a class="headerlink" href="#markets_1" title="Permanent link">&para;</a></h3>
+<p>Calling this method returns the status of a market(isListed, collateralFactorMantissa, comped)
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">markets</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">cTokenAddress</span><span class="p">)</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>cTokenAddress:</code> market address.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong><ul>
+<li><code>isListed:</code> whether recognized by comptroller;</li>
+<li><code>collateralFactorMantissa:</code> the value can be borrowed(scaled by 1e18);</li>
+<li><code>comped:</code> whether suppliers &amp; borrowers can get jst dividends.</li>
+</ul>
+</li>
+</ul>
 <h2 id="collateral-liquidation"><strong>Collateral &amp; Liquidation</strong><a class="headerlink" href="#collateral-liquidation" title="Permanent link">&para;</a></h2>
+<h3 id="get-account-liquidity"><strong>Get Account Liquidity</strong><a class="headerlink" href="#get-account-liquidity" title="Permanent link">&para;</a></h3>
+<p>Calling this method returns the liquidity and shortfall of a user.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getAccountLiquidity</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong></li>
+<li><code>account:</code> address to be queried.</li>
+<li><strong>Returns:</strong></li>
+<li><code>error:</code> 0 for success, otherwise an error code;</li>
+<li><code>liquidity:</code> current liquidity;</li>
+<li><code>shortfall:</code> the shortfall value of the account's collateral requirement.</li>
+</ul>
+<h3 id="close-factor-mantissa"><strong>Close Factor Mantissa</strong><a class="headerlink" href="#close-factor-mantissa" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the percentage of a liquidatable account should repay in a single liquidation. The range is 0%-100%. The calculation result of this method applies to a single asset.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">closeFactorMantissa</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> The close factor, scaled by 1e18.</li>
+</ul>
+<h3 id="liquidation-incentive-mantissa"><strong>Liquidation Incentive Mantissa</strong><a class="headerlink" href="#liquidation-incentive-mantissa" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets liquidators' incentives. The incentive is for underwater accounts. Part of this will be given to jToken reserves according to the seize share.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidationIncentiveMantissa</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> The close factor, scaled by 1e18.</li>
+</ul>
 
 
 
