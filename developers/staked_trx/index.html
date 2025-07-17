@@ -1007,21 +1007,150 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item ">
-  <a href="#query-interface" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#query-interface" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Query Interface
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Query Interface" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#exchange-rate" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Exchange Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#total-trx-assets" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Total TRX Assets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#user-balance-in-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      User Balance in TRX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#current-unfreezing-round" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Current Unfreezing Round
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#claimable-amount-in-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Claimable Amount in TRX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#withdrawal-amount-in-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Withdrawal Amount in TRX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#unfreeze-balance-in-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Unfreeze Balance in TRX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#freeze-balance-in-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Freeze Balance in TRX
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
-        <li class="md-nav__item ">
-  <a href="#write-interface" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#write-interface" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Write Interface
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Write Interface" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#deposit-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Deposit TRX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#withdraw-strx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Withdraw sTRX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#withdraw-strx-with-the-amount-of-trx-specified" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Withdraw sTRX (with the amount of TRX specified)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#claim-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Claim TRX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#claim-all-unfrozen-trx" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Claim all unfrozen TRX
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1467,7 +1596,154 @@
 <p>Based on Stake 2.0, with TRX Liquid Staking, users can stake TRX to get sTRX tokens and gain high rewards. Compared to traditional staking, TRX Liquid Staking is easier to use and more profitable. Staked TRX will be used automatically for voting and governance, and gain rewards via Energy Rental.
 The contract <a href="https://tronscan.org/#/token20/TU3kjFuhtEo42tsCBtfYUAZxoqQ4yuSLQ5">StakedTRX</a> used to set up the staked TRX service.</p>
 <h2 id="query-interface"><strong>Query Interface</strong><a class="headerlink" href="#query-interface" title="Permanent link">&para;</a></h2>
+<h3 id="exchange-rate"><strong>Exchange Rate</strong><a class="headerlink" href="#exchange-rate" title="Permanent link">&para;</a></h3>
+<p>Query the exchange rate between sTRX and TRX.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">exchangeRate</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> exchange rate, 1 sTRX / 1 TRX exchange rate, scaled by 1e18.</li>
+</ul>
+<h3 id="total-trx-assets"><strong>Total TRX Assets</strong><a class="headerlink" href="#total-trx-assets" title="Permanent link">&para;</a></h3>
+<p>Query the total TRX assets managed by contract.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalUnderlying</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> the total assets of TRX managed by contract, the minimum unit.</li>
+</ul>
+<h3 id="user-balance-in-trx"><strong>User Balance in TRX</strong><a class="headerlink" href="#user-balance-in-trx" title="Permanent link">&para;</a></h3>
+<p>Query the amount of TRX corresponding to the sTRX held by user.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceInTrx</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>_account:</code> the user address.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> the amount of TRX corresponding to the sTRX held by user, the minimum unit.</li>
+</ul>
+<h3 id="current-unfreezing-round"><strong>Current Unfreezing Round</strong><a class="headerlink" href="#current-unfreezing-round" title="Permanent link">&para;</a></h3>
+<p>Query the current unfreezing round of the contract. The initial value is 1.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">round</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> current unfreezing round.</li>
+</ul>
+<h3 id="claimable-amount-in-trx"><strong>Claimable Amount in TRX</strong><a class="headerlink" href="#claimable-amount-in-trx" title="Permanent link">&para;</a></h3>
+<p>The amount of TRX that can be withdrawn after the unfreezing period has expired.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">claimable</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> the amount of TRX that can be claimed.</li>
+</ul>
+<h3 id="withdrawal-amount-in-trx"><strong>Withdrawal Amount in TRX</strong><a class="headerlink" href="#withdrawal-amount-in-trx" title="Permanent link">&para;</a></h3>
+<p>The amount of TRX being withdrawn. This value is increased when the user withdraws.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawal</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> the amount of TRX being withdrawn.</li>
+</ul>
+<h3 id="unfreeze-balance-in-trx"><strong>Unfreeze Balance in TRX</strong><a class="headerlink" href="#unfreeze-balance-in-trx" title="Permanent link">&para;</a></h3>
+<p>The total amount to be unfrozen. If the user withdraws but has not completed the round, it will enter the unfreezing queue.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceToUnfreeze</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> the amount of TRX to be unfrozen, minimum unit.</li>
+</ul>
+<h3 id="freeze-balance-in-trx"><strong>Freeze Balance in TRX</strong><a class="headerlink" href="#freeze-balance-in-trx" title="Permanent link">&para;</a></h3>
+<p>The amount to be frozen. As long as the value is greater than 1 TRX, the freezing operation will be performed.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceToFreeze</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> the amount of TRX to be frozen, minimum unit.</li>
+</ul>
 <h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
+<h3 id="deposit-trx"><strong>Deposit TRX</strong><a class="headerlink" href="#deposit-trx" title="Permanent link">&para;</a></h3>
+<p>Deposit TRX assets and receive sTRX.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>msg.value:</code> the amount of TRX to deposit.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> the amount of sTRX received by user through exchange, the minimum unit.</li>
+</ul>
+<h4 id="event"><strong>Event</strong><a class="headerlink" href="#event" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Deposit<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">trxAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">strx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">userHoldStrx</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Emits when user successfully deposits TRX.<ul>
+<li><code>trxAmount:</code> the amount of TRX user deposits;</li>
+<li><code>strx:</code> the amount of sTRX user gets;</li>
+<li><code>userHoldStrx:</code> the total amount of sTRX held by user after the deposit.</li>
+</ul>
+</li>
+</ul>
+<h3 id="withdraw-strx"><strong>Withdraw sTRX</strong><a class="headerlink" href="#withdraw-strx" title="Permanent link">&para;</a></h3>
+<p>Specify the amount of sTRX to withdraw, the minimum unit.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>tokenAmount:</code> the amount of sTRX to withdraw.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> the amount of TRX to be unfrozen when user withdraws, the minimum unit.</li>
+</ul>
+<h4 id="event_1"><strong>Event</strong><a class="headerlink" href="#event_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Withdraw<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">strx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">trxAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">userHoldStrx</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Emits when user successfully withdraws sTRX.<ul>
+<li><code>strx:</code> the amount of sTRX user withdraws;</li>
+<li><code>trxAmount:</code> the amount of TRX user gets;</li>
+<li><code>userHoldStrx:</code> the total amount of sTRX held by user after the withdrawal.</li>
+</ul>
+</li>
+</ul>
+<h3 id="withdraw-strx-with-the-amount-of-trx-specified"><strong>Withdraw sTRX (with the amount of TRX specified)</strong><a class="headerlink" href="#withdraw-strx-with-the-amount-of-trx-specified" title="Permanent link">&para;</a></h3>
+<p>Specify the amount of TRX user hopes to obtain through withdrawal, the minimum unit.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawExact</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">trxAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>tokenAmount:</code> the specific amount of sTRX to withdraw.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> the amount of sTRX withdrawn by user, the minimum unit.</li>
+</ul>
+<h3 id="claim-trx"><strong>Claim TRX</strong><a class="headerlink" href="#claim-trx" title="Permanent link">&para;</a></h3>
+<p>Claim the ready-to-be-withdrawn TRX unfrozen in the earliest round.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">claim</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> the amount of TRX claimed by user in the earliest unfreezing round, the minimum unit.</li>
+</ul>
+<h4 id="event_2"><strong>Event</strong><a class="headerlink" href="#event_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Claim<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">trxAmount</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Emits when user successfully claims TRX.<ul>
+<li><code>trxAmount:</code> the amount of TRX user claims.</li>
+</ul>
+</li>
+</ul>
+<h3 id="claim-all-unfrozen-trx"><strong>Claim all unfrozen TRX</strong><a class="headerlink" href="#claim-all-unfrozen-trx" title="Permanent link">&para;</a></h3>
+<p>Claim all ready-to-be-withdrawn, unfrozen TRX
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">claimAll</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> the amount of TRX claimed by the user for all expired unfreezing rounds, the minimum unit.</li>
+</ul>
 
 
 

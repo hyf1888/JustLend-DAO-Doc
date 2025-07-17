@@ -1607,12 +1607,16 @@ The Comptroller is implemented as an upgradable contract. The entrance is <a hre
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getAccountLiquidity</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">)</span>
 </code></pre></div></p>
 <ul>
-<li><strong>Parameter description:</strong></li>
+<li><strong>Parameter description:</strong><ul>
 <li><code>account:</code> address to be queried.</li>
-<li><strong>Returns:</strong></li>
+</ul>
+</li>
+<li><strong>Returns:</strong><ul>
 <li><code>error:</code> 0 for success, otherwise an error code;</li>
 <li><code>liquidity:</code> current liquidity;</li>
 <li><code>shortfall:</code> the shortfall value of the account's collateral requirement.</li>
+</ul>
+</li>
 </ul>
 <h3 id="close-factor-mantissa"><strong>Close Factor Mantissa</strong><a class="headerlink" href="#close-factor-mantissa" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the percentage of a liquidatable account should repay in a single liquidation. The range is 0%-100%. The calculation result of this method applies to a single asset.
