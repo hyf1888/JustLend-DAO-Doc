@@ -957,12 +957,63 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item ">
-  <a href="#contracts-abi" class="md-nav__link" >
+        <li class="md-nav__item has-children">
+  <a href="#contracts-abi" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
       Contracts ABI
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Contracts ABI" hidden>
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item ">
+  <a href="#anchor-token-price" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Anchor Token Price
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#price-poster" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Price Poster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#asset-prices" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Asset Prices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#get-price" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Get Price
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item ">
+  <a href="#set-price-poster-only" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Set Price (poster-only)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1458,7 +1509,8 @@
 
 <h1 id="price-oracle">Price Oracle<a class="headerlink" href="#price-oracle" title="Permanent link">&para;</a></h1>
 <p>Blockchain-powered smart contracts, by their inherent design, cannot directly access information from external systems. To bridge this critical gap and ensure the integrity of financial operations, the JustLend DAO protocol relies on robust and decentralized price feeds.
-We secure various markets by leveraging a multi-source price aggregation strategy, utilizing <a href="https://chain.link/">Chainlink</a> Data Feeds, <a href="https://winklink.org/#/home">WinkLink</a>Data Feeds, and <a href="https://sun.io/#/home">SUN.io</a> DEX as price sources. The prices from all three sources are aggregated offchain before feeding the accurate token valuation.</p>
+We use <a href="https://chain.link/">Chainlink</a> Data Feeds as our primary Oracles to secure various markets. JustLend DAO protocol uses a <a href="https://tronscan.org/#/contract/TD8bq1aFY8yc9nsD2rfqqJGDtkh7aPpEpr/code">PriceOracle</a> contract to set and display token prices in sun(10^-6 TRX), scaled by 10^(tokenDecimal - 6).
+Prices of the underlying tokens are posted every 30 minutes via <code>setPrice()</code> by a specified poster.</p>
 <p><code>SimplePriceOracle.sol:</code> allows users to:</p>
 <ul>
 <li>Price Poster</li>
@@ -1467,6 +1519,61 @@ We secure various markets by leveraging a multi-source price aggregation strateg
 </ul>
 <p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/SimplePriceOracle.sol">Github</a>.</p>
 <h2 id="contracts-abi"><strong>Contracts ABI</strong><a class="headerlink" href="#contracts-abi" title="Permanent link">&para;</a></h2>
+<h3 id="anchor-token-price"><strong>Anchor Token Price</strong><a class="headerlink" href="#anchor-token-price" title="Permanent link">&para;</a></h3>
+<p>Calling this methods returns the current price anchor of a specified token.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">anchors</span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">uint256</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>token:</code> the address of the underlying token(e.g. TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t for USDT).</li>
+</ul>
+</li>
+<li><strong>Returns:</strong><ul>
+<li><code>period:</code> the current time period. Calculated as: current block height/ 600 (the TRON network produces approx. 600 blocks per 30 mins);</li>
+<li><code>priceMantissa:</code> token prices in sun(10^-6 TRX), scaled by 10^(tokenDecimal - 6).</li>
+</ul>
+</li>
+</ul>
+<h3 id="price-poster"><strong>Price Poster</strong><a class="headerlink" href="#price-poster" title="Permanent link">&para;</a></h3>
+<p>Calling this methods returns the current price poster.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">poster</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A.</li>
+<li><strong>Returns:</strong> Address of the current poster.</li>
+</ul>
+<h3 id="asset-prices"><strong>Asset Prices</strong><a class="headerlink" href="#asset-prices" title="Permanent link">&para;</a></h3>
+<p>Calling this method returns the current price of the specified asset.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">assetPrices</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">asset</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>asset:</code> the address of the token to query.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> the current price of the token in sun(10^-6 TRX), scaled by 10^(tokenDecimal - 6).</li>
+</ul>
+<h3 id="get-price"><strong>Get Price</strong><a class="headerlink" href="#get-price" title="Permanent link">&para;</a></h3>
+<p>Calling this method returns the current price of the specified asset.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getPrice</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">asset</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>asset:</code> the address of the token to query.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> the current price of the token in sun(10^-6 TRX), scaled by 10^(tokenDecimal - 6).</li>
+</ul>
+<h3 id="set-price-poster-only"><strong>Set Price (poster-only)</strong><a class="headerlink" href="#set-price-poster-only" title="Permanent link">&para;</a></h3>
+<p>Calling this methods set a token price for the current time period.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setPrice</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">asset</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">requestedPriceMantissa</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong></li>
+<li><code>asset:</code> the address of the underlying token (e.g. TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t for USDT);</li>
+<li><code>requestedPriceMantissa:</code> new price, scaled by 10^27.</li>
+<li><strong>Returns:</strong> 0 for success, otherwise an error code.</li>
+</ul>
 
 
 
