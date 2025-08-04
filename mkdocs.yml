@@ -3,7 +3,7 @@ site_name: JustLend DAO Documentation
 nav:
     - GETTING STARTED:
         - Overview: getting_started/overview.md
-        - Concepts:
+        - Concepts: getting_started/concepts
             - Supply: getting_started/concepts/supply.md
             - Borrow: getting_started/concepts/borrow.md
             - Withdraw: getting_started/concepts/withdraw.md
