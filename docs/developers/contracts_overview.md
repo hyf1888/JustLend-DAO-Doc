@@ -2,8 +2,9 @@
 
 JustLend DAO Protocol contracts are divided in these repositories:
 
-* **Supply and Borrow Market:** contains core contracts for JustLend DAO, including logic for supply and borrow market (SBM), interest rate model, governance, price oracle and comptroller.
+* **Supply and Borrow Market:** contains core contracts for JustLend DAO, including logic for supply and borrow market (SBM), supply and borrow market V2 (SBM V2)，interest rate model, governance, price oracle and comptroller.
   * **SBM:** enables supplying of crypto assets as collateral in order to borrow the base asset. Accounts can also earn interest by supplying the base asset to the protocol.
+  * **SBM V2:** a dual-layer isolated margin mechanism composed of Vaults and Markets, along with an Adaptive Curve Interest Rate Model (IRM) for dynamic rate adjustment.
   * **Interest Rate Model:** users with a positive balance of the base asset earn interest, denominated in the base asset, based on a supply rate model.
   * **Price-Oracle:** contains the price oracle contracts we support, along with the logic validation for prices returned by these oracles.
   * **Governance:** contracts used for proposing, voting and executing proposals.
@@ -13,7 +14,8 @@ JustLend DAO Protocol contracts are divided in these repositories:
 
 
 ## **Core Contracts**
-There are 5 categories of core repository contracts:
+
+### There are 5 categories of core repository contracts in SBM:
 
 * JTokens Contract
 * Interest Rate Model Contract
@@ -21,18 +23,18 @@ There are 5 categories of core repository contracts:
 * Governance Contract
 * Comptroller Contract
 
-### JTokens Contract
+#### JTokens Contract
 `JToken:` the contract used to support all assets by JustLend DAO, such as the jTRX, jUSDT, jSUN and jBTC you receive after supplying the corresponding assets.
 
-### Interest Rate Model Contract
+#### Interest Rate Model Contract
 `WhitePaperInterestRateModel:` the contract used to set up a straightforward interest rate model, which the borrowing rate is directly proportional to the utilization.
 
 `JumpRateModelV2:` the Contract used to set up a complex interest rate model, which the interest rate jumps to a higher tier when the utilization rate exceeds u optimal.
 
-### Price Oracle Contract
+#### Price Oracle Contract
 `Price Oracle:` the JustLend Protocol use WinkLink's price service to fetch the token price. The PriceOracle contract is responsible for setting and display token prices.
 
-### Governance Contract
+#### Governance Contract
 `GovernorBravo:` The main JustLend Governance Contract. Users interact with it to:
 - Submit new proposal
 - Vote on a proposal
@@ -41,8 +43,32 @@ There are 5 categories of core repository contracts:
 
 `Timelock:` the contract used to execute or cancel a queued transaction.
 
-### Comptroller Contract
+#### Comptroller Contract
 `Comptroller:` the Comptroller contract is the central contract for each lending pool. It contains functionality central to borrowing activity in the pool like supplying and borrowing assets and liquidations.
+
+
+### There are 5 categories of core repository contracts in SBM V2:
+
+* Moolah Market
+* Moolah Vault
+* TRX Provider
+* Resilient Oracle
+* Interest Rate Model
+
+#### Moolah Market
+`Moolah Market:` the Moolsh Lending Market adopts a one-to-one model, where each market supports a single collateral asset paired with a single borrowable asset.
+
+#### Moolah Vault
+`Moolah Vault:` each Vault serves as a single-asset management contract that provides liquidity to various lending markets.
+
+#### TRX Provider
+`TRX Provider:` users can directly interact with the system using TRX through the TRXProvider module. The TRXProvider internally handles the conversion between TRX and WTRX, allowing seamless user operations such as deposits and withdrawals.
+
+#### Resilient Oracle
+`Resilient Oracle:` an aggregated price feed contract that supports up to three price sources for each token. It provides reliable on-chain price data with 18-decimal precision and allows users or protocols to query the latest price of any supported token. 
+
+#### Interest Rate Model
+`IRM:` the AdaptiveCurve Interest Rate Model. It builds upon the Jump Curve model used in JustLend DAO V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level.
 
 
 ## **Staked TRX Contracts**
