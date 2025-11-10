@@ -8,5 +8,7 @@ Borrowers can repay their loans using the same tokens they borrowed or through j
 
 ### **How Do I Repay Assets**
 1. Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
-2. Navigate to the "SBM" and choose the borrowed asset you want to withdraw, click 「Repay」.
-3. Specify the amount you want to repay and confirm the transaction.
+2. Navigate to “SBM” or “SBM V2”, and choose the asset you wish to repay.
+* To repay TRX on SBM, click 「Repay」under borrowed assets;
+* To repay TRX on SBM V2, select the TRX market under Borrow Markets, then click 「Details」.
+3. Enter the amount you want to repay and click 「Repay」.
