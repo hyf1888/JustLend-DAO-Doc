@@ -1470,17 +1470,23 @@
 <p><strong>Determining Interest Rates:</strong> Interest rates for suppliers are primarily influenced by the borrow utilization rate, which reflects the proportion of assets borrowed relative to the total pool supply. Governance parameters, such as the collateral factor and interest rates, can also be adjusted through community decisions.</p>
 <p><strong>Dynamic Rate Updates:</strong> As tokens are supplied, borrowed, repaid, or withdrawn from the liquidity pool, interest rates are updated in real time. These adjustments are guided by on-chain data, including token balances, oracle-determined prices, and the borrow utilization ratio.</p>
 <h3 id="how-do-i-supply-assets"><strong>How Do I Supply Assets</strong><a class="headerlink" href="#how-do-i-supply-assets" title="Permanent link">&para;</a></h3>
-<p>Supplying can be done with a user interface <a href="https://app.justlend.org/homeNew?lang=en-US">JustLend SBM</a>. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:</p>
-<ul>
-<li><code>Supply APY:</code> the annual rewards from the jTokens users receive by supplying assets, which influenced by the borrow utilization rate and fluctuated by the time;</li>
-<li><code>Total Supply:</code> the total supply in the market. As the total supply changes, the Supply APY will also change accordingly;</li>
-<li><code>Suppliers:</code> the amount of users participating in the supply market.</li>
-</ul>
+<p>Supplying can be done with a user interface <a href="https://app.justlend.org/homeNew?lang=en-US">JustLend SBM</a> or SBM V2. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:</p>
+<p>SBM:
+* <code>Supply APY:</code> the annual rewards from the jTokens users receive by supplying assets, which influenced by the borrow utilization rate and fluctuated by the time;
+* <code>Total Supply:</code> the total supply in the market. As the total supply changes, the Supply APY will also change accordingly;
+* <code>Suppliers:</code> the amount of users participating in the supply market.</p>
+<p>SBM V2:
+* <code>Supply APY:</code> the annualized return earned from supplying assets to the Vault. It is influenced by the market’s borrow utilization rate and may fluctuate over time;
+* <code>Total Supply:</code> the total amount of assets supplied in the market. As the total supply changes, the Supply APY will adjust accordingly;
+* <code>Collateral Support:</code> indicates whether the supplied asset can be used as collateral to borrow other assets on the JustLend DAO platform.</p>
 <h4 id="supply-assets">Supply Assets<a class="headerlink" href="#supply-assets" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</li>
-<li>Navigate to the "SBM" and choose the asset you want to supply. For example, if you want to supply TRX, click 「Supply」 on the TRX market.</li>
-<li>Specify the amount you want to supply. The selected assets are transferred directly from your wallet to JustLend DAO protocol, earning interest immediately. This interest will be automatically added to your Supply Balance.</li>
+<li>Navigate to “SBM” or “SBM V2”, and choose the asset you wish to supply.</li>
+<li>To supply TRX on SBM, click 「Supply」 in the TRX market.</li>
+<li>To supply TRX on SBM V2, select the TRX market under Supply Vaults, then click 「Details」.</li>
+<li>Enter the amount you want to supply and click 「Supply」.</li>
+<li>The assets will be transferred directly from your wallet to the JustLend DAO protocol, where they will immediately start earning interest. This interest will be automatically added to your Supply Balance.</li>
 </ol>
 
 
