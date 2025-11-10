@@ -9,5 +9,7 @@ When withdrawing with an active borrow position, it’s essential to carefully m
 
 ### **How Do I Withdraw Assets**
 1. Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
-2. Navigate to the "SBM" and choose the supplied asset you want to withdraw, click 「Withdraw」.
-3. Specify the amount you want to withdraw and confirm the transaction.
+2. Navigate to “SBM” or “SBM V2”, and choose the asset you wish to withdraw.
+* To withdraw TRX on SBM, click 「Withdraw」under supplied assets;
+* To withdraw TRX on SBM V2, select the TRX market under Supply Vaults, then click 「Details」.
+4. Enter the amount you want to withdraw and click 「Withdraw」.
