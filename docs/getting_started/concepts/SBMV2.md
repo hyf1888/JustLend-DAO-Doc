@@ -35,14 +35,17 @@ Just Like JustLend DAO V1, JustLend DAO V2 uses a jump-style rate curve, where t
 ### Key Concepts
 
 **Target Utilization**
+
 The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve, typically set at 90%. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:
                                                             Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)
 When the utilization level reaches the target, the market is considered stable, meaning borrowing and liquidity levels are appropriately balanced.
 
 **Rate at Target**
+
 The Rate at Target defines the borrowing interest rate when utilization equals the target (e.g., 90%). It is initially configured by the protocol (for example, at 4% annualized) and is dynamically adjusted over time based on market conditions. Each market maintains its own rateAtTarget parameter, allowing for fine-grained control and independent optimization across different markets.
 
 **Adaptive Mechanism (AdaptSpeed)**
+
 To maintain stability, the Interest Rate Model includes an Adaptive Mechanism governed by the adaptSpeed parameter. When the actual utilization deviates significantly from the target for a prolonged period, the system automatically adjusts the entire interest rate curve at a controlled rate.
 * If utilization < target → rateAtTarget decreases to encourage borrowing.
 * If utilization > target → rateAtTarget increases to promote repayments.
