@@ -125,11 +125,11 @@ struct Authorization {
     uint256 deadline;    
 }
 ```
-* **authorizer:** the address that is granting authorization or revocation.
-* **authorized:** the address that is being granted or revoked the authorization.
-* **isAuthorized:** a boolean indicating whether the authorization is being granted (true) or revoked (false).
-* **nonce:** a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.
-* **deadline:** a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.
+* `authorizer:` the address that is granting authorization or revocation.
+* `authorized:` the address that is being granted or revoked the authorization.
+* `isAuthorized:` a boolean indicating whether the authorization is being granted (true) or revoked (false).
+* `nonce:` a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.
+* `deadline:` a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.
 
 
 ### **7. Signature**
@@ -141,10 +141,11 @@ struct Signature {
     bytes32 s;   
 }
 ```
-* **v:** The recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
-* **r:** The "r" component of the ECDSA signature, which is derived from the elliptic curve.
-* **s:** The "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.
+* `v:` the recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
+* `r:` the "r" component of the ECDSA signature, which is derived from the elliptic curve.
+* `s:` the "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.
 
+<br>
 
 ## **Contracts ABI**
 
