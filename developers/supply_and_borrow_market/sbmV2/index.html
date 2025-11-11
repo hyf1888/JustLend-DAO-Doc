@@ -1800,6 +1800,149 @@
 * <strong>Returns:</strong>
     * <code>avgBorrowRate:</code> the average borrow rate since the last interest update.
     * <code>targetBorrowRate:</code> the current borrow rate at the target utilization level.</p>
+<p><br> </p>
+<h3 id="moolah-valut"><strong>Moolah Valut</strong><a class="headerlink" href="#moolah-valut" title="Permanent link">&para;</a></h3>
+<p>A Vault is a single-asset management contract that provides borrowable assets to the market and can be created by anyone. Each vault operates as an independent contract managed by a designated fund manager, who can configure which markets to supply liquidity to. When users deposit assets into the vault, the funds are automatically allocated to the configured markets. The fund manager also has the ability to reallocate funds across markets. The vault follows the ERC-4626 standard (an extension of ERC-20 for tokenized vaults), allowing users to mint transferable shares upon depositing assets.</p>
+<h4 id="1-create-moolah-vault"><strong>1. Create Moolah Vault</strong><a class="headerlink" href="#1-create-moolah-vault" title="Permanent link">&para;</a></h4>
+<p>Creates a new MoolahVault and returns the addresses of the created vault and related contracts. The MoolahVault itself acts as a token. Users receive transferable vault shares when depositing assets.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createMoolahVault</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">manager</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">curator</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">guardian</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeLockDelay</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">asset</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>manager:</code> the address with manager privileges in the MoolahVault’s TimeLock contract.
+    * <code>curator:</code> the address with curator privileges in the TimeLock contract.
+    * <code>guardian:</code> the address responsible for emergency control or protection actions.
+    * <code>timeLockDelay:</code> the delay period for executing TimeLock transactions.
+    * <code>asset:</code> the address of the asset managed by MoolahVault.
+    * <code>name:</code> the name of the MoolahVault token.
+    * <code>symbol:</code> the symbol of the MoolahVault token.
+* <strong>Returns:</strong> the addresses of the created Moolah Vault, manager TimeLock, and curator TimeLock.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>CreateMoolahVault<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>moolahVault<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">implementation</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">managerTimeLock</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">curatorTimeLock</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeLockDelay</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">manager</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">curator</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">guardian</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>asset<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when a new MoolahVault is created.
+    * <code>moolahVault:</code> the address of the newly created MoolahVault.
+    * <code>implementation:</code> the implementation contract address used by the vault.
+    * <code>managerTimeLock:</code> the TimeLock contract address for the manager.
+    * <code>curatorTimeLock:</code> the TimeLock contract address for the curator.
+    * <code>timeLockDelay:</code> the delay period (in seconds) for executing TimeLock transactions.
+    * <code>caller:</code> the address that initiated the creation transaction.
+    * <code>manager:</code> the address assigned as the manager in the TimeLock contract.
+    * <code>curator:</code> the address assigned as the curator in the TimeLock contract.
+    * <code>guardian:</code> the guardian address responsible for vault protection or emergency actions.
+    * <code>asset:</code> the address of the underlying asset managed by the vault.
+    * <code>name:</code> the name of the MoolahVault token.
+    * <code>symbol:</code> the symbol of the MoolahVault token.</p>
+<h4 id="2-set-vault-admin"><strong>2. Set Vault Admin</strong><a class="headerlink" href="#2-set-vault-admin" title="Permanent link">&para;</a></h4>
+<p>Sets the address of the Vault Administrator.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setVaultAdmin</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_vaultAdmin</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>_vaultAdmin:</code> the address to be assigned as the Vault Administrator.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>SetVaultAdmin<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vaultAdmin</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when the Vault Administrator address is set.
+    * <code>vaultAdmin:</code> the address assigned as the new Vault Administrator.</p>
+<h4 id="3-deposit"><strong>3. Deposit</strong><a class="headerlink" href="#3-deposit" title="Permanent link">&para;</a></h4>
+<p>Deposits assets into the vault.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>assets:</code> the amount of assets to deposit into the vault.
+    * <code>receiver:</code> the address that will receive the minted vault shares.
+* <strong>Returns:</strong>
+    * <code>shares:</code> the number of vault shares minted to the receiver in exchange for the deposited assets.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>Deposit<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>sender<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when a user deposits assets into the vault.
+    * <code>sender:</code> the address that initiated the deposit transaction.
+    * <code>owner:</code> the address that owns the deposited assets.
+    * <code>assets:</code> the amount of assets deposited by the user.
+    * <code>shares:</code> the number of vault shares minted to the user corresponding to the deposited assets.</p>
+<h4 id="4-mint"><strong>4. Mint</strong><a class="headerlink" href="#4-mint" title="Permanent link">&para;</a></h4>
+<p>Mints vault shares by depositing the corresponding amount of assets.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>shares:</code> the number of vault shares to mint.
+    * <code>receiver:</code> the address that will receive the minted shares.
+* <strong>Returns:</strong>
+    * <code>assets:</code> the amount of assets required to mint the specified number of shares.</p>
+<h4 id="5-withdraw"><strong>5. Withdraw</strong><a class="headerlink" href="#5-withdraw" title="Permanent link">&para;</a></h4>
+<p>Withdraws assets from the vault by burning the corresponding number of shares.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>assets:</code> the amount of assets to withdraw from the vault.
+    * <code>receiver:</code> the address that will receive the withdrawn assets.
+    * <code>owner:</code> the address that owns the withdrawn assets.
+* <strong>Returns:</strong>
+    * <code>shares:</code> the number of vault shares minted to the receiver in exchange for the deposited assets.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>Withdraw<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>sender<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when a user withdraws assets from the vault.
+    * <code>sender:</code> the address that initiated the withdrawal transaction.
+    * <code>receiver:</code> the address that receives the withdrawn assets.
+    * <code>owner:</code> the address that owns the withdrawn assets.
+    * <code>assets:</code> the amount of assets withdrawn from the vault.
+    * <code>shares:</code> the number of vault shares burned to redeem the withdrawn assets.</p>
+<h4 id="6-is-whitelist"><strong>6. Is WhiteList</strong><a class="headerlink" href="#6-is-whitelist" title="Permanent link">&para;</a></h4>
+<p>Checks whether a specific account is included in the whitelist.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isWhiteList</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>account:</code> the address to check.
+* <strong>Returns:</strong> returns true if the account is on the whitelist; otherwise, returns false.</p>
+<h4 id="7-get-whitelist"><strong>7. Get WhiteList</strong><a class="headerlink" href="#7-get-whitelist" title="Permanent link">&para;</a></h4>
+<p>Retrieves the list of addresses currently included in the whitelist.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getWhiteList</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[])</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A.
+* <strong>Returns:</strong> an array containing all addresses that are on the whitelist.</p>
+<h4 id="8-supply-queue-length"><strong>8. Supply Queue Length</strong><a class="headerlink" href="#8-supply-queue-length" title="Permanent link">&para;</a></h4>
+<p>Returns the total number of markets currently in the supply queue.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyQueueLength</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A.
+* <strong>Returns:</strong> the length of the supply queue.</p>
+<h4 id="9-withdraw-queue-length"><strong>9. Withdraw Queue Length</strong><a class="headerlink" href="#9-withdraw-queue-length" title="Permanent link">&para;</a></h4>
+<p>Returns the total number of markets currently in the withdrawal queue.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawQueueLength</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A.
+* <strong>Returns:</strong> the length of the withdrawal queue.</p>
+<h4 id="10-maximum-deposit"><strong>10. Maximum Deposit</strong><a class="headerlink" href="#10-maximum-deposit" title="Permanent link">&para;</a></h4>
+<p>Returns the maximum amount of assets that can be deposited into the vault.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxDeposit</span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>address:</code> the address of the depositor. 
+* <strong>Returns:</strong> the maximum amount of assets that can be deposited.</p>
+<h4 id="11-maximum-mint"><strong>11. Maximum Mint</strong><a class="headerlink" href="#11-maximum-mint" title="Permanent link">&para;</a></h4>
+<p>Returns the maximum number of shares that can be minted, corresponding to maxDeposit, with the asset amount converted into shares.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxMint</span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>address:</code> the address of the minter.
+* <strong>Returns:</strong> the maximum number of shares that can be minted.</p>
+<h4 id="12-maximum-withdraw"><strong>12. Maximum Withdraw</strong><a class="headerlink" href="#12-maximum-withdraw" title="Permanent link">&para;</a></h4>
+<p>Returns the maximum amount of assets that a user can withdraw from the vault.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxWithdraw</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>owner:</code> the address of the user whose withdrawable balance is being queried.
+* <strong>Returns:</strong> 
+    * <code>assets:</code> the maximum amount of assets that can be withdrawn by the specified user.</p>
+<h4 id="13-maximum-redeem"><strong>13. Maximum Redeem</strong><a class="headerlink" href="#13-maximum-redeem" title="Permanent link">&para;</a></h4>
+<p>Returns the maximum number of shares that a user can redeem from the vault.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxRedeem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>owner:</code>  the address of the user whose redeemable shares are being queried.
+* <strong>Returns:</strong> the maximum number of shares that can be redeemed by the specified user.</p>
 
 
 
