@@ -44,172 +44,127 @@ struct Position {
 ```
 * **supplyShares:** the number of shares representing the assets a user has supplied to the market.
 * **borrowShares:** the number of shares representing the assets a user has borrowed from the market.
-* **collateral::** the amount of assets a user has deposited as collateral in the market.
+* **collateral:** the amount of assets a user has deposited as collateral in the market.
 
 
-### **Get Cash**
-Calling this method gets the total amount of underlying balance currently available to this market.
+### **2. Market**
 ``` solidity
-function getCash() public view returns (uint)
+struct Market {
+  uint128 totalSupplyAssets;
+  uint128 totalSupplyShares;
+  uint128 totalBorrowAssets;
+  uint128 totalBorrowShares;
+  uint128 lastUpdate;
+  uint128 fee;
+}
 ```
+* **totalSupplyAssets:** the total amount of assets supplied to the market and available for lending.
+* **totalSupplyShares:** the total number of supply shares in the market.
+* **totalBorrowAssets:** the total amount of assets borrowed from the market.
+* **totalBorrowShares:** the total number of borrowed shares in the market.
+* **lastUpdate:** the timestamp of the last market state update.
+* **fee:** the fee rate charged by the market.
 
-* **Parameter description:** N/A
-* **Returns:** The quantity of underlying assets owned by this contract.
+**Relationship between assets and shares:** At the beginning, one token corresponds to one share. Over time, as the market generates interest income, the total amount of tokens increases while the total number of shares remains constant. Consequently, each share becomes redeemable for more tokens, allowing users to earn yield when they withdraw their funds.
 
 
-### **Total Borrows**
-Calling this method gets the sum of the currently loaned-outs and the accrued interests.
+### **3. MarketParams**
 ``` solidity
-function totalBorrowsCurrent() external nonReentrant returns (uint)
+struct MarketParams {
+  address loanToken;
+  address collateralToken;
+  address oracle;
+  address irm;
+  uint256 lltv;
+}
 ```
+* **loanToken:** the address of the token used for borrowing.
+* **collateralToken:** the address of the token used as collateral.
+* **oracle:** the address of the price oracle contract.
+* **irm:** the address of the interest rate model contract.
+* **lltv:** the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.
 
-* **Parameter description:** N/A
-* **Returns:** The total borrows with interest.
 
-
-### **Borrow Balance**
-Calling this method accrues interest to the updated borrowIndex and then calculates the account's borrow balance using the updated borrowIndex.
+### **4. MarketConfig**
+Represents the configuration of each market within the vault.
 ``` solidity
-function borrowBalanceCurrent(address account) external nonReentrant returns (uint)
+struct MarketConfig {
+  uint176 cap;
+  bool enabled;
+  MarketType marketType;
+  uint64 removableAt;
+}
 ```
+* **cap:** the maximum amount of assets that the vault can supply to this market.
+* **enabled:** indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
+* **marketType:** the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
+* **removableAt:** a timestamp indicating when the market can be immediately removed from the withdrawal queue.
 
-* **Parameter description:**
-    * `account:` the address whose balance should be calculated after updating borrowIndex.
-* **Returns:** The total borrows with interest.
 
-
-### **Borrow Rate**
-Calling this method gets the current per-block borrow interest rate for this jToken.
+### **5. MarketAllocation**
+Used when reallocating asset investments across different markets.
 ``` solidity
-function borrowRatePerBlock() external view returns (uint)
+struct MarketAllocation {
+  MarketParams marketParams;
+  uint256 assets;
+}
 ```
+* **marketParams:** specifies the target market to which the allocation is applied.
+* **assets:** the amount of assets allocated to the specified market.
 
-* **Parameter description:** N/A
-* **Returns:** The borrow interest rate per block, scaled by 1e18.
 
-
-### **Total Supply**
-Calling this method gets the total number of tokens in circulation.
+### **6. Authorization**
+The Authorization struct represents the data required to grant or revoke authorization for a specific address.
 ``` solidity
-function totalSupply() external view returns (uint256)
+struct Authorization {
+    address authorizer;   
+    address authorized;   
+    bool isAuthorized;   
+    uint256 nonce;        
+    uint256 deadline;    
+}
 ```
+* **authorizer:** the address that is granting authorization or revocation.
+* **authorized:** the address that is being granted or revoked the authorization.
+* **isAuthorized:** a boolean indicating whether the authorization is being granted (true) or revoked (false).
+* **nonce:** a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.
+* **deadline:** a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.
 
-* **Parameter description:** N/A
-* **Returns:** The supply of tokens.
 
-
-### **Underlying Balance**
-Calling this method gets the underlying balance of the owner.
+### **7. Signature**
+The Signature struct represents the ECDSA (Elliptic Curve Digital Signature Algorithm) signature used to verify that a particular authorization was signed by the authorizer.
 ``` solidity
-function balanceOfUnderlying(address owner) external returns (uint)
+struct Signature {
+    uint8 v;    
+    bytes32 r;    
+    bytes32 s;   
+}
 ```
-
-* **Parameter description:**
-    * `owner:` the address of the account.
-* **Returns:** The amount of underlying owned by owner.
-
-
-### **Supply Rate**
-Calling this method gets the current per-block supply interest rate for this jToken.
-``` solidity
-function supplyRatePerBlock() external view returns (uint)
-```
-
-* **Parameter description:** N/A
-* **Returns:** The supply interest rate per block, scaled by 1e18.
-
-
-### **Total Reserves**
-Calling this method gets the reserves. Reserve represents a portion of historical interest set aside as cash which can be withdrawn or transferred through the protocol's governance.
-``` solidity
-function totalReserves() returns (uint)
-```
-
-* **Parameter description:** N/A
-* **Returns:** The total amount of reserves.
-
-
-### **Reserve Factor**
-Calling this method gets the current reserve factor.
-``` solidity
-function reserveFactorMantissa() returns (uint)
-```
-
-* **Parameter description:** N/A
-* **Returns:** The current reserve factor.
-
-
-### **Liquidation Incentive**
-By calling the liquidationIncentiveMantissa function of the Unitroller contract, liquidation incentives can be inquired. Liquidators will be given a proportion of the borrower's collateral as an incentive, which is defined as liquidation incentive. This is to encourage liquidators to perform liquidation of underwater accounts.
-``` solidity
-function liquidationIncentiveMantissa() view returns (uint)
-```
-
-* **Parameter description:** N/A
-* **Returns:** The liquidationIncentive, scaled by 1e18, is multiplied by the closed borrow amount from the liquidator to determine how much collateral can be seized.
-
-
-### **Get Account Liquidity**
-By calling the getAccountLiquidity function of the Unitroller contract, account information can be accessed through an account's address to determine whether the account should be liquidated or not.
-``` solidity
-getAccountLiquidity(address account) view returns (uint, uint, uint)
-```
-
-* **Parameter description:**
-    * `account:` user address.
-* **Returns:** The amount of underlying owned by owner.
-    * `error:` error code, 0 means success.
-    * `liquidity:` liquidity.
-    * `shortfall:` When the value is bigger than 0, the current account does not meet the market requirement for collateralization and needs to be liquidated.
-
-Note: There should be at most one non-zero value between liquidity and shortfall.
-
+* **v:** The recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
+* **r:** The "r" component of the ECDSA signature, which is derived from the elliptic curve.
+* **s:** The "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.
 
 
 ## **Contracts ABI**
 
-### **Borrow**
-Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
-``` solidity
-function borrow(uint borrowAmount) external returns (uint)
-```
+### **Moolah Market**
+The JustLend DAO V2 market adopts a one-to-one model, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.
 
-* **Parameter description:**
-    * `borrowAmount:` the amount of the underlying asset to borrow.
+#### **1. Create Market**
+The Create Market function creates a new market in JustLend DAO V2  by initializing a set of parameters within the Moolah contract.
+``` solidity
+function createMarket(MarketParams memory marketParams) external
+``
+* Parameter description:
+    * **marketParams:** the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
 * **Returns:** None, reverts on error.
 
 #### **Event**
 ``` solidity
-Borrow(address borrower, uint borrowAmount, uint accountBorrows, uint totalBorrows, uint borrowIndex)
+CreateMarket(Id indexed id, MarketParams marketParams)
 ```
-
-* Emits when user successfully borrow.
-    * `borrower:` address of borrow assets account;
-    * `borrowAmount:` the amount of borrowed assets;
-    * `accountBorrows:` the account borrow the assets;
-    * `totalBorrows:` total borrow assets form the account;
-    * `borrowIndex:` the index of this borrow order.
+* This event is emitted when successfully creating the market.
+    * `Id:` each market is identified by a unique Id, represented as a bytes32 value.
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
 
 
-### **repayBorrow**
-Calling this method repays their own borrow.
-``` solidity
-function repayBorrow(uint amount) external payable
-```
-
-* **Parameter description:**
-    * `amount:` the amount of the asset to repay.
-* **Returns:** None, reverts on error.
-
-#### **Event**
-``` solidity
-RepayBorrow(address payer, address borrower, uint repayAmount, uint accountBorrows, uint totalBorrows, uint borrowIndex)
-```
-
-* Emits when user successfully repay borrow.
-    * `payer:` operate repay borrow;
-    * `borrower:` address of borrow assets account;
-    * `repayAmount:` the amount of repaid assets;
-    * `accountBorrows:` the account borrow the assets;
-    * `totalBorrows:` total borrow assets form the account;
-    * `borrowIndex:` the index of this borrow order.
