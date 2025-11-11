@@ -503,6 +503,200 @@ function borrowRateFullView(Id id) public view returns (uint256 avgBorrowRate, i
 * **Returns:**
     * `avgBorrowRate:` the average borrow rate since the last interest update.
     * `targetBorrowRate:` the current borrow rate at the target utilization level.
+
+<br> 
+
+### **Moolah Valut**
+A Vault is a single-asset management contract that provides borrowable assets to the market and can be created by anyone. Each vault operates as an independent contract managed by a designated fund manager, who can configure which markets to supply liquidity to. When users deposit assets into the vault, the funds are automatically allocated to the configured markets. The fund manager also has the ability to reallocate funds across markets. The vault follows the ERC-4626 standard (an extension of ERC-20 for tokenized vaults), allowing users to mint transferable shares upon depositing assets.
+
+#### **1. Create Moolah Vault**
+Creates a new MoolahVault and returns the addresses of the created vault and related contracts. The MoolahVault itself acts as a token. Users receive transferable vault shares when depositing assets.
+``` solidity
+function createMoolahVault(address manager, address curator, address guardian, uint256 timeLockDelay, address asset, string memory name, string memory symbol) external returns (address, address, address)
+```
+* **Parameter description:**
+    * `manager:` the address with manager privileges in the MoolahVault’s TimeLock contract.
+    * `curator:` the address with curator privileges in the TimeLock contract.
+    * `guardian:` the address responsible for emergency control or protection actions.
+    * `timeLockDelay:` the delay period for executing TimeLock transactions.
+    * `asset:` the address of the asset managed by MoolahVault.
+    * `name:` the name of the MoolahVault token.
+    * `symbol:` the symbol of the MoolahVault token.
+* **Returns:** the addresses of the created Moolah Vault, manager TimeLock, and curator TimeLock.
+
+**Event**
+``` solidity
+CreateMoolahVault(address indexed moolahVault, address implementation, address managerTimeLock, address curatorTimeLock, uint256 timeLockDelay, address indexed caller, address manager, address curator, address guardian, address indexed asset, string name, string symbol)
+```
+* This event is emitted when a new MoolahVault is created.
+    * `moolahVault:` the address of the newly created MoolahVault.
+    * `implementation:` the implementation contract address used by the vault.
+    * `managerTimeLock:` the TimeLock contract address for the manager.
+    * `curatorTimeLock:` the TimeLock contract address for the curator.
+    * `timeLockDelay:` the delay period (in seconds) for executing TimeLock transactions.
+    * `caller:` the address that initiated the creation transaction.
+    * `manager:` the address assigned as the manager in the TimeLock contract.
+    * `curator:` the address assigned as the curator in the TimeLock contract.
+    * `guardian:` the guardian address responsible for vault protection or emergency actions.
+    * `asset:` the address of the underlying asset managed by the vault.
+    * `name:` the name of the MoolahVault token.
+    * `symbol:` the symbol of the MoolahVault token.
+
+
+#### **2. Set Vault Admin**
+Sets the address of the Vault Administrator.
+``` solidity
+function setVaultAdmin(address _vaultAdmin)
+```
+* **Parameter description:**
+    * `_vaultAdmin:` the address to be assigned as the Vault Administrator.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+SetVaultAdmin(address vaultAdmin)
+```
+* This event is emitted when the Vault Administrator address is set.
+    * `vaultAdmin:` the address assigned as the new Vault Administrator.
  
+
+#### **3. Deposit**
+Deposits assets into the vault.
+``` solidity
+function deposit(uint256 assets, address receiver) public returns (uint256 shares)
+```
+* **Parameter description:**
+    * `assets:` the amount of assets to deposit into the vault.
+    * `receiver:` the address that will receive the minted vault shares.
+* **Returns:**
+    * `shares:` the number of vault shares minted to the receiver in exchange for the deposited assets.
+
+**Event**
+``` solidity
+Deposit(address indexed sender, address indexed owner, uint256 assets, uint256 shares)
+```
+* This event is emitted when a user deposits assets into the vault.
+    * `sender:` the address that initiated the deposit transaction.
+    * `owner:` the address that owns the deposited assets.
+    * `assets:` the amount of assets deposited by the user.
+    * `shares:` the number of vault shares minted to the user corresponding to the deposited assets.
+
+
+#### **4. Mint**
+Mints vault shares by depositing the corresponding amount of assets.
+``` solidity
+function mint(uint256 shares, address receiver) public override returns (uint256 assets)
+```
+* **Parameter description:**
+    * `shares:` the number of vault shares to mint.
+    * `receiver:` the address that will receive the minted shares.
+* **Returns:**
+    * `assets:` the amount of assets required to mint the specified number of shares.
+
+
+#### **5. Withdraw**
+Withdraws assets from the vault by burning the corresponding number of shares.
+``` solidity
+function withdraw(uint256 assets, address receiver, address owner) public override returns (uint256 shares)
+```
+* **Parameter description:**
+    * `assets:` the amount of assets to withdraw from the vault.
+    * `receiver:` the address that will receive the withdrawn assets.
+    * `owner:` the address that owns the withdrawn assets.
+* **Returns:**
+    * `shares:` the number of vault shares minted to the receiver in exchange for the deposited assets.
+
+**Event**
+``` solidity
+Withdraw(address indexed sender, address indexed receiver, address indexed owner, uint256 assets, uint256 shares)
+```
+* This event is emitted when a user withdraws assets from the vault.
+    * `sender:` the address that initiated the withdrawal transaction.
+    * `receiver:` the address that receives the withdrawn assets.
+    * `owner:` the address that owns the withdrawn assets.
+    * `assets:` the amount of assets withdrawn from the vault.
+    * `shares:` the number of vault shares burned to redeem the withdrawn assets.
+
+
+#### **6. Is WhiteList**
+Checks whether a specific account is included in the whitelist.
+``` solidity
+function isWhiteList(address account) public view returns (bool)
+```
+* **Parameter description:**
+    * `account:` the address to check.
+* **Returns:** returns true if the account is on the whitelist; otherwise, returns false.
+
+
+#### **7. Get WhiteList**
+Retrieves the list of addresses currently included in the whitelist.
+``` solidity
+function getWhiteList() external view returns (address[])
+```
+* **Parameter description:** N/A.
+* **Returns:** an array containing all addresses that are on the whitelist.
+
+
+#### **8. Supply Queue Length**
+Returns the total number of markets currently in the supply queue.
+``` solidity
+function supplyQueueLength() external view returns (uint256)
+```
+* **Parameter description:** N/A.
+* **Returns:** the length of the supply queue.
+
+
+#### **9. Withdraw Queue Length**
+Returns the total number of markets currently in the withdrawal queue.
+``` solidity
+function withdrawQueueLength() external view returns (uint256)
+```
+* **Parameter description:** N/A.
+* **Returns:** the length of the withdrawal queue.
+
+
+#### **10. Maximum Deposit**
+Returns the maximum amount of assets that can be deposited into the vault.
+``` solidity
+function maxDeposit(address) public view override returns (uint256)
+```
+* **Parameter description:**
+    * `address:` the address of the depositor. 
+* **Returns:** the maximum amount of assets that can be deposited.
+
+
+#### **11. Maximum Mint**
+Returns the maximum number of shares that can be minted, corresponding to maxDeposit, with the asset amount converted into shares.
+``` solidity
+function maxMint(address) public view override returns (uint256)
+```
+* **Parameter description:**
+    * `address:` the address of the minter.
+* **Returns:** the maximum number of shares that can be minted.
+
+
+#### **12. Maximum Withdraw**
+Returns the maximum amount of assets that a user can withdraw from the vault.
+``` solidity
+function maxWithdraw(address owner) public view override returns (uint256 assets)
+```
+* **Parameter description:**
+    * `owner:` the address of the user whose withdrawable balance is being queried.
+* **Returns:** 
+    * `assets:` the maximum amount of assets that can be withdrawn by the specified user.
+
+
+#### **13. Maximum Redeem**
+Returns the maximum number of shares that a user can redeem from the vault.
+``` solidity
+function maxRedeem(address owner) public view override returns (uint256)
+```
+* **Parameter description:**
+    * `owner:`  the address of the user whose redeemable shares are being queried.
+* **Returns:** the maximum number of shares that can be redeemed by the specified user.
+
+
+
+
 
 
