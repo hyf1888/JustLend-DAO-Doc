@@ -166,7 +166,343 @@ function createMarket(MarketParams memory marketParams) external
 CreateMarket(Id indexed id, MarketParams marketParams)
 ```
 * This event is emitted when successfully creating the market.
-    * `Id:` each market is identified by a unique Id, represented as a bytes32 value.
+    * `id:` each market is identified by a unique Id, represented as a bytes32 value.
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+
+
+#### **2. Supply**
+The supply function allows users to provide liquidity to the market for lending.
+``` solidity
+function supply(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `assets:` the amount of tokens the user wants to supply to the market.
+    * `shares:` the number of supply shares to mint corresponding to the deposited assets.
+    * `onBehalf:` the address that will receive the supply shares. This allows users to supply assets on behalf of another account.
+    * `data:` additional encoded data for interaction logic or integrations.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+Supply(Id indexed id, address indexed caller, address indexed onBehalf, uint256 assets, uint256 shares)
+```
+* This event is emitted when assets are supplied to a market.
+    * `id:` the unique market identifier (bytes32), representing the market where the supply occurred.
+    * `caller:` the address that submitted the transaction.
+    * `onBehalf:` the address on whose behalf the assets were supplied, the supply shares are credited to this address.
+    * `assets:` the amount of tokens supplied to the market.
+    * `shares:` the number of supply shares minted corresponding to the supplied assets.
+
+
+#### **3. Withdraw**
+The withdraw  function allows users to withdraw the previously supplied liquidity from the market.
+``` solidity
+function withdraw(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `assets:` the amount of tokens to withdraw from the market.
+    * `shares:` the number of supply shares to redeem for the corresponding assets.
+    * `onBehalf:` the address whose position will be reduced. This enables withdrawals to be made on behalf of another account.
+    * `receiver:` the address that will receive the withdrawn assets.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+Withdraw(Id indexed id, address caller, address indexed onBehalf, address indexed receiver, uint256 assets, uint256 shares)
+```
+* This event is emitted when assets are withdrawn from a market.
+    * `id:` the unique market identifier (bytes32), representing the market from which the withdrawal occurred.
+    * `caller:` the address that submitted the transaction.
+    * `onBehalf:` the address whose supply shares are being withdrawn.
+    * `receiver:` the address that receives the withdrawn assets.
+    * `assets:` the amount of tokens withdrawn from the market.
+    * `shares:` the number of supply shares redeemed corresponding to the withdrawn assets.
+
+
+#### **4. Borrow**
+The borrow function allows users to borrow funds from the JustLend DAO V2 market.
+``` solidity
+function borrow(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `assets:` the amount of tokens the user intends to borrow from the market.
+    * `shares:` the number of borrowing shares to mint corresponding to the borrowed assets.
+    * `onBehalf:` the address whose position will be increased. This allows borrowing on behalf of another account.
+    * `receiver:` the address that will receive the borrowed assets.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+Borrow(Id indexed id, address caller, address indexed onBehalf, address indexed receiver, uint256 assets, uint256 shares)
+```
+* This event is emitted when assets are borrowed from a market.
+    * `id:` the unique market identifier (bytes32), representing the market from which the borrowing occurred.
+    * `caller:` the address that submitted the transaction.
+    * `onBehalf:` the address whose borrowed shares are recorded.
+    * `receiver:` the address that receives the borrowed assets.
+    * `assets:` the amount of tokens borrowed from the market.
+    * `shares:` the number of borrowed shares corresponding to the borrowed assets.
+ 
+
+#### **5. Repay**
+The repay function allows users to repay the funds borrowed from the JustLend DAO V2 market.
+``` solidity
+function repay(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `assets:` the amount of tokens to repay to the market.
+    * `shares:` the number of borrowing shares to burn corresponding to the repaid assets.
+    * `onBehalf:` the address whose borrowing position will be reduced. This enables repayments to be made on behalf of another account.
+    * `data:` additional encoded data for interaction logic or integrations.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+Repay(Id indexed id, address indexed caller, address indexed onBehalf, uint256 assets, uint256 shares)
+```
+* This event is emitted when borrowed assets are repaid to the market.
+    * `id:` the unique market identifier (bytes32), representing the market where the repayment occurred.
+    * `caller:` the address that submitted the transaction.
+    * `onBehalf:` the address whose borrowed assets are being repaid.
+    * `assets:` the amount of tokens repaid to the market.
+    * `shares:` the number of borrowed shares corresponding to the repaid assets.
+
+
+#### **6. Supply Collateral**
+The supply collateral function allows users to supply collateral assets to the JustLend DAO V2 market.
+``` solidity
+function supplyCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, bytes calldata data)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `assets:` the amount of collateral tokens to deposit into the market.
+    * `onBehalf:` the address whose collateral position will be increased. This allows users to add collateral on behalf of another account.
+    * `data:` additional encoded data for interaction logic or integrations.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+SupplyCollateral(Id indexed id, address indexed caller, address indexed onBehalf, uint256 assets)
+```
+* This event is emitted when collateral is supplied to the market.
+    * `id:` the unique market identifier (bytes32), representing the market where the collateral is supplied.
+    * `caller:` the address that submitted the transaction.
+    * `onBehalf:` the address whose collateral balance is credited.
+    * `assets:` the amount of collateral tokens supplied to the market.
+
+
+#### **7. Withdraw Collateral**
+The withdraw collateral function allows users to withdraw their previously supplied collateral from the JustLend DAO V2 market.
+``` solidity
+function withdrawCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, address receiver)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `assets:` the amount of collateral tokens to withdraw from the market.
+    * `onBehalf:` the address whose collateral position will be reduced. This allows collateral to be withdrawn on behalf of another account.
+    * `receiver:` the address that will receive the withdrawn collateral assets.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+WithdrawCollateral(Id indexed id, address caller, address indexed onBehalf, address indexed receiver, uint256 assets)
+```
+* This event is emitted when collateral is withdrawn from the market.
+    * `id:` the unique market identifier (bytes32), representing the market where the collateral is withdrawn.
+    * `caller:` the address that submitted the transaction.
+    * `onBehalf:` the address whose collateral balance is reduced.
+    * `receiver:` the address that receives the withdrawn collateral assets.
+    * `assets:` the amount of collateral tokens withdrawn from the market.
+
+
+#### **8. Liquidate**
+The liquidate function allows liquidators to repay a portion of a borrower's debt in exchange for seizing the borrower's collateral when their position becomes undercollateralized.
+``` solidity
+function liquidate(MarketParams memory marketParams, address borrower, uint256 seizedAssets, uint256 repaidShares, bytes calldata data) 
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `borrower:` the address of the user whose position is being liquidated.
+    * `seizedAssets:` the amount of collateral assets to be seized from the borrower.
+    * `repaidShares:` the number of borrowing shares repaid on behalf of the borrower.
+    * `data:` additional encoded data for custom liquidation logic or integrations.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+Liquidate(Id indexed id, address indexed caller, address indexed borrower, uint256 repaidAssets, uint256 repaidShares, uint256 seizedAssets, uint256 badDebtAssets, uint256 badDebtShares)
+```
+* This event is emitted when a liquidation occurs in the market.
+    * `id:` the unique market identifier (bytes32), representing the market where the liquidation takes place.
+    * `caller:` the address that submitted the transaction (the liquidator).
+    * `borrower:` the address of the borrower being liquidated.
+    * `repaidAssets:` the amount of borrowed assets repaid during the liquidation.
+    * `repaidShares:` the number of borrowed shares repaid.
+    * `seizedAssets:` the amount of collateral assets seized by the liquidator.
+    * `badDebtAssets:` the amount of assets classified as bad debt after liquidation.
+    * `badDebtShares:` the number of borrowed shares corresponding to the bad debt.
+
+
+#### **9. Set Authorization**
+Sets or updates the authorization status for a specific address.
+``` solidity
+function setAuthorization(address authorized, bool newIsAuthorized)
+```
+* **Parameter description:**
+    * `authorized:` the address to grant or revoke authorization.
+    * `newIsAuthorized:` a boolean indicating the authorization status, true to authorize, false to revoke.
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+SetAuthorization(address indexed caller, address indexed authorizer, address indexed authorized, bool newIsAuthorized)
+```
+* This event is emitted when authorization status for an address is updated.
+    * `caller:` the address that initiated the transaction.
+    * `authorizer:` the address granting the authorization.
+    * `authorized:` the address receiving the authorization.
+    * `newIsAuthorized:` the new authorization status, true for granted, false for revoked.
+
+
+#### **10. Set Authorization With Signature**
+Sets authorization for an address using an off-chain signature, while recording a nonce to prevent replay attacks.
+``` solidity
+function setAuthorizationWithSig(Authorization memory authorization, Signature calldata signature)
+```
+* **Parameter description:**
+    * `authorization:` the authorization data structure containing the authorization details.
+    * `signature:` the ECDSA signature proving that the authorization was signed by the authorizer.
+* **Returns:** None, reverts on error.
+
+
+#### **11. Accrue Interest**
+The accrueInterest function updates the interest accrued in the JustLend DAO V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
+``` solidity
+function accrueInterest(MarketParams memory marketParams)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* **Returns:** None, reverts on error.
+
+**Event**
+``` solidity
+AccrueInterest(Id indexed id, uint256 prevBorrowRate, uint256 interest, uint256 feeShares)
+```
+* This event is emitted during the execution of functions such as borrow, repay, and supply, which update the market’s borrowing state.
+    * `id:` the unique market identifier (bytes32), representing the market where the interest is accrued.
+    * `prevBorrowRate:` the previous borrowing rate before the update.
+    * `interest:` the number of interest accrued in this update.
+    * `feeShares:` the portion of accrued interest distributed to the fee recipient, represented in shares.
+ 
+
+#### **12. Is Healthy**
+Checks whether a borrower’s account in a specific market is healthy. 
+``` solidity
+function isHealthy(MarketParams memory marketParams, Id id, address borrower) external view returns (bool)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * `id:` the market’s unique identifier.
+    * `borrower:` the address of the borrower whose account health is being checked.
+* **Returns:** None, reverts on error.
+
+
+#### **13. Get Price**
+Retrieves the relative price between the collateral token and the loan token in a specific market.
+``` solidity
+function getPrice(MarketParams memory marketParams) public view returns (uint256)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* **Returns:** the value of one collateral token expressed in loan token units.
+
+
+#### **14. Get WhiteList**
+Retrieves the whitelist of a specified market.
+``` solidity
+function getWhiteList(Id id) external view returns (address[])
+```
+* **Parameter description:**
+    * `id:` the market’s unique identifier.
+* **Returns:** the list of addresses included in the whitelist for the specified market.
+
+
+#### **15. Is WhiteList**
+Checks whether a specific account is included in the whitelist of the market identified by id.
+``` solidity
+function isWhiteList(Id id, address account) public view returns (bool)
+```
+* **Parameter description:**
+    * `id:` the market’s unique identifier.
+    * `account:` the address to check for whitelist eligibility.
+* **Returns:** true if the whitelist is not set or if the account is included in it; otherwise, false.
+
+
+#### **16. Get Liquidation Whitelist**
+Retrieves the list of addresses in the liquidation whitelist for the specified market identified by id.
+``` solidity
+function getLiquidationWhitelist(Id id) external view returns (address[])
+```
+* **Parameter description:**
+    * `id:` the unique identifier of the market.
+* **Returns:** a list of addresses authorized to perform liquidation operations in the specified market.
+
+
+#### **17. Is Liquidation Whitelist**
+Checks whether a given account is included in the liquidation whitelist for the specified market.
+``` solidity
+function isLiquidationWhitelist(Id id, address account) external view returns (bool)
+```
+* **Parameter description:**
+    * `id:` the unique identifier of the market.
+    * `account:` the address to be checked in the liquidation whitelist.
+* **Returns:** returns true if the account is in the whitelist; otherwise, returns false.
+
+
+#### **18. Minimum Loan**
+Retrieves the minimum loan amount allowed in the specified market.
+``` solidity
+function minLoan(MarketParams memory marketParams) public view returns (uint256)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* **Returns:** the minimum amount of loan assets that can be borrowed from the market.
+
+
+#### **19. Get Id**
+Returns the unique identifier (ID) corresponding to the specified market.
+``` solidity
+function getId(MarketParams memory marketParams) external pure returns (bytes32 id)
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* **Returns:**
+    * `id:` the unique market ID, calculated as keccak256(marketParams).
+ 
+
+#### **20. Paused**
+Checks whether the market is globally paused.
+``` solidity
+function paused() public view virtual returns (bool)
+```
+* **Parameter description:** N/A.
+* **Returns:** true if the protocol is globally paused and all markets are disabled; false otherwise.
+
+
+#### **21. Borrow Rate Full View**
+Retrieves both the average borrow rate of a given market since the last update and the current borrow rate at the target utilization level.
+``` solidity
+function borrowRateFullView(Id id) public view returns (uint256 avgBorrowRate, int256 targetBorrowRate)
+```
+* **Parameter description:**
+    * `id:` the unique market ID.
+* **Returns:**
+    * `avgBorrowRate:` the average borrow rate since the last interest update.
+    * `targetBorrowRate:` the current borrow rate at the target utilization level.
+ 
 
 
