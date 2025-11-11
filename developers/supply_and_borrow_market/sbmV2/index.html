@@ -1510,11 +1510,11 @@
 <span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">deadline</span><span class="p">;</span><span class="w">    </span>
 <span class="p">}</span>
 </code></pre></div>
-* <strong>authorizer:</strong> the address that is granting authorization or revocation.
-* <strong>authorized:</strong> the address that is being granted or revoked the authorization.
-* <strong>isAuthorized:</strong> a boolean indicating whether the authorization is being granted (true) or revoked (false).
-* <strong>nonce:</strong> a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.
-* <strong>deadline:</strong> a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.</p>
+* <code>authorizer:</code> the address that is granting authorization or revocation.
+* <code>authorized:</code> the address that is being granted or revoked the authorization.
+* <code>isAuthorized:</code> a boolean indicating whether the authorization is being granted (true) or revoked (false).
+* <code>nonce:</code> a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.
+* <code>deadline:</code> a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.</p>
 <h3 id="7-signature"><strong>7. Signature</strong><a class="headerlink" href="#7-signature" title="Permanent link">&para;</a></h3>
 <p>The Signature struct represents the ECDSA (Elliptic Curve Digital Signature Algorithm) signature used to verify that a particular authorization was signed by the authorizer.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Signature</span><span class="w"> </span><span class="p">{</span>
@@ -1523,9 +1523,10 @@
 <span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">s</span><span class="p">;</span><span class="w">   </span>
 <span class="p">}</span>
 </code></pre></div>
-* <strong>v:</strong> The recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
-* <strong>r:</strong> The "r" component of the ECDSA signature, which is derived from the elliptic curve.
-* <strong>s:</strong> The "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.</p>
+* <code>v:</code> the recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
+* <code>r:</code> the "r" component of the ECDSA signature, which is derived from the elliptic curve.
+* <code>s:</code> the "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.</p>
+<p><br></p>
 <h2 id="contracts-abi"><strong>Contracts ABI</strong><a class="headerlink" href="#contracts-abi" title="Permanent link">&para;</a></h2>
 <h3 id="moolah-market"><strong>Moolah Market</strong><a class="headerlink" href="#moolah-market" title="Permanent link">&para;</a></h3>
 <p>The JustLend DAO V2 market adopts a one-to-one model, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.</p>
