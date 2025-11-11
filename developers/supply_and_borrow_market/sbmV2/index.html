@@ -1445,160 +1445,104 @@
 </code></pre></div>
 * <strong>supplyShares:</strong> the number of shares representing the assets a user has supplied to the market.
 * <strong>borrowShares:</strong> the number of shares representing the assets a user has borrowed from the market.
-* <strong>collateral::</strong> the amount of assets a user has deposited as collateral in the market.</p>
-<h3 id="get-cash"><strong>Get Cash</strong><a class="headerlink" href="#get-cash" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the total amount of underlying balance currently available to this market.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCash</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The quantity of underlying assets owned by this contract.</li>
-</ul>
-<h3 id="total-borrows"><strong>Total Borrows</strong><a class="headerlink" href="#total-borrows" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the sum of the currently loaned-outs and the accrued interests.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalBorrowsCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The total borrows with interest.</li>
-</ul>
-<h3 id="borrow-balance"><strong>Borrow Balance</strong><a class="headerlink" href="#borrow-balance" title="Permanent link">&para;</a></h3>
-<p>Calling this method accrues interest to the updated borrowIndex and then calculates the account's borrow balance using the updated borrowIndex.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowBalanceCurrent</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong><ul>
-<li><code>account:</code> the address whose balance should be calculated after updating borrowIndex.</li>
-</ul>
-</li>
-<li><strong>Returns:</strong> The total borrows with interest.</li>
-</ul>
-<h3 id="borrow-rate"><strong>Borrow Rate</strong><a class="headerlink" href="#borrow-rate" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the current per-block borrow interest rate for this jToken.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The borrow interest rate per block, scaled by 1e18.</li>
-</ul>
-<h3 id="total-supply"><strong>Total Supply</strong><a class="headerlink" href="#total-supply" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the total number of tokens in circulation.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The supply of tokens.</li>
-</ul>
-<h3 id="underlying-balance"><strong>Underlying Balance</strong><a class="headerlink" href="#underlying-balance" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the underlying balance of the owner.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceOfUnderlying</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong><ul>
-<li><code>owner:</code> the address of the account.</li>
-</ul>
-</li>
-<li><strong>Returns:</strong> The amount of underlying owned by owner.</li>
-</ul>
-<h3 id="supply-rate"><strong>Supply Rate</strong><a class="headerlink" href="#supply-rate" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the current per-block supply interest rate for this jToken.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The supply interest rate per block, scaled by 1e18.</li>
-</ul>
-<h3 id="total-reserves"><strong>Total Reserves</strong><a class="headerlink" href="#total-reserves" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the reserves. Reserve represents a portion of historical interest set aside as cash which can be withdrawn or transferred through the protocol's governance.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalReserves</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The total amount of reserves.</li>
-</ul>
-<h3 id="reserve-factor"><strong>Reserve Factor</strong><a class="headerlink" href="#reserve-factor" title="Permanent link">&para;</a></h3>
-<p>Calling this method gets the current reserve factor.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">reserveFactorMantissa</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The current reserve factor.</li>
-</ul>
-<h3 id="liquidation-incentive"><strong>Liquidation Incentive</strong><a class="headerlink" href="#liquidation-incentive" title="Permanent link">&para;</a></h3>
-<p>By calling the liquidationIncentiveMantissa function of the Unitroller contract, liquidation incentives can be inquired. Liquidators will be given a proportion of the borrower's collateral as an incentive, which is defined as liquidation incentive. This is to encourage liquidators to perform liquidation of underwater accounts.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidationIncentiveMantissa</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> The liquidationIncentive, scaled by 1e18, is multiplied by the closed borrow amount from the liquidator to determine how much collateral can be seized.</li>
-</ul>
-<h3 id="get-account-liquidity"><strong>Get Account Liquidity</strong><a class="headerlink" href="#get-account-liquidity" title="Permanent link">&para;</a></h3>
-<p>By calling the getAccountLiquidity function of the Unitroller contract, account information can be accessed through an account's address to determine whether the account should be liquidated or not.
-<div class="highlight"><pre><span></span><code>getAccountLiquidity<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong><ul>
-<li><code>account:</code> user address.</li>
-</ul>
-</li>
-<li><strong>Returns:</strong> The amount of underlying owned by owner.<ul>
-<li><code>error:</code> error code, 0 means success.</li>
-<li><code>liquidity:</code> liquidity.</li>
-<li><code>shortfall:</code> When the value is bigger than 0, the current account does not meet the market requirement for collateralization and needs to be liquidated.</li>
-</ul>
-</li>
-</ul>
-<p>Note: There should be at most one non-zero value between liquidity and shortfall.</p>
+* <strong>collateral:</strong> the amount of assets a user has deposited as collateral in the market.</p>
+<h3 id="2-market"><strong>2. Market</strong><a class="headerlink" href="#2-market" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Market</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalSupplyAssets</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalSupplyShares</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalBorrowAssets</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalBorrowShares</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">lastUpdate</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">fee</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+* <strong>totalSupplyAssets:</strong> the total amount of assets supplied to the market and available for lending.
+* <strong>totalSupplyShares:</strong> the total number of supply shares in the market.
+* <strong>totalBorrowAssets:</strong> the total amount of assets borrowed from the market.
+* <strong>totalBorrowShares:</strong> the total number of borrowed shares in the market.
+* <strong>lastUpdate:</strong> the timestamp of the last market state update.
+* <strong>fee:</strong> the fee rate charged by the market.</p>
+<p><strong>Relationship between assets and shares:</strong> At the beginning, one token corresponds to one share. Over time, as the market generates interest income, the total amount of tokens increases while the total number of shares remains constant. Consequently, each share becomes redeemable for more tokens, allowing users to earn yield when they withdraw their funds.</p>
+<h3 id="3-marketparams"><strong>3. MarketParams</strong><a class="headerlink" href="#3-marketparams" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">address</span><span class="w"> </span><span class="nv">loanToken</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralToken</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">address</span><span class="w"> </span><span class="nv">oracle</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">address</span><span class="w"> </span><span class="nv">irm</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lltv</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+* <strong>loanToken:</strong> the address of the token used for borrowing.
+* <strong>collateralToken:</strong> the address of the token used as collateral.
+* <strong>oracle:</strong> the address of the price oracle contract.
+* <strong>irm:</strong> the address of the interest rate model contract.
+* <strong>lltv:</strong> the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.</p>
+<h3 id="4-marketconfig"><strong>4. MarketConfig</strong><a class="headerlink" href="#4-marketconfig" title="Permanent link">&para;</a></h3>
+<p>Represents the configuration of each market within the vault.
+<div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint176</span><span class="w"> </span><span class="nv">cap</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nv">enabled</span><span class="p">;</span>
+<span class="w">  </span>MarketType<span class="w"> </span>marketType<span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64</span><span class="w"> </span><span class="nv">removableAt</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+* <strong>cap:</strong> the maximum amount of assets that the vault can supply to this market.
+* <strong>enabled:</strong> indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
+* <strong>marketType:</strong> the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
+* <strong>removableAt:</strong> a timestamp indicating when the market can be immediately removed from the withdrawal queue.</p>
+<h3 id="5-marketallocation"><strong>5. MarketAllocation</strong><a class="headerlink" href="#5-marketallocation" title="Permanent link">&para;</a></h3>
+<p>Used when reallocating asset investments across different markets.
+<div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketAllocation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span>MarketParams<span class="w"> </span>marketParams<span class="p">;</span>
+<span class="w">  </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+* <strong>marketParams:</strong> specifies the target market to which the allocation is applied.
+* <strong>assets:</strong> the amount of assets allocated to the specified market.</p>
+<h3 id="6-authorization"><strong>6. Authorization</strong><a class="headerlink" href="#6-authorization" title="Permanent link">&para;</a></h3>
+<p>The Authorization struct represents the data required to grant or revoke authorization for a specific address.
+<div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Authorization</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">authorizer</span><span class="p">;</span><span class="w">   </span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">authorized</span><span class="p">;</span><span class="w">   </span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isAuthorized</span><span class="p">;</span><span class="w">   </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">nonce</span><span class="p">;</span><span class="w">        </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">deadline</span><span class="p">;</span><span class="w">    </span>
+<span class="p">}</span>
+</code></pre></div>
+* <strong>authorizer:</strong> the address that is granting authorization or revocation.
+* <strong>authorized:</strong> the address that is being granted or revoked the authorization.
+* <strong>isAuthorized:</strong> a boolean indicating whether the authorization is being granted (true) or revoked (false).
+* <strong>nonce:</strong> a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.
+* <strong>deadline:</strong> a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.</p>
+<h3 id="7-signature"><strong>7. Signature</strong><a class="headerlink" href="#7-signature" title="Permanent link">&para;</a></h3>
+<p>The Signature struct represents the ECDSA (Elliptic Curve Digital Signature Algorithm) signature used to verify that a particular authorization was signed by the authorizer.
+<div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Signature</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint8</span><span class="w"> </span><span class="nv">v</span><span class="p">;</span><span class="w">    </span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">r</span><span class="p">;</span><span class="w">    </span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">s</span><span class="p">;</span><span class="w">   </span>
+<span class="p">}</span>
+</code></pre></div>
+* <strong>v:</strong> The recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
+* <strong>r:</strong> The "r" component of the ECDSA signature, which is derived from the elliptic curve.
+* <strong>s:</strong> The "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.</p>
 <h2 id="contracts-abi"><strong>Contracts ABI</strong><a class="headerlink" href="#contracts-abi" title="Permanent link">&para;</a></h2>
-<h3 id="borrow"><strong>Borrow</strong><a class="headerlink" href="#borrow" title="Permanent link">&para;</a></h3>
-<p>Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong><ul>
-<li><code>borrowAmount:</code> the amount of the underlying asset to borrow.</li>
-</ul>
-</li>
-<li><strong>Returns:</strong> None, reverts on error.</li>
-</ul>
-<h4 id="event"><strong>Event</strong><a class="headerlink" href="#event" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>Borrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
+<h3 id="moolah-market"><strong>Moolah Market</strong><a class="headerlink" href="#moolah-market" title="Permanent link">&para;</a></h3>
+<p>The JustLend DAO V2 market adopts a one-to-one model, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.</p>
+<h4 id="1-create-market"><strong>1. Create Market</strong><a class="headerlink" href="#1-create-market" title="Permanent link">&para;</a></h4>
+<p>The Create Market function creates a new market in JustLend DAO V2  by initializing a set of parameters within the Moolah contract.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createMarket</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+<span class="err">``</span>
+<span class="o">*</span><span class="w"> </span>Parameter<span class="w"> </span>description<span class="o">:</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="o">**</span>marketParams<span class="o">:**</span><span class="w"> </span>the<span class="w"> </span>configuration<span class="w"> </span>parameters<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>target<span class="w"> </span>market<span class="w"> </span><span class="p">(</span>includes<span class="w"> </span>loan<span class="w"> </span>token<span class="p">,</span><span class="w"> </span>collateral<span class="w"> </span>token<span class="p">,</span><span class="w"> </span>oracle<span class="p">,</span><span class="w"> </span>interest<span class="w"> </span>rate<span class="w"> </span>model<span class="p">,</span><span class="w"> </span>and<span class="w"> </span>LTV<span class="w"> </span>ratio<span class="p">).</span>
+<span class="o">*</span><span class="w"> </span><span class="o">**</span>Returns<span class="o">:**</span><span class="w"> </span>None<span class="p">,</span><span class="w"> </span>reverts<span class="w"> </span>on<span class="w"> </span>error<span class="p">.</span>
+
+<span class="err">####</span><span class="w"> </span><span class="o">**</span>Event<span class="o">**</span>
+<span class="err">```</span><span class="w"> </span>solidity
+CreateMarket<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span>MarketParams<span class="w"> </span>marketParams<span class="p">)</span>
 </code></pre></div>
-<ul>
-<li>Emits when user successfully borrow.<ul>
-<li><code>borrower:</code> address of borrow assets account;</li>
-<li><code>borrowAmount:</code> the amount of borrowed assets;</li>
-<li><code>accountBorrows:</code> the account borrow the assets;</li>
-<li><code>totalBorrows:</code> total borrow assets form the account;</li>
-<li><code>borrowIndex:</code> the index of this borrow order.</li>
-</ul>
-</li>
-</ul>
-<h3 id="repayborrow"><strong>repayBorrow</strong><a class="headerlink" href="#repayborrow" title="Permanent link">&para;</a></h3>
-<p>Calling this method repays their own borrow.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repayBorrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong><ul>
-<li><code>amount:</code> the amount of the asset to repay.</li>
-</ul>
-</li>
-<li><strong>Returns:</strong> None, reverts on error.</li>
-</ul>
-<h4 id="event_1"><strong>Event</strong><a class="headerlink" href="#event_1" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>RepayBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">payer</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
-</code></pre></div>
-<ul>
-<li>Emits when user successfully repay borrow.<ul>
-<li><code>payer:</code> operate repay borrow;</li>
-<li><code>borrower:</code> address of borrow assets account;</li>
-<li><code>repayAmount:</code> the amount of repaid assets;</li>
-<li><code>accountBorrows:</code> the account borrow the assets;</li>
-<li><code>totalBorrows:</code> total borrow assets form the account;</li>
-<li><code>borrowIndex:</code> the index of this borrow order.</li>
-</ul>
-</li>
-</ul>
+* This event is emitted when successfully creating the market.
+    * <code>Id:</code> each market is identified by a unique Id, represented as a bytes32 value.
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</p>
 
 
 
