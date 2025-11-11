@@ -16,7 +16,7 @@
     
     
       
-        <title>sbmV2 - JustLend DAO Documentation</title>
+        <title>SBM V2 - JustLend DAO Documentation</title>
       
     
     
@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#sbm-v2" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -93,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              sbmV2
+              SBM V2
             
           </span>
         </div>
@@ -1393,9 +1398,204 @@
 
 
 
-  <h1>sbmV2</h1>
-
-
+<h1 id="sbm-v2">SBM V2<a class="headerlink" href="#sbm-v2" title="Permanent link">&para;</a></h1>
+<p>JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. It introduces a dual-layer isolated margin mechanism composed of Vaults and Markets, along with an Adaptive Curve Interest Rate Model (IRM) for dynamic rate adjustment. The V2 system primarily consists of several core smart contracts — <strong>Moolah Market</strong>, <strong>Moolah Vault</strong>, <strong>TRX Provider</strong>, <strong>Resilient Oracle</strong>, and <strong>Interest Rate Model</strong> — each serving a distinct purpose within the ecosystem:</p>
+<ul>
+<li><strong>Moolah Market</strong> handles core lending and borrowing operations, including supply, withdrawal, collateral management, and liquidation. <strong>MoolahMarket.sol</strong> allows users to:<ul>
+<li>Market Creation</li>
+<li>Supply</li>
+<li>Withdraw</li>
+<li>Borrow</li>
+<li>Repay</li>
+<li>Supply Collateral</li>
+<li>Withdraw Collateral</li>
+<li>Liquidation</li>
+</ul>
+</li>
+<li><strong>Moolah Vault</strong> manages pooled user assets, allocates funds to lending markets, and issues transferable shares following the ERC-4626 standard. <strong>MoolahVault.sol</strong> allows users to:<ul>
+<li>Vault Creation</li>
+<li>Deposit</li>
+<li>Mint</li>
+<li>Withdraw</li>
+</ul>
+</li>
+<li><strong>TRX Provider</strong> enables seamless interaction between native TRX and wrapped TRX (WTRX), allowing users to supply or borrow using TRX directly. <strong>TRXProvider.sol</strong> allows users to:<ul>
+<li>Deposit</li>
+<li>Mint</li>
+<li>Withdraw</li>
+<li>Redeem</li>
+<li>Borrow</li>
+<li>Repay</li>
+<li>Supply Collateral</li>
+<li>Withdraw Collateral</li>
+</ul>
+</li>
+<li><strong>Resilient Oracle</strong> aggregates multiple price feeds (up to three per token) to ensure reliable and accurate price data for the protocol. </li>
+<li><strong>Interest Rate Model (IRM)</strong> dynamically adjusts borrowing and supply rates in real time to maintain market utilization near the optimal level. </li>
+</ul>
+<p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol">Github</a>.</p>
+<h2 id="query-interface"><strong>Query Interface</strong><a class="headerlink" href="#query-interface" title="Permanent link">&para;</a></h2>
+<h3 id="exchangerate"><strong>ExchangeRate</strong><a class="headerlink" href="#exchangerate" title="Permanent link">&para;</a></h3>
+<p>Calling this method accrues interest and returns the up-to-date exchange rate.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">exchangeRateCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> calculated exchange rate scaled by 1e18.</li>
+</ul>
+<h3 id="get-cash"><strong>Get Cash</strong><a class="headerlink" href="#get-cash" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the total amount of underlying balance currently available to this market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCash</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The quantity of underlying assets owned by this contract.</li>
+</ul>
+<h3 id="total-borrows"><strong>Total Borrows</strong><a class="headerlink" href="#total-borrows" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the sum of the currently loaned-outs and the accrued interests.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalBorrowsCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The total borrows with interest.</li>
+</ul>
+<h3 id="borrow-balance"><strong>Borrow Balance</strong><a class="headerlink" href="#borrow-balance" title="Permanent link">&para;</a></h3>
+<p>Calling this method accrues interest to the updated borrowIndex and then calculates the account's borrow balance using the updated borrowIndex.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowBalanceCurrent</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>account:</code> the address whose balance should be calculated after updating borrowIndex.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> The total borrows with interest.</li>
+</ul>
+<h3 id="borrow-rate"><strong>Borrow Rate</strong><a class="headerlink" href="#borrow-rate" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the current per-block borrow interest rate for this jToken.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The borrow interest rate per block, scaled by 1e18.</li>
+</ul>
+<h3 id="total-supply"><strong>Total Supply</strong><a class="headerlink" href="#total-supply" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the total number of tokens in circulation.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The supply of tokens.</li>
+</ul>
+<h3 id="underlying-balance"><strong>Underlying Balance</strong><a class="headerlink" href="#underlying-balance" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the underlying balance of the owner.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceOfUnderlying</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>owner:</code> the address of the account.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> The amount of underlying owned by owner.</li>
+</ul>
+<h3 id="supply-rate"><strong>Supply Rate</strong><a class="headerlink" href="#supply-rate" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the current per-block supply interest rate for this jToken.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyRatePerBlock</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The supply interest rate per block, scaled by 1e18.</li>
+</ul>
+<h3 id="total-reserves"><strong>Total Reserves</strong><a class="headerlink" href="#total-reserves" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the reserves. Reserve represents a portion of historical interest set aside as cash which can be withdrawn or transferred through the protocol's governance.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalReserves</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The total amount of reserves.</li>
+</ul>
+<h3 id="reserve-factor"><strong>Reserve Factor</strong><a class="headerlink" href="#reserve-factor" title="Permanent link">&para;</a></h3>
+<p>Calling this method gets the current reserve factor.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">reserveFactorMantissa</span><span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The current reserve factor.</li>
+</ul>
+<h3 id="liquidation-incentive"><strong>Liquidation Incentive</strong><a class="headerlink" href="#liquidation-incentive" title="Permanent link">&para;</a></h3>
+<p>By calling the liquidationIncentiveMantissa function of the Unitroller contract, liquidation incentives can be inquired. Liquidators will be given a proportion of the borrower's collateral as an incentive, which is defined as liquidation incentive. This is to encourage liquidators to perform liquidation of underwater accounts.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidationIncentiveMantissa</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong> N/A</li>
+<li><strong>Returns:</strong> The liquidationIncentive, scaled by 1e18, is multiplied by the closed borrow amount from the liquidator to determine how much collateral can be seized.</li>
+</ul>
+<h3 id="get-account-liquidity"><strong>Get Account Liquidity</strong><a class="headerlink" href="#get-account-liquidity" title="Permanent link">&para;</a></h3>
+<p>By calling the getAccountLiquidity function of the Unitroller contract, account information can be accessed through an account's address to determine whether the account should be liquidated or not.
+<div class="highlight"><pre><span></span><code>getAccountLiquidity<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>account:</code> user address.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> The amount of underlying owned by owner.<ul>
+<li><code>error:</code> error code, 0 means success.</li>
+<li><code>liquidity:</code> liquidity.</li>
+<li><code>shortfall:</code> When the value is bigger than 0, the current account does not meet the market requirement for collateralization and needs to be liquidated.</li>
+</ul>
+</li>
+</ul>
+<p>Note: There should be at most one non-zero value between liquidity and shortfall.</p>
+<h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
+<h3 id="borrow"><strong>Borrow</strong><a class="headerlink" href="#borrow" title="Permanent link">&para;</a></h3>
+<p>Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>borrowAmount:</code> the amount of the underlying asset to borrow.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h4 id="event"><strong>Event</strong><a class="headerlink" href="#event" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Borrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Emits when user successfully borrow.<ul>
+<li><code>borrower:</code> address of borrow assets account;</li>
+<li><code>borrowAmount:</code> the amount of borrowed assets;</li>
+<li><code>accountBorrows:</code> the account borrow the assets;</li>
+<li><code>totalBorrows:</code> total borrow assets form the account;</li>
+<li><code>borrowIndex:</code> the index of this borrow order.</li>
+</ul>
+</li>
+</ul>
+<h3 id="repayborrow"><strong>repayBorrow</strong><a class="headerlink" href="#repayborrow" title="Permanent link">&para;</a></h3>
+<p>Calling this method repays their own borrow.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repayBorrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div></p>
+<ul>
+<li><strong>Parameter description:</strong><ul>
+<li><code>amount:</code> the amount of the asset to repay.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> None, reverts on error.</li>
+</ul>
+<h4 id="event_1"><strong>Event</strong><a class="headerlink" href="#event_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>RepayBorrow<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">payer</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">repayAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">accountBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">totalBorrows</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowIndex</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Emits when user successfully repay borrow.<ul>
+<li><code>payer:</code> operate repay borrow;</li>
+<li><code>borrower:</code> address of borrow assets account;</li>
+<li><code>repayAmount:</code> the amount of repaid assets;</li>
+<li><code>accountBorrows:</code> the account borrow the assets;</li>
+<li><code>totalBorrows:</code> total borrow assets form the account;</li>
+<li><code>borrowIndex:</code> the index of this borrow order.</li>
+</ul>
+</li>
+</ul>
 
 
 
