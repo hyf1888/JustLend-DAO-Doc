@@ -31,16 +31,20 @@ JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the 
 The source code is available on [Github](https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol).
 
 
-## **Query Interface**
+## **Configuration**
 
-### **ExchangeRate**
-Calling this method accrues interest and returns the up-to-date exchange rate.
+### **1. Position**
+In each market, every user has a corresponding Position, which records the user’s supplied, borrowed, and collateralized assets within that market.
 ``` solidity
-function exchangeRateCurrent() public nonReentrant returns (uint)
+struct Position {
+  uint256 supplyShares;
+  uint128 borrowShares;
+  uint128 collateral;
+}
 ```
-
-* **Parameter description:** N/A
-* **Returns:** calculated exchange rate scaled by 1e18.
+* **supplyShares:** the number of shares representing the assets a user has supplied to the market.
+* **borrowShares:** the number of shares representing the assets a user has borrowed from the market.
+* **collateral::** the amount of assets a user has deposited as collateral in the market.
 
 
 ### **Get Cash**
@@ -162,7 +166,7 @@ Note: There should be at most one non-zero value between liquidity and shortfall
 
 
 
-## **Write Interface**
+## **Contracts ABI**
 
 ### **Borrow**
 Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
