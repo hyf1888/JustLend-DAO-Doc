@@ -43,9 +43,9 @@ struct Position {
   uint128 collateral;
 }
 ```
-* **supplyShares:** the number of shares representing the assets a user has supplied to the market.
-* **borrowShares:** the number of shares representing the assets a user has borrowed from the market.
-* **collateral:** the amount of assets a user has deposited as collateral in the market.
+* `supplyShares:` the number of shares representing the assets a user has supplied to the market.
+* `borrowShares:` the number of shares representing the assets a user has borrowed from the market.
+* `collateral:` the amount of assets a user has deposited as collateral in the market.
 
 
 ### **2. Market**
@@ -59,12 +59,12 @@ struct Market {
   uint128 fee;
 }
 ```
-* **totalSupplyAssets:** the total amount of assets supplied to the market and available for lending.
-* **totalSupplyShares:** the total number of supply shares in the market.
-* **totalBorrowAssets:** the total amount of assets borrowed from the market.
-* **totalBorrowShares:** the total number of borrowed shares in the market.
-* **lastUpdate:** the timestamp of the last market state update.
-* **fee:** the fee rate charged by the market.
+* `totalSupplyAssets:` the total amount of assets supplied to the market and available for lending.
+* `totalSupplyShares:` the total number of supply shares in the market.
+* `totalBorrowAssets:` the total amount of assets borrowed from the market.
+* `totalBorrowShares:` the total number of borrowed shares in the market.
+* `lastUpdate:` the timestamp of the last market state update.
+* `fee:` the fee rate charged by the market.
 
 **Relationship between assets and shares:** At the beginning, one token corresponds to one share. Over time, as the market generates interest income, the total amount of tokens increases while the total number of shares remains constant. Consequently, each share becomes redeemable for more tokens, allowing users to earn yield when they withdraw their funds.
 
@@ -79,11 +79,11 @@ struct MarketParams {
   uint256 lltv;
 }
 ```
-* **loanToken:** the address of the token used for borrowing.
-* **collateralToken:** the address of the token used as collateral.
-* **oracle:** the address of the price oracle contract.
-* **irm:** the address of the interest rate model contract.
-* **lltv:** the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.
+* `loanToken:` the address of the token used for borrowing.
+* `collateralToken:` the address of the token used as collateral.
+* `oracle:` the address of the price oracle contract.
+* `irm:` the address of the interest rate model contract.
+* `lltv:` the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.
 
 
 ### **4. MarketConfig**
@@ -96,10 +96,10 @@ struct MarketConfig {
   uint64 removableAt;
 }
 ```
-* **cap:** the maximum amount of assets that the vault can supply to this market.
-* **enabled:** indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
-* **marketType:** the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
-* **removableAt:** a timestamp indicating when the market can be immediately removed from the withdrawal queue.
+* `cap:` the maximum amount of assets that the vault can supply to this market.
+* `enabled:` indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
+* `marketType:` the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
+* `removableAt:` a timestamp indicating when the market can be immediately removed from the withdrawal queue.
 
 
 ### **5. MarketAllocation**
@@ -110,8 +110,8 @@ struct MarketAllocation {
   uint256 assets;
 }
 ```
-* **marketParams:** specifies the target market to which the allocation is applied.
-* **assets:** the amount of assets allocated to the specified market.
+* `marketParams:` specifies the target market to which the allocation is applied.
+* `assets:` the amount of assets allocated to the specified market.
 
 
 ### **6. Authorization**
