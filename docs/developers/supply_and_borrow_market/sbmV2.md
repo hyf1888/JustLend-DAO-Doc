@@ -29,6 +29,7 @@ JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the 
 * **Interest Rate Model (IRM)** dynamically adjusts borrowing and supply rates in real time to maintain market utilization near the optimal level. 
 
 The source code is available on [Github](https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol).
+<br>
 
 
 ## **Configuration**
@@ -154,12 +155,12 @@ The JustLend DAO V2 market adopts a one-to-one model, where each market consists
 The Create Market function creates a new market in JustLend DAO V2  by initializing a set of parameters within the Moolah contract.
 ``` solidity
 function createMarket(MarketParams memory marketParams) external
-``
-* Parameter description:
-    * **marketParams:** the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+```
+* **Parameter description:**
+    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
 * **Returns:** None, reverts on error.
 
-#### **Event**
+**Event**
 ``` solidity
 CreateMarket(Id indexed id, MarketParams marketParams)
 ```
