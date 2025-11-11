@@ -1541,8 +1541,265 @@
 <div class="highlight"><pre><span></span><code>CreateMarket<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span>MarketParams<span class="w"> </span>marketParams<span class="p">)</span>
 </code></pre></div>
 * This event is emitted when successfully creating the market.
-    * <code>Id:</code> each market is identified by a unique Id, represented as a bytes32 value.
+    * <code>id:</code> each market is identified by a unique Id, represented as a bytes32 value.
     * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</p>
+<h4 id="2-supply"><strong>2. Supply</strong><a class="headerlink" href="#2-supply" title="Permanent link">&para;</a></h4>
+<p>The supply function allows users to provide liquidity to the market for lending.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supply</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>assets:</code> the amount of tokens the user wants to supply to the market.
+    * <code>shares:</code> the number of supply shares to mint corresponding to the deposited assets.
+    * <code>onBehalf:</code> the address that will receive the supply shares. This allows users to supply assets on behalf of another account.
+    * <code>data:</code> additional encoded data for interaction logic or integrations.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>Supply<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when assets are supplied to a market.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market where the supply occurred.
+    * <code>caller:</code> the address that submitted the transaction.
+    * <code>onBehalf:</code> the address on whose behalf the assets were supplied, the supply shares are credited to this address.
+    * <code>assets:</code> the amount of tokens supplied to the market.
+    * <code>shares:</code> the number of supply shares minted corresponding to the supplied assets.</p>
+<h4 id="3-withdraw"><strong>3. Withdraw</strong><a class="headerlink" href="#3-withdraw" title="Permanent link">&para;</a></h4>
+<p>The withdraw  function allows users to withdraw the previously supplied liquidity from the market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>assets:</code> the amount of tokens to withdraw from the market.
+    * <code>shares:</code> the number of supply shares to redeem for the corresponding assets.
+    * <code>onBehalf:</code> the address whose position will be reduced. This enables withdrawals to be made on behalf of another account.
+    * <code>receiver:</code> the address that will receive the withdrawn assets.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>Withdraw<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">caller</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when assets are withdrawn from a market.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market from which the withdrawal occurred.
+    * <code>caller:</code> the address that submitted the transaction.
+    * <code>onBehalf:</code> the address whose supply shares are being withdrawn.
+    * <code>receiver:</code> the address that receives the withdrawn assets.
+    * <code>assets:</code> the amount of tokens withdrawn from the market.
+    * <code>shares:</code> the number of supply shares redeemed corresponding to the withdrawn assets.</p>
+<h4 id="4-borrow"><strong>4. Borrow</strong><a class="headerlink" href="#4-borrow" title="Permanent link">&para;</a></h4>
+<p>The borrow function allows users to borrow funds from the JustLend DAO V2 market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>assets:</code> the amount of tokens the user intends to borrow from the market.
+    * <code>shares:</code> the number of borrowing shares to mint corresponding to the borrowed assets.
+    * <code>onBehalf:</code> the address whose position will be increased. This allows borrowing on behalf of another account.
+    * <code>receiver:</code> the address that will receive the borrowed assets.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>Borrow<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">caller</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when assets are borrowed from a market.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market from which the borrowing occurred.
+    * <code>caller:</code> the address that submitted the transaction.
+    * <code>onBehalf:</code> the address whose borrowed shares are recorded.
+    * <code>receiver:</code> the address that receives the borrowed assets.
+    * <code>assets:</code> the amount of tokens borrowed from the market.
+    * <code>shares:</code> the number of borrowed shares corresponding to the borrowed assets.</p>
+<h4 id="5-repay"><strong>5. Repay</strong><a class="headerlink" href="#5-repay" title="Permanent link">&para;</a></h4>
+<p>The repay function allows users to repay the funds borrowed from the JustLend DAO V2 market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repay</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>assets:</code> the amount of tokens to repay to the market.
+    * <code>shares:</code> the number of borrowing shares to burn corresponding to the repaid assets.
+    * <code>onBehalf:</code> the address whose borrowing position will be reduced. This enables repayments to be made on behalf of another account.
+    * <code>data:</code> additional encoded data for interaction logic or integrations.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>Repay<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when borrowed assets are repaid to the market.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market where the repayment occurred.
+    * <code>caller:</code> the address that submitted the transaction.
+    * <code>onBehalf:</code> the address whose borrowed assets are being repaid.
+    * <code>assets:</code> the amount of tokens repaid to the market.
+    * <code>shares:</code> the number of borrowed shares corresponding to the repaid assets.</p>
+<h4 id="6-supply-collateral"><strong>6. Supply Collateral</strong><a class="headerlink" href="#6-supply-collateral" title="Permanent link">&para;</a></h4>
+<p>The supply collateral function allows users to supply collateral assets to the JustLend DAO V2 market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>assets:</code> the amount of collateral tokens to deposit into the market.
+    * <code>onBehalf:</code> the address whose collateral position will be increased. This allows users to add collateral on behalf of another account.
+    * <code>data:</code> additional encoded data for interaction logic or integrations.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>SupplyCollateral<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when collateral is supplied to the market.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market where the collateral is supplied.
+    * <code>caller:</code> the address that submitted the transaction.
+    * <code>onBehalf:</code> the address whose collateral balance is credited.
+    * <code>assets:</code> the amount of collateral tokens supplied to the market.</p>
+<h4 id="7-withdraw-collateral"><strong>7. Withdraw Collateral</strong><a class="headerlink" href="#7-withdraw-collateral" title="Permanent link">&para;</a></h4>
+<p>The withdraw collateral function allows users to withdraw their previously supplied collateral from the JustLend DAO V2 market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>assets:</code> the amount of collateral tokens to withdraw from the market.
+    * <code>onBehalf:</code> the address whose collateral position will be reduced. This allows collateral to be withdrawn on behalf of another account.
+    * <code>receiver:</code> the address that will receive the withdrawn collateral assets.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>WithdrawCollateral<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">caller</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when collateral is withdrawn from the market.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market where the collateral is withdrawn.
+    * <code>caller:</code> the address that submitted the transaction.
+    * <code>onBehalf:</code> the address whose collateral balance is reduced.
+    * <code>receiver:</code> the address that receives the withdrawn collateral assets.
+    * <code>assets:</code> the amount of collateral tokens withdrawn from the market.</p>
+<h4 id="8-liquidate"><strong>8. Liquidate</strong><a class="headerlink" href="#8-liquidate" title="Permanent link">&para;</a></h4>
+<p>The liquidate function allows liquidators to repay a portion of a borrower's debt in exchange for seizing the borrower's collateral when their position becomes undercollateralized.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidate</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">seizedAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidShares</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>borrower:</code> the address of the user whose position is being liquidated.
+    * <code>seizedAssets:</code> the amount of collateral assets to be seized from the borrower.
+    * <code>repaidShares:</code> the number of borrowing shares repaid on behalf of the borrower.
+    * <code>data:</code> additional encoded data for custom liquidation logic or integrations.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>Liquidate<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>borrower<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidShares</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">seizedAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">badDebtAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">badDebtShares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when a liquidation occurs in the market.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market where the liquidation takes place.
+    * <code>caller:</code> the address that submitted the transaction (the liquidator).
+    * <code>borrower:</code> the address of the borrower being liquidated.
+    * <code>repaidAssets:</code> the amount of borrowed assets repaid during the liquidation.
+    * <code>repaidShares:</code> the number of borrowed shares repaid.
+    * <code>seizedAssets:</code> the amount of collateral assets seized by the liquidator.
+    * <code>badDebtAssets:</code> the amount of assets classified as bad debt after liquidation.
+    * <code>badDebtShares:</code> the number of borrowed shares corresponding to the bad debt.</p>
+<h4 id="9-set-authorization"><strong>9. Set Authorization</strong><a class="headerlink" href="#9-set-authorization" title="Permanent link">&para;</a></h4>
+<p>Sets or updates the authorization status for a specific address.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setAuthorization</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">authorized</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">newIsAuthorized</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>authorized:</code> the address to grant or revoke authorization.
+    * <code>newIsAuthorized:</code> a boolean indicating the authorization status, true to authorize, false to revoke.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>SetAuthorization<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>authorizer<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>authorized<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">newIsAuthorized</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted when authorization status for an address is updated.
+    * <code>caller:</code> the address that initiated the transaction.
+    * <code>authorizer:</code> the address granting the authorization.
+    * <code>authorized:</code> the address receiving the authorization.
+    * <code>newIsAuthorized:</code> the new authorization status, true for granted, false for revoked.</p>
+<h4 id="10-set-authorization-with-signature"><strong>10. Set Authorization With Signature</strong><a class="headerlink" href="#10-set-authorization-with-signature" title="Permanent link">&para;</a></h4>
+<p>Sets authorization for an address using an off-chain signature, while recording a nonce to prevent replay attacks.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setAuthorizationWithSig</span><span class="p">(</span>Authorization<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>authorization<span class="p">,</span><span class="w"> </span>Signature<span class="w"> </span>calldata<span class="w"> </span>signature<span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>authorization:</code> the authorization data structure containing the authorization details.
+    * <code>signature:</code> the ECDSA signature proving that the authorization was signed by the authorizer.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<h4 id="11-accrue-interest"><strong>11. Accrue Interest</strong><a class="headerlink" href="#11-accrue-interest" title="Permanent link">&para;</a></h4>
+<p>The accrueInterest function updates the interest accrued in the JustLend DAO V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">accrueInterest</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>AccrueInterest<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">prevBorrowRate</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">feeShares</span><span class="p">)</span>
+</code></pre></div>
+* This event is emitted during the execution of functions such as borrow, repay, and supply, which update the market’s borrowing state.
+    * <code>id:</code> the unique market identifier (bytes32), representing the market where the interest is accrued.
+    * <code>prevBorrowRate:</code> the previous borrowing rate before the update.
+    * <code>interest:</code> the number of interest accrued in this update.
+    * <code>feeShares:</code> the portion of accrued interest distributed to the fee recipient, represented in shares.</p>
+<h4 id="12-is-healthy"><strong>12. Is Healthy</strong><a class="headerlink" href="#12-is-healthy" title="Permanent link">&para;</a></h4>
+<p>Checks whether a borrower’s account in a specific market is healthy. 
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isHealthy</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span>Id<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+    * <code>id:</code> the market’s unique identifier.
+    * <code>borrower:</code> the address of the borrower whose account health is being checked.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<h4 id="13-get-price"><strong>13. Get Price</strong><a class="headerlink" href="#13-get-price" title="Permanent link">&para;</a></h4>
+<p>Retrieves the relative price between the collateral token and the loan token in a specific market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getPrice</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* <strong>Returns:</strong> the value of one collateral token expressed in loan token units.</p>
+<h4 id="14-get-whitelist"><strong>14. Get WhiteList</strong><a class="headerlink" href="#14-get-whitelist" title="Permanent link">&para;</a></h4>
+<p>Retrieves the whitelist of a specified market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getWhiteList</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[])</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>id:</code> the market’s unique identifier.
+* <strong>Returns:</strong> the list of addresses included in the whitelist for the specified market.</p>
+<h4 id="15-is-whitelist"><strong>15. Is WhiteList</strong><a class="headerlink" href="#15-is-whitelist" title="Permanent link">&para;</a></h4>
+<p>Checks whether a specific account is included in the whitelist of the market identified by id.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isWhiteList</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>id:</code> the market’s unique identifier.
+    * <code>account:</code> the address to check for whitelist eligibility.
+* <strong>Returns:</strong> true if the whitelist is not set or if the account is included in it; otherwise, false.</p>
+<h4 id="16-get-liquidation-whitelist"><strong>16. Get Liquidation Whitelist</strong><a class="headerlink" href="#16-get-liquidation-whitelist" title="Permanent link">&para;</a></h4>
+<p>Retrieves the list of addresses in the liquidation whitelist for the specified market identified by id.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getLiquidationWhitelist</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[])</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>id:</code> the unique identifier of the market.
+* <strong>Returns:</strong> a list of addresses authorized to perform liquidation operations in the specified market.</p>
+<h4 id="17-is-liquidation-whitelist"><strong>17. Is Liquidation Whitelist</strong><a class="headerlink" href="#17-is-liquidation-whitelist" title="Permanent link">&para;</a></h4>
+<p>Checks whether a given account is included in the liquidation whitelist for the specified market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isLiquidationWhitelist</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>id:</code> the unique identifier of the market.
+    * <code>account:</code> the address to be checked in the liquidation whitelist.
+* <strong>Returns:</strong> returns true if the account is in the whitelist; otherwise, returns false.</p>
+<h4 id="18-minimum-loan"><strong>18. Minimum Loan</strong><a class="headerlink" href="#18-minimum-loan" title="Permanent link">&para;</a></h4>
+<p>Retrieves the minimum loan amount allowed in the specified market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">minLoan</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* <strong>Returns:</strong> the minimum amount of loan assets that can be borrowed from the market.</p>
+<h4 id="19-get-id"><strong>19. Get Id</strong><a class="headerlink" href="#19-get-id" title="Permanent link">&para;</a></h4>
+<p>Returns the unique identifier (ID) corresponding to the specified market.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getId</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">id</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* <strong>Returns:</strong>
+    * <code>id:</code> the unique market ID, calculated as keccak256(marketParams).</p>
+<h4 id="20-paused"><strong>20. Paused</strong><a class="headerlink" href="#20-paused" title="Permanent link">&para;</a></h4>
+<p>Checks whether the market is globally paused.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">paused</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>virtual<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A.
+* <strong>Returns:</strong> true if the protocol is globally paused and all markets are disabled; false otherwise.</p>
+<h4 id="21-borrow-rate-full-view"><strong>21. Borrow Rate Full View</strong><a class="headerlink" href="#21-borrow-rate-full-view" title="Permanent link">&para;</a></h4>
+<p>Retrieves both the average borrow rate of a given market since the last update and the current borrow rate at the target utilization level.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowRateFullView</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">avgBorrowRate</span><span class="p">,</span><span class="w"> </span><span class="kt">int256</span><span class="w"> </span><span class="nv">targetBorrowRate</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>id:</code> the unique market ID.
+* <strong>Returns:</strong>
+    * <code>avgBorrowRate:</code> the average borrow rate since the last interest update.
+    * <code>targetBorrowRate:</code> the current borrow rate at the target utilization level.</p>
 
 
 
