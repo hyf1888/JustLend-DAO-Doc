@@ -1434,15 +1434,18 @@
 <li><strong>Interest Rate Model (IRM)</strong> dynamically adjusts borrowing and supply rates in real time to maintain market utilization near the optimal level. </li>
 </ul>
 <p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol">Github</a>.</p>
-<h2 id="query-interface"><strong>Query Interface</strong><a class="headerlink" href="#query-interface" title="Permanent link">&para;</a></h2>
-<h3 id="exchangerate"><strong>ExchangeRate</strong><a class="headerlink" href="#exchangerate" title="Permanent link">&para;</a></h3>
-<p>Calling this method accrues interest and returns the up-to-date exchange rate.
-<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">exchangeRateCurrent</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>nonReentrant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
-</code></pre></div></p>
-<ul>
-<li><strong>Parameter description:</strong> N/A</li>
-<li><strong>Returns:</strong> calculated exchange rate scaled by 1e18.</li>
-</ul>
+<h2 id="configuration"><strong>Configuration</strong><a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="1-position"><strong>1. Position</strong><a class="headerlink" href="#1-position" title="Permanent link">&para;</a></h3>
+<p>In each market, every user has a corresponding Position, which records the user’s supplied, borrowed, and collateralized assets within that market.
+<div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Position</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">supplyShares</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">borrowShares</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">collateral</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+* <strong>supplyShares:</strong> the number of shares representing the assets a user has supplied to the market.
+* <strong>borrowShares:</strong> the number of shares representing the assets a user has borrowed from the market.
+* <strong>collateral::</strong> the amount of assets a user has deposited as collateral in the market.</p>
 <h3 id="get-cash"><strong>Get Cash</strong><a class="headerlink" href="#get-cash" title="Permanent link">&para;</a></h3>
 <p>Calling this method gets the total amount of underlying balance currently available to this market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCash</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
@@ -1546,7 +1549,7 @@
 </li>
 </ul>
 <p>Note: There should be at most one non-zero value between liquidity and shortfall.</p>
-<h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
+<h2 id="contracts-abi"><strong>Contracts ABI</strong><a class="headerlink" href="#contracts-abi" title="Permanent link">&para;</a></h2>
 <h3 id="borrow"><strong>Borrow</strong><a class="headerlink" href="#borrow" title="Permanent link">&para;</a></h3>
 <p>Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">borrowAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
