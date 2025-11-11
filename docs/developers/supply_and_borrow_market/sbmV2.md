@@ -29,8 +29,8 @@ JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the 
 * **Interest Rate Model (IRM)** dynamically adjusts borrowing and supply rates in real time to maintain market utilization near the optimal level. 
 
 The source code is available on [Github](https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol).
-<br>
 
+<br>
 
 ## **Configuration**
 
