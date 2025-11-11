@@ -1444,9 +1444,9 @@
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">collateral</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-* <strong>supplyShares:</strong> the number of shares representing the assets a user has supplied to the market.
-* <strong>borrowShares:</strong> the number of shares representing the assets a user has borrowed from the market.
-* <strong>collateral:</strong> the amount of assets a user has deposited as collateral in the market.</p>
+* <code>supplyShares:</code> the number of shares representing the assets a user has supplied to the market.
+* <code>borrowShares:</code> the number of shares representing the assets a user has borrowed from the market.
+* <code>collateral:</code> the amount of assets a user has deposited as collateral in the market.</p>
 <h3 id="2-market"><strong>2. Market</strong><a class="headerlink" href="#2-market" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Market</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalSupplyAssets</span><span class="p">;</span>
@@ -1457,12 +1457,12 @@
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">fee</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-* <strong>totalSupplyAssets:</strong> the total amount of assets supplied to the market and available for lending.
-* <strong>totalSupplyShares:</strong> the total number of supply shares in the market.
-* <strong>totalBorrowAssets:</strong> the total amount of assets borrowed from the market.
-* <strong>totalBorrowShares:</strong> the total number of borrowed shares in the market.
-* <strong>lastUpdate:</strong> the timestamp of the last market state update.
-* <strong>fee:</strong> the fee rate charged by the market.</p>
+* <code>totalSupplyAssets:</code> the total amount of assets supplied to the market and available for lending.
+* <code>totalSupplyShares:</code> the total number of supply shares in the market.
+* <code>totalBorrowAssets:</code> the total amount of assets borrowed from the market.
+* <code>totalBorrowShares:</code> the total number of borrowed shares in the market.
+* <code>lastUpdate:</code> the timestamp of the last market state update.
+* <code>fee:</code> the fee rate charged by the market.</p>
 <p><strong>Relationship between assets and shares:</strong> At the beginning, one token corresponds to one share. Over time, as the market generates interest income, the total amount of tokens increases while the total number of shares remains constant. Consequently, each share becomes redeemable for more tokens, allowing users to earn yield when they withdraw their funds.</p>
 <h3 id="3-marketparams"><strong>3. MarketParams</strong><a class="headerlink" href="#3-marketparams" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketParams</span><span class="w"> </span><span class="p">{</span>
@@ -1473,11 +1473,11 @@
 <span class="w">  </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lltv</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-* <strong>loanToken:</strong> the address of the token used for borrowing.
-* <strong>collateralToken:</strong> the address of the token used as collateral.
-* <strong>oracle:</strong> the address of the price oracle contract.
-* <strong>irm:</strong> the address of the interest rate model contract.
-* <strong>lltv:</strong> the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.</p>
+* <code>loanToken:</code> the address of the token used for borrowing.
+* <code>collateralToken:</code> the address of the token used as collateral.
+* <code>oracle:</code> the address of the price oracle contract.
+* <code>irm:</code> the address of the interest rate model contract.
+* <code>lltv:</code> the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.</p>
 <h3 id="4-marketconfig"><strong>4. MarketConfig</strong><a class="headerlink" href="#4-marketconfig" title="Permanent link">&para;</a></h3>
 <p>Represents the configuration of each market within the vault.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketConfig</span><span class="w"> </span><span class="p">{</span>
@@ -1487,10 +1487,10 @@
 <span class="w">  </span><span class="kt">uint64</span><span class="w"> </span><span class="nv">removableAt</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-* <strong>cap:</strong> the maximum amount of assets that the vault can supply to this market.
-* <strong>enabled:</strong> indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
-* <strong>marketType:</strong> the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
-* <strong>removableAt:</strong> a timestamp indicating when the market can be immediately removed from the withdrawal queue.</p>
+* <code>cap:</code> the maximum amount of assets that the vault can supply to this market.
+* <code>enabled:</code> indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
+* <code>marketType:</code> the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
+* <code>removableAt:</code> a timestamp indicating when the market can be immediately removed from the withdrawal queue.</p>
 <h3 id="5-marketallocation"><strong>5. MarketAllocation</strong><a class="headerlink" href="#5-marketallocation" title="Permanent link">&para;</a></h3>
 <p>Used when reallocating asset investments across different markets.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketAllocation</span><span class="w"> </span><span class="p">{</span>
@@ -1498,8 +1498,8 @@
 <span class="w">  </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-* <strong>marketParams:</strong> specifies the target market to which the allocation is applied.
-* <strong>assets:</strong> the amount of assets allocated to the specified market.</p>
+* <code>marketParams:</code> specifies the target market to which the allocation is applied.
+* <code>assets:</code> the amount of assets allocated to the specified market.</p>
 <h3 id="6-authorization"><strong>6. Authorization</strong><a class="headerlink" href="#6-authorization" title="Permanent link">&para;</a></h3>
 <p>The Authorization struct represents the data required to grant or revoke authorization for a specific address.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Authorization</span><span class="w"> </span><span class="p">{</span>
