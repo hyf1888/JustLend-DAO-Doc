@@ -1433,7 +1433,8 @@
 <li><strong>Resilient Oracle</strong> aggregates multiple price feeds (up to three per token) to ensure reliable and accurate price data for the protocol. </li>
 <li><strong>Interest Rate Model (IRM)</strong> dynamically adjusts borrowing and supply rates in real time to maintain market utilization near the optimal level. </li>
 </ul>
-<p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol">Github</a>.</p>
+<p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol">Github</a>.
+<br></p>
 <h2 id="configuration"><strong>Configuration</strong><a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <h3 id="1-position"><strong>1. Position</strong><a class="headerlink" href="#1-position" title="Permanent link">&para;</a></h3>
 <p>In each market, every user has a corresponding Position, which records the user’s supplied, borrowed, and collateralized assets within that market.
@@ -1531,14 +1532,12 @@
 <h4 id="1-create-market"><strong>1. Create Market</strong><a class="headerlink" href="#1-create-market" title="Permanent link">&para;</a></h4>
 <p>The Create Market function creates a new market in JustLend DAO V2  by initializing a set of parameters within the Moolah contract.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createMarket</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">external</span>
-<span class="err">``</span>
-<span class="o">*</span><span class="w"> </span>Parameter<span class="w"> </span>description<span class="o">:</span>
-<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="o">**</span>marketParams<span class="o">:**</span><span class="w"> </span>the<span class="w"> </span>configuration<span class="w"> </span>parameters<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>target<span class="w"> </span>market<span class="w"> </span><span class="p">(</span>includes<span class="w"> </span>loan<span class="w"> </span>token<span class="p">,</span><span class="w"> </span>collateral<span class="w"> </span>token<span class="p">,</span><span class="w"> </span>oracle<span class="p">,</span><span class="w"> </span>interest<span class="w"> </span>rate<span class="w"> </span>model<span class="p">,</span><span class="w"> </span>and<span class="w"> </span>LTV<span class="w"> </span>ratio<span class="p">).</span>
-<span class="o">*</span><span class="w"> </span><span class="o">**</span>Returns<span class="o">:**</span><span class="w"> </span>None<span class="p">,</span><span class="w"> </span>reverts<span class="w"> </span>on<span class="w"> </span>error<span class="p">.</span>
-
-<span class="err">####</span><span class="w"> </span><span class="o">**</span>Event<span class="o">**</span>
-<span class="err">```</span><span class="w"> </span>solidity
-CreateMarket<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span>MarketParams<span class="w"> </span>marketParams<span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><strong>Event</strong>
+<div class="highlight"><pre><span></span><code>CreateMarket<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span>MarketParams<span class="w"> </span>marketParams<span class="p">)</span>
 </code></pre></div>
 * This event is emitted when successfully creating the market.
     * <code>Id:</code> each market is identified by a unique Id, represented as a bytes32 value.
