@@ -696,7 +696,174 @@ function maxRedeem(address owner) public view override returns (uint256)
 * **Returns:** the maximum number of shares that can be redeemed by the specified user.
 
 
+<br> 
+
+### **TRX Provider**
+Since both the Moolah Market and MoolahVault operate with TRC20 tokens, WTRX is used as a wrapped version of TRX. Users can interact directly with TRX through the TRXProvider, which internally handles the conversion between TRX and WTRX before executing the corresponding operations in the market or vault.
 
 
+#### **1. Deposit**
+When users stake TRX, the TRXProvider automatically converts TRX into WTRX and deposits it into the corresponding Vault.
+``` solidity
+// Deposit without specifying a vault
+function deposit(address receiver) external payable returns (uint256 shares)
+
+// Deposit with a specified vault
+function deposit(address vault, address receiver) public payable returns (uint256 shares)
+```
+* **Parameter description:**
+    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * `receiver:` the address that will receive the minted vault shares corresponding to the deposited assets.
+* **Returns:**
+    * `shares:` the number of vault shares minted for the receiver based on the amount of TRX (converted to WTRX) deposited into the specified vault.
 
 
+#### **2. Mint**
+This function stakes TRX similar to the deposit function, but instead of specifying the asset amount, users specify the number of shares they wish to mint. The TRXProvider converts the provided TRX into WTRX and deposits it into the vault.
+``` solidity
+// Mint without specifying a vault
+function mint(uint256 shares, address receiver) external payable returns (uint256 assets)
+
+// Mint with a specified vault
+function mint(address vault, uint256 shares, address receiver) public payable returns (uint256 assets)
+```
+* **Parameter description:**
+    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * `shares:` the number of vault shares to mint.
+    * `receiver:` the address that will receive the minted vault shares corresponding to the deposited assets.
+* **Returns:**
+    * `assets:` the amount of TRX (converted to WTRX) required to mint the specified number of shares.
+
+
+#### **3. Withdraw**
+Withdraws TRX. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+``` solidity
+// Withdraw without specifying a vault
+function withdraw(uint256 assets, address payable receiver, address owner) external returns (uint256 shares)
+
+// Withdraw with a specified vault
+function withdraw(address vault, uint256 assets, address payable receiver, address owner) external returns (uint256 shares)
+```
+* **Parameter description:**
+    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * `assets:` the amount of TRX to withdraw (converted from WTRX).
+    * `receiver:` the address that will receive the withdrawn TRX.
+    * `owner:` the address that owns the withdrawn assets (payer of the shares).
+* **Returns:**
+    * `shares:` the number of shares burned in exchange for the specified amount of TRX.
+
+
+#### **4. Redeem**
+Withdraws TRX. Similar to withdrawal, but instead of specifying the withdrawal amount, the user specifies the number of shares to redeem. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+``` solidity
+// Redeem without specifying a vault
+function redeem(uint256 shares, address payable receiver, address owner) external returns (uint256 assets)
+
+// Redeem with a specified vault
+function redeem(address vault, uint256 shares, address payable receiver, address owner) external returns (uint256 assets)
+```
+* **Parameter description:**
+    * `valut:` the address of the vault from which WTRX will be redeemed. If not specified, the default vault is used.
+    * `shares:` the number of shares to redeem.
+    * `receiver:` the address that will receive the redeemed TRX.
+    * `owner:` the address that owns the redeemed shares.
+* **Returns:**
+    * `assets:` the amount of TRX received from redeeming the specified shares.
+
+
+#### **5. Borrow**
+Borrows TRX from the specified market. The TRXProvider interacts with the underlying vault and market contracts to withdraw the corresponding WTRX, converts it to TRX, and sends it to the user.
+``` solidity
+function borrow(MarketParams calldata marketParams, uint256 assets, uint256 shares, address onBehalf, address payable receiver) external returns (uint256 _assets, uint256 _shares)
+```
+* **Parameter description:**
+    * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * `assets:` the amount of TRX to borrow.
+    * `shares:` the corresponding share amount representing the borrowed position.
+    * `onBehalf:` the address on whose behalf the borrowing is executed.
+    * `receiver:` the address that will receive the borrowed TRX.
+* **Returns:**
+    * `_assets:` the actual amount of TRX borrowed.
+    * `_shares:` the number of shares corresponding to the borrowed assets.
+
+
+#### **6. Repay**
+Repays borrowed TRX. When a user repays, the TRXProvider converts the sent TRX into WTRX internally and uses it to repay the corresponding market debt.
+``` solidity
+function repay(MarketParams calldata marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external payable returns (uint256 _assets, uint256 _shares)
+```
+* **Parameter description:**
+    * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * `assets:` the amount of TRX to repay.
+    * `shares:` the share amount corresponding to the repaid assets.
+    * `onBehalf:` the address on whose behalf the repayment is made.
+    * `data:` additional data that can be used for callback or custom logic.
+* **Returns:**
+    * `_assets:` the actual amount of TRX repaid.
+    * `_shares:` the number of shares corresponding to the repaid amount.
+
+
+#### **7. Supply Collateral**
+Supplies TRX as collateral. When a user provides collateral in TRX, the TRXProvider automatically wraps TRX into WTRX and deposits it into the corresponding market as collateral.
+``` solidity
+function supplyCollateral(MarketParams calldata marketParams, address onBehalf, bytes calldata data) external payable
+```
+* **Parameter description:**
+    * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * `onBehalf:` the address on whose behalf the collateral is supplied.
+    * `data:` additional data that can be used for callback or custom logic.
+* **Returns:** None, reverts on error.
+
+
+#### **8. Withdraw Collateral**
+Withdraws TRX collateral. When a user withdraws collateral, the TRXProvider retrieves WTRX from the market, unwraps it into TRX, and transfers it to the specified receiver.
+``` solidity
+function withdrawCollateral(MarketParams calldata marketParams, uint256 assets, address onBehalf, address payable receiver)
+```
+* **Parameter description:**
+    * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * `assets:` the amount of collateral (in TRX) to withdraw.
+    * `onBehalf:` the address from which the collateral is withdrawn.
+    * `receiver:` the address that receives the withdrawn TRX.
+* **Returns:** None, reverts on error.
+
+
+<br> 
+
+### **Resilient Oracle**
+The Resilient Oracle is an aggregated price feed contract that supports configuring up to three price sources (in Chainlink API format) for each token. It allows querying the price of any token, with a precision of 18 decimals.
+
+
+#### **1. Peek**
+Retrieves the price of a specified token.
+``` solidity
+function peek(address asset) public view returns (uint256)
+```
+* **Parameter description:**
+    * `asset:` the token address to query.
+* **Returns:** the current price of the token (with 18-decimal precision).
+
+
+<br> 
+
+### **Interest Rate Model**
+JustLend DAO V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.
+
+
+#### **1. Default TargetUtilization**
+This value defines the optimal utilization level that the interest rate model aims to maintain. Under normal circumstances, it remains constant and only changes when the underlying interest rate model implementation is replaced.
+``` solidity
+function defaultTargetUtilization() external view returns (int256)
+```
+* **Parameter description:** N/A.
+* **Returns:** the default target utilization rate of the market.
+
+
+#### **2. Target Utilization**
+If the market has a non-zero target utilization rate configured, that value is returned. Otherwise, the function returns the default target utilization rate.
+``` solidity
+function targetUtilization(Id id) public view returns (int256)
+```
+* **Parameter description:**
+    * `id:` the unique identifier of the market.   
+* **Returns:** the target utilization rate for a specific market.
