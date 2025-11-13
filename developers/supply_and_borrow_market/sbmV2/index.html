@@ -1943,6 +1943,137 @@
 * <strong>Parameter description:</strong>
     * <code>owner:</code>  the address of the user whose redeemable shares are being queried.
 * <strong>Returns:</strong> the maximum number of shares that can be redeemed by the specified user.</p>
+<p><br> </p>
+<h3 id="trx-provider"><strong>TRX Provider</strong><a class="headerlink" href="#trx-provider" title="Permanent link">&para;</a></h3>
+<p>Since both the Moolah Market and MoolahVault operate with TRC20 tokens, WTRX is used as a wrapped version of TRX. Users can interact directly with TRX through the TRXProvider, which internally handles the conversion between TRX and WTRX before executing the corresponding operations in the market or vault.</p>
+<h4 id="1-deposit"><strong>1. Deposit</strong><a class="headerlink" href="#1-deposit" title="Permanent link">&para;</a></h4>
+<p>When users stake TRX, the TRXProvider automatically converts TRX into WTRX and deposits it into the corresponding Vault.
+<div class="highlight"><pre><span></span><code><span class="c1">// Deposit without specifying a vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+
+<span class="c1">// Deposit with a specified vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * <code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.
+* <strong>Returns:</strong>
+    * <code>shares:</code> the number of vault shares minted for the receiver based on the amount of TRX (converted to WTRX) deposited into the specified vault.</p>
+<h4 id="2-mint"><strong>2. Mint</strong><a class="headerlink" href="#2-mint" title="Permanent link">&para;</a></h4>
+<p>This function stakes TRX similar to the deposit function, but instead of specifying the asset amount, users specify the number of shares they wish to mint. The TRXProvider converts the provided TRX into WTRX and deposits it into the vault.
+<div class="highlight"><pre><span></span><code><span class="c1">// Mint without specifying a vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+
+<span class="c1">// Mint with a specified vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * <code>shares:</code> the number of vault shares to mint.
+    * <code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.
+* <strong>Returns:</strong>
+    * <code>assets:</code> the amount of TRX (converted to WTRX) required to mint the specified number of shares.</p>
+<h4 id="3-withdraw_1"><strong>3. Withdraw</strong><a class="headerlink" href="#3-withdraw_1" title="Permanent link">&para;</a></h4>
+<p>Withdraws TRX. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+<div class="highlight"><pre><span></span><code><span class="c1">// Withdraw without specifying a vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+
+<span class="c1">// Withdraw with a specified vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * <code>assets:</code> the amount of TRX to withdraw (converted from WTRX).
+    * <code>receiver:</code> the address that will receive the withdrawn TRX.
+    * <code>owner:</code> the address that owns the withdrawn assets (payer of the shares).
+* <strong>Returns:</strong>
+    * <code>shares:</code> the number of shares burned in exchange for the specified amount of TRX.</p>
+<h4 id="4-redeem"><strong>4. Redeem</strong><a class="headerlink" href="#4-redeem" title="Permanent link">&para;</a></h4>
+<p>Withdraws TRX. Similar to withdrawal, but instead of specifying the withdrawal amount, the user specifies the number of shares to redeem. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+<div class="highlight"><pre><span></span><code><span class="c1">// Redeem without specifying a vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">redeem</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+
+<span class="c1">// Redeem with a specified vault</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">redeem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>valut:</code> the address of the vault from which WTRX will be redeemed. If not specified, the default vault is used.
+    * <code>shares:</code> the number of shares to redeem.
+    * <code>receiver:</code> the address that will receive the redeemed TRX.
+    * <code>owner:</code> the address that owns the redeemed shares.
+* <strong>Returns:</strong>
+    * <code>assets:</code> the amount of TRX received from redeeming the specified shares.</p>
+<h4 id="5-borrow"><strong>5. Borrow</strong><a class="headerlink" href="#5-borrow" title="Permanent link">&para;</a></h4>
+<p>Borrows TRX from the specified market. The TRXProvider interacts with the underlying vault and market contracts to withdraw the corresponding WTRX, converts it to TRX, and sends it to the user.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_shares</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * <code>assets:</code> the amount of TRX to borrow.
+    * <code>shares:</code> the corresponding share amount representing the borrowed position.
+    * <code>onBehalf:</code> the address on whose behalf the borrowing is executed.
+    * <code>receiver:</code> the address that will receive the borrowed TRX.
+* <strong>Returns:</strong>
+    * <code>_assets:</code> the actual amount of TRX borrowed.
+    * <code>_shares:</code> the number of shares corresponding to the borrowed assets.</p>
+<h4 id="6-repay"><strong>6. Repay</strong><a class="headerlink" href="#6-repay" title="Permanent link">&para;</a></h4>
+<p>Repays borrowed TRX. When a user repays, the TRXProvider converts the sent TRX into WTRX internally and uses it to repay the corresponding market debt.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repay</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_shares</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * <code>assets:</code> the amount of TRX to repay.
+    * <code>shares:</code> the share amount corresponding to the repaid assets.
+    * <code>onBehalf:</code> the address on whose behalf the repayment is made.
+    * <code>data:</code> additional data that can be used for callback or custom logic.
+* <strong>Returns:</strong>
+    * <code>_assets:</code> the actual amount of TRX repaid.
+    * <code>_shares:</code> the number of shares corresponding to the repaid amount.</p>
+<h4 id="7-supply-collateral"><strong>7. Supply Collateral</strong><a class="headerlink" href="#7-supply-collateral" title="Permanent link">&para;</a></h4>
+<p>Supplies TRX as collateral. When a user provides collateral in TRX, the TRXProvider automatically wraps TRX into WTRX and deposits it into the corresponding market as collateral.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * <code>onBehalf:</code> the address on whose behalf the collateral is supplied.
+    * <code>data:</code> additional data that can be used for callback or custom logic.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<h4 id="8-withdraw-collateral"><strong>8. Withdraw Collateral</strong><a class="headerlink" href="#8-withdraw-collateral" title="Permanent link">&para;</a></h4>
+<p>Withdraws TRX collateral. When a user withdraws collateral, the TRXProvider retrieves WTRX from the market, unwraps it into TRX, and transfers it to the specified receiver.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
+    * <code>assets:</code> the amount of collateral (in TRX) to withdraw.
+    * <code>onBehalf:</code> the address from which the collateral is withdrawn.
+    * <code>receiver:</code> the address that receives the withdrawn TRX.
+* <strong>Returns:</strong> None, reverts on error.</p>
+<p><br> </p>
+<h3 id="resilient-oracle"><strong>Resilient Oracle</strong><a class="headerlink" href="#resilient-oracle" title="Permanent link">&para;</a></h3>
+<p>The Resilient Oracle is an aggregated price feed contract that supports configuring up to three price sources (in Chainlink API format) for each token. It allows querying the price of any token, with a precision of 18 decimals.</p>
+<h4 id="1-peek"><strong>1. Peek</strong><a class="headerlink" href="#1-peek" title="Permanent link">&para;</a></h4>
+<p>Retrieves the price of a specified token.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">peek</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">asset</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>asset:</code> the token address to query.
+* <strong>Returns:</strong> the current price of the token (with 18-decimal precision).</p>
+<p><br> </p>
+<h3 id="interest-rate-model"><strong>Interest Rate Model</strong><a class="headerlink" href="#interest-rate-model" title="Permanent link">&para;</a></h3>
+<p>JustLend DAO V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.</p>
+<h4 id="1-default-targetutilization"><strong>1. Default TargetUtilization</strong><a class="headerlink" href="#1-default-targetutilization" title="Permanent link">&para;</a></h4>
+<p>This value defines the optimal utilization level that the interest rate model aims to maintain. Under normal circumstances, it remains constant and only changes when the underlying interest rate model implementation is replaced.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">defaultTargetUtilization</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">int256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong> N/A.
+* <strong>Returns:</strong> the default target utilization rate of the market.</p>
+<h4 id="2-target-utilization"><strong>2. Target Utilization</strong><a class="headerlink" href="#2-target-utilization" title="Permanent link">&para;</a></h4>
+<p>If the market has a non-zero target utilization rate configured, that value is returned. Otherwise, the function returns the default target utilization rate.
+<div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">targetUtilization</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">int256</span><span class="p">)</span>
+</code></pre></div>
+* <strong>Parameter description:</strong>
+    * <code>id:</code> the unique identifier of the market. <br />
+<em> </em><em>Returns:</em>* the target utilization rate for a specific market.</p>
 
 
 
