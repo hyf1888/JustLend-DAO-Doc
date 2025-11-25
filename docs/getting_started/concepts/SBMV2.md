@@ -1,4 +1,4 @@
-JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. The JustLend DAO V2 adopts an **Isolated Margin mechanism** with a **dual-layer** structure of Vaults and Markets, and introduces the AdaptiveCurve Interest Rate Model (IRM). This new design aims to provide higher capital efficiency for depositors and borrowers while ensuring a robust risk isolation framework.
+JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. The JustLend DAO V2 adopts an **isolated-lending model** with a **dual-layer** structure of Vaults and Markets, and introduces the AdaptiveCurve Interest Rate Model (IRM). This new design aims to provide higher capital efficiency for depositors and borrowers while ensuring a robust risk isolation framework.
 
 ## Protocol Architecture
 
@@ -25,7 +25,7 @@ JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the 
     * Interest paid by borrowers flows back into the Vault and is distributed proportionally among depositors.
 
 
-## Interest Rate Model (IRM)
+## Interest Rate Model
 JustLend DAO V2 introduces the AdaptiveCurve Interest Rate Model. It builds upon the Jump Curve model used in JustLend DAO V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level (e.g., 90%). This design ensures both rate stability and maximum capital efficiency.
 
 Just Like JustLend DAO V1, JustLend DAO V2 uses a jump-style rate curve, where the borrow rate rises sharply once utilization exceeds the kink point. However, V2 introduces a dynamic vertical shift:
@@ -44,12 +44,12 @@ When the utilization level reaches the target, the market is considered stable, 
 
 The Rate at Target defines the borrowing interest rate when utilization equals the target (e.g., 90%). It is initially configured by the protocol (for example, at 4% annualized) and is dynamically adjusted over time based on market conditions. Each market maintains its own rateAtTarget parameter, allowing for fine-grained control and independent optimization across different markets.
 
-**Adaptive Mechanism (AdaptSpeed)**
+**Adaptive Mechanism**
 
-To maintain stability, the Interest Rate Model includes an Adaptive Mechanism governed by the adaptSpeed parameter. When the actual utilization deviates significantly from the target for a prolonged period, the system automatically adjusts the entire interest rate curve at a controlled rate.
+To maintain stability, the Interest Rate Model includes an Adaptive Mechanism. When the actual utilization deviates significantly from the target for a prolonged period, the system automatically adjusts the entire interest rate curve at a controlled rate.
 * If utilization < target → rateAtTarget decreases to encourage borrowing.
 * If utilization > target → rateAtTarget increases to promote repayments.
-This time-based adaptive mechanism enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.
+This adaptive mechanism, driven by target utilization and time, enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.
 
 
 ###  Comparison: JustLend DAO V1 vs V2
