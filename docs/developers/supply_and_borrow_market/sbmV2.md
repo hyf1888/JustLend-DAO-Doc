@@ -1,6 +1,6 @@
 # SBM V2
 
-JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. It introduces a dual-layer isolated margin mechanism composed of Vaults and Markets, along with an Adaptive Curve Interest Rate Model (IRM) for dynamic rate adjustment. The V2 system primarily consists of several core smart contracts — **Moolah Market**, **Moolah Vault**, **TRX Provider**, **Resilient Oracle**, and **Interest Rate Model** — each serving a distinct purpose within the ecosystem:
+JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. It introduces a dual-layer isolated-lending model composed of Vaults and Markets, along with an Adaptive Curve Interest Rate Model (IRM) for dynamic rate adjustment. The V2 system primarily consists of several core smart contracts — **Moolah Market**, **Moolah Vault**, **TRX Provider**, **Resilient Oracle**, and **Interest Rate Model** — each serving a distinct purpose within the ecosystem:
 
 * **Moolah Market** handles core lending and borrowing operations, including supply, withdrawal, collateral management, and liquidation. **MoolahMarket.sol** allows users to:
     * Market Creation
@@ -150,30 +150,13 @@ struct Signature {
 ## **Contracts ABI**
 
 ### **Moolah Market**
-The JustLend DAO V2 market adopts a one-to-one model, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.
-
-#### **1. Create Market**
-The Create Market function creates a new market in JustLend DAO V2  by initializing a set of parameters within the Moolah contract.
-``` solidity
-function createMarket(MarketParams memory marketParams) external
-```
-* **Parameter description:**
-    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-* **Returns:** None, reverts on error.
-
-**Event**
-``` solidity
-CreateMarket(Id indexed id, MarketParams marketParams)
-```
-* This event is emitted when successfully creating the market.
-    * `id:` each market is identified by a unique Id, represented as a bytes32 value.
-    * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+The JustLend DAO V2 market adopts an isolated-lending model, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.
 
 
-#### **2. Supply**
+#### **1. Supply**
 The supply function allows users to provide liquidity to the market for lending.
 ``` solidity
-function supply(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data)
+function supply(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external returns (uint256 assetsSupplied, uint256 sharesSupplied)
 ```
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
@@ -181,7 +164,9 @@ function supply(MarketParams memory marketParams, uint256 assets, uint256 shares
     * `shares:` the number of supply shares to mint corresponding to the deposited assets.
     * `onBehalf:` the address that will receive the supply shares. This allows users to supply assets on behalf of another account.
     * `data:` additional encoded data for interaction logic or integrations.
-* **Returns:** None, reverts on error.
+* **Returns:**
+    * `assetsSupplied:` the actual amount of tokens supplied.
+    * `sharesSupplied:` the actual number of supply shares minted corresponding to the supplied assets.
 
 **Event**
 ``` solidity
@@ -195,10 +180,10 @@ Supply(Id indexed id, address indexed caller, address indexed onBehalf, uint256 
     * `shares:` the number of supply shares minted corresponding to the supplied assets.
 
 
-#### **3. Withdraw**
+#### **2. Withdraw**
 The withdraw  function allows users to withdraw the previously supplied liquidity from the market.
 ``` solidity
-function withdraw(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver)
+function withdraw(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver) external returns (uint256 assetsWithdrawn, uint256 sharesWithdrawn)
 ```
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
@@ -206,7 +191,9 @@ function withdraw(MarketParams memory marketParams, uint256 assets, uint256 shar
     * `shares:` the number of supply shares to redeem for the corresponding assets.
     * `onBehalf:` the address whose position will be reduced. This enables withdrawals to be made on behalf of another account.
     * `receiver:` the address that will receive the withdrawn assets.
-* **Returns:** None, reverts on error.
+* **Returns:**
+    * `assetsWithdrawn:` the actual amount of tokens supplied.
+    * `sharesWithdrawn:` the actual number of shares burned corresponding to the withdrawn assets.
 
 **Event**
 ``` solidity
@@ -221,10 +208,10 @@ Withdraw(Id indexed id, address caller, address indexed onBehalf, address indexe
     * `shares:` the number of supply shares redeemed corresponding to the withdrawn assets.
 
 
-#### **4. Borrow**
+#### **3. Borrow**
 The borrow function allows users to borrow funds from the JustLend DAO V2 market.
 ``` solidity
-function borrow(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver)
+function borrow(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver) returns (uint256 assetsBorrowed, uint256 sharesBorrowed)
 ```
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
@@ -232,7 +219,9 @@ function borrow(MarketParams memory marketParams, uint256 assets, uint256 shares
     * `shares:` the number of borrowing shares to mint corresponding to the borrowed assets.
     * `onBehalf:` the address whose position will be increased. This allows borrowing on behalf of another account.
     * `receiver:` the address that will receive the borrowed assets.
-* **Returns:** None, reverts on error.
+* **Returns:**
+    * `assetsBorrowed:` the actual amount of tokens borrowed.
+    * `sharesBorrowed:` the actual number of shares minted corresponding to the borrowed tokens.
 
 **Event**
 ``` solidity
@@ -247,10 +236,10 @@ Borrow(Id indexed id, address caller, address indexed onBehalf, address indexed 
     * `shares:` the number of borrowed shares corresponding to the borrowed assets.
  
 
-#### **5. Repay**
+#### **4. Repay**
 The repay function allows users to repay the funds borrowed from the JustLend DAO V2 market.
 ``` solidity
-function repay(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data)
+function repay(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external returns (uint256 assetsRepaid, uint256 sharesRepaid)
 ```
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
@@ -258,7 +247,9 @@ function repay(MarketParams memory marketParams, uint256 assets, uint256 shares,
     * `shares:` the number of borrowing shares to burn corresponding to the repaid assets.
     * `onBehalf:` the address whose borrowing position will be reduced. This enables repayments to be made on behalf of another account.
     * `data:` additional encoded data for interaction logic or integrations.
-* **Returns:** None, reverts on error.
+* **Returns:**
+    * `assetsRepaid:` the actual amount of tokens repaid.
+    * `sharesRepaid:` the actual number of shares repaid corresponding to the repaid tokens.
 
 **Event**
 ``` solidity
@@ -272,7 +263,7 @@ Repay(Id indexed id, address indexed caller, address indexed onBehalf, uint256 a
     * `shares:` the number of borrowed shares corresponding to the repaid assets.
 
 
-#### **6. Supply Collateral**
+#### **5. Supply Collateral**
 The supply collateral function allows users to supply collateral assets to the JustLend DAO V2 market.
 ``` solidity
 function supplyCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, bytes calldata data)
@@ -295,7 +286,7 @@ SupplyCollateral(Id indexed id, address indexed caller, address indexed onBehalf
     * `assets:` the amount of collateral tokens supplied to the market.
 
 
-#### **7. Withdraw Collateral**
+#### **6. Withdraw Collateral**
 The withdraw collateral function allows users to withdraw their previously supplied collateral from the JustLend DAO V2 market.
 ``` solidity
 function withdrawCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, address receiver)
@@ -319,10 +310,10 @@ WithdrawCollateral(Id indexed id, address caller, address indexed onBehalf, addr
     * `assets:` the amount of collateral tokens withdrawn from the market.
 
 
-#### **8. Liquidate**
+#### **7. Liquidate**
 The liquidate function allows liquidators to repay a portion of a borrower's debt in exchange for seizing the borrower's collateral when their position becomes undercollateralized.
 ``` solidity
-function liquidate(MarketParams memory marketParams, address borrower, uint256 seizedAssets, uint256 repaidShares, bytes calldata data) 
+function liquidate(MarketParams memory marketParams, address borrower, uint256 seizedAssets, uint256 repaidShares, bytes calldata data) external returns(uint256 seizedAssets, uint256 repaidAssets)
 ```
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
@@ -330,7 +321,9 @@ function liquidate(MarketParams memory marketParams, address borrower, uint256 s
     * `seizedAssets:` the amount of collateral assets to be seized from the borrower.
     * `repaidShares:` the number of borrowing shares repaid on behalf of the borrower.
     * `data:` additional encoded data for custom liquidation logic or integrations.
-* **Returns:** None, reverts on error.
+* **Returns:**
+    * `seizedAssets:` the actual amount of collateral tokens seized.
+    * `repaidAssets:` the actual amount of debt tokens repaid.
 
 **Event**
 ``` solidity
@@ -347,7 +340,7 @@ Liquidate(Id indexed id, address indexed caller, address indexed borrower, uint2
     * `badDebtShares:` the number of borrowed shares corresponding to the bad debt.
 
 
-#### **9. Set Authorization**
+#### **8. Set Authorization**
 Sets or updates the authorization status for a specific address.
 ``` solidity
 function setAuthorization(address authorized, bool newIsAuthorized)
@@ -368,7 +361,7 @@ SetAuthorization(address indexed caller, address indexed authorizer, address ind
     * `newIsAuthorized:` the new authorization status, true for granted, false for revoked.
 
 
-#### **10. Set Authorization With Signature**
+#### **9. Set Authorization With Signature**
 Sets authorization for an address using an off-chain signature, while recording a nonce to prevent replay attacks.
 ``` solidity
 function setAuthorizationWithSig(Authorization memory authorization, Signature calldata signature)
@@ -379,7 +372,7 @@ function setAuthorizationWithSig(Authorization memory authorization, Signature c
 * **Returns:** None, reverts on error.
 
 
-#### **11. Accrue Interest**
+#### **10. Accrue Interest**
 The accrueInterest function updates the interest accrued in the JustLend DAO V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
 ``` solidity
 function accrueInterest(MarketParams memory marketParams)
@@ -399,7 +392,7 @@ AccrueInterest(Id indexed id, uint256 prevBorrowRate, uint256 interest, uint256 
     * `feeShares:` the portion of accrued interest distributed to the fee recipient, represented in shares.
  
 
-#### **12. Is Healthy**
+#### **11. Is Healthy**
 Checks whether a borrower’s account in a specific market is healthy. 
 ``` solidity
 function isHealthy(MarketParams memory marketParams, Id id, address borrower) external view returns (bool)
@@ -408,10 +401,11 @@ function isHealthy(MarketParams memory marketParams, Id id, address borrower) ex
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `id:` the market’s unique identifier.
     * `borrower:` the address of the borrower whose account health is being checked.
-* **Returns:** None, reverts on error.
+* **Returns:** 
+    * **true** means the position is sufficiently collateralized under the current price and LLTV.
+    * **false** means the position is undercollateralized and eligible for liquidation, but it does not necessarily mean there is “bad debt” remaining after liquidation.
 
-
-#### **13. Get Price**
+#### **12. Get Price**
 Retrieves the relative price between the collateral token and the loan token in a specific market.
 ``` solidity
 function getPrice(MarketParams memory marketParams) public view returns (uint256)
@@ -421,7 +415,7 @@ function getPrice(MarketParams memory marketParams) public view returns (uint256
 * **Returns:** the value of one collateral token expressed in loan token units.
 
 
-#### **14. Get WhiteList**
+#### **13. Get WhiteList**
 Retrieves the whitelist of a specified market.
 ``` solidity
 function getWhiteList(Id id) external view returns (address[])
@@ -431,7 +425,7 @@ function getWhiteList(Id id) external view returns (address[])
 * **Returns:** the list of addresses included in the whitelist for the specified market.
 
 
-#### **15. Is WhiteList**
+#### **14. Is WhiteList**
 Checks whether a specific account is included in the whitelist of the market identified by id.
 ``` solidity
 function isWhiteList(Id id, address account) public view returns (bool)
@@ -442,7 +436,7 @@ function isWhiteList(Id id, address account) public view returns (bool)
 * **Returns:** true if the whitelist is not set or if the account is included in it; otherwise, false.
 
 
-#### **16. Get Liquidation Whitelist**
+#### **15. Get Liquidation Whitelist**
 Retrieves the list of addresses in the liquidation whitelist for the specified market identified by id.
 ``` solidity
 function getLiquidationWhitelist(Id id) external view returns (address[])
@@ -452,7 +446,7 @@ function getLiquidationWhitelist(Id id) external view returns (address[])
 * **Returns:** a list of addresses authorized to perform liquidation operations in the specified market.
 
 
-#### **17. Is Liquidation Whitelist**
+#### **16. Is Liquidation Whitelist**
 Checks whether a given account is included in the liquidation whitelist for the specified market.
 ``` solidity
 function isLiquidationWhitelist(Id id, address account) external view returns (bool)
@@ -463,7 +457,7 @@ function isLiquidationWhitelist(Id id, address account) external view returns (b
 * **Returns:** returns true if the account is in the whitelist; otherwise, returns false.
 
 
-#### **18. Minimum Loan**
+#### **17. Minimum Loan**
 Retrieves the minimum loan amount allowed in the specified market.
 ``` solidity
 function minLoan(MarketParams memory marketParams) public view returns (uint256)
@@ -473,7 +467,7 @@ function minLoan(MarketParams memory marketParams) public view returns (uint256)
 * **Returns:** the minimum amount of loan assets that can be borrowed from the market.
 
 
-#### **19. Get Id**
+#### **18. Get Id**
 Returns the unique identifier (ID) corresponding to the specified market.
 ``` solidity
 function getId(MarketParams memory marketParams) external pure returns (bytes32 id)
@@ -484,7 +478,7 @@ function getId(MarketParams memory marketParams) external pure returns (bytes32 
     * `id:` the unique market ID, calculated as keccak256(marketParams).
  
 
-#### **20. Paused**
+#### **19. Paused**
 Checks whether the market is globally paused.
 ``` solidity
 function paused() public view virtual returns (bool)
@@ -493,7 +487,7 @@ function paused() public view virtual returns (bool)
 * **Returns:** true if the protocol is globally paused and all markets are disabled; false otherwise.
 
 
-#### **21. Borrow Rate Full View**
+#### **20. Borrow Rate Full View**
 Retrieves both the average borrow rate of a given market since the last update and the current borrow rate at the target utilization level.
 ``` solidity
 function borrowRateFullView(Id id) public view returns (uint256 avgBorrowRate, int256 targetBorrowRate)
@@ -512,7 +506,7 @@ A Vault is a single-asset management contract that provides borrowable assets to
 #### **1. Create Moolah Vault**
 Creates a new MoolahVault and returns the addresses of the created vault and related contracts. The MoolahVault itself acts as a token. Users receive transferable vault shares when depositing assets.
 ``` solidity
-function createMoolahVault(address manager, address curator, address guardian, uint256 timeLockDelay, address asset, string memory name, string memory symbol) external returns (address, address, address)
+function createMoolahVault(address manager, address curator, address guardian, uint256 timeLockDelay, address asset, string memory name, string memory symbol) external returns (address vault, address managerTimeLock, address curatorTimeLock)
 ```
 * **Parameter description:**
     * `manager:` the address with manager privileges in the MoolahVault’s TimeLock contract.
@@ -522,8 +516,11 @@ function createMoolahVault(address manager, address curator, address guardian, u
     * `asset:` the address of the asset managed by MoolahVault.
     * `name:` the name of the MoolahVault token.
     * `symbol:` the symbol of the MoolahVault token.
-* **Returns:** the addresses of the created Moolah Vault, manager TimeLock, and curator TimeLock.
-
+* **Returns:**
+    * `vault:` the address of the newly created MoolahVault contract.
+    * `managerTimeLock:` the address of the Manager Timelock contract for the vault.
+    * `curatorTimeLock:` the address of the Curator Timelock contract for the vault.
+      
 **Event**
 ``` solidity
 CreateMoolahVault(address indexed moolahVault, address implementation, address managerTimeLock, address curatorTimeLock, uint256 timeLockDelay, address indexed caller, address manager, address curator, address guardian, address indexed asset, string name, string symbol)
@@ -604,7 +601,7 @@ function withdraw(uint256 assets, address receiver, address owner) public overri
     * `receiver:` the address that will receive the withdrawn assets.
     * `owner:` the address that owns the withdrawn assets.
 * **Returns:**
-    * `shares:` the number of vault shares minted to the receiver in exchange for the deposited assets.
+    * `shares:` the  number of shares burned corresponding to the withdrawn assets.
 
 **Event**
 ``` solidity
@@ -837,7 +834,7 @@ The Resilient Oracle is an aggregated price feed contract that supports configur
 #### **1. Peek**
 Retrieves the price of a specified token.
 ``` solidity
-function peek(address asset) public view returns (uint256)
+function peek(address asset) external view override returns (uint256)
 ```
 * **Parameter description:**
     * `asset:` the token address to query.
