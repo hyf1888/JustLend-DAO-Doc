@@ -3,7 +3,6 @@
 JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. It introduces a dual-layer isolated-lending model composed of Vaults and Markets, along with an Adaptive Curve Interest Rate Model (IRM) for dynamic rate adjustment. The V2 system primarily consists of several core smart contracts — **Moolah Market**, **Moolah Vault**, **TRX Provider**, **Resilient Oracle**, and **Interest Rate Model** — each serving a distinct purpose within the ecosystem:
 
 * **Moolah Market** handles core lending and borrowing operations, including supply, withdrawal, collateral management, and liquidation. **MoolahMarket.sol** allows users to:
-    * Market Creation
     * Supply
     * Withdraw
     * Borrow
