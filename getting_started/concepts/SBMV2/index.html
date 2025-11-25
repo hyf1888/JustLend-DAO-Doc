@@ -1400,7 +1400,7 @@
 
   <h1>SBMV2</h1>
 
-<p>JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. The JustLend DAO V2 adopts an <strong>Isolated Margin mechanism</strong> with a <strong>dual-layer</strong> structure of Vaults and Markets, and introduces the AdaptiveCurve Interest Rate Model (IRM). This new design aims to provide higher capital efficiency for depositors and borrowers while ensuring a robust risk isolation framework.</p>
+<p>JustLend DAO V2 is a fully upgraded decentralized lending protocol built on the TRON network. The JustLend DAO V2 adopts an <strong>isolated-lending model</strong> with a <strong>dual-layer</strong> structure of Vaults and Markets, and introduces the AdaptiveCurve Interest Rate Model (IRM). This new design aims to provide higher capital efficiency for depositors and borrowers while ensuring a robust risk isolation framework.</p>
 <h2 id="protocol-architecture">Protocol Architecture<a class="headerlink" href="#protocol-architecture" title="Permanent link">&para;</a></h2>
 <h3 id="vaults">Vaults<a class="headerlink" href="#vaults" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1433,7 +1433,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="interest-rate-model-irm">Interest Rate Model (IRM)<a class="headerlink" href="#interest-rate-model-irm" title="Permanent link">&para;</a></h2>
+<h2 id="interest-rate-model">Interest Rate Model<a class="headerlink" href="#interest-rate-model" title="Permanent link">&para;</a></h2>
 <p>JustLend DAO V2 introduces the AdaptiveCurve Interest Rate Model. It builds upon the Jump Curve model used in JustLend DAO V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level (e.g., 90%). This design ensures both rate stability and maximum capital efficiency.</p>
 <p>Just Like JustLend DAO V1, JustLend DAO V2 uses a jump-style rate curve, where the borrow rate rises sharply once utilization exceeds the kink point. However, V2 introduces a dynamic vertical shift:
 * When utilization is low → the entire curve shifts downward, lowering borrow rates to stimulate borrowing;
@@ -1445,11 +1445,11 @@
 When the utilization level reaches the target, the market is considered stable, meaning borrowing and liquidity levels are appropriately balanced.</p>
 <p><strong>Rate at Target</strong></p>
 <p>The Rate at Target defines the borrowing interest rate when utilization equals the target (e.g., 90%). It is initially configured by the protocol (for example, at 4% annualized) and is dynamically adjusted over time based on market conditions. Each market maintains its own rateAtTarget parameter, allowing for fine-grained control and independent optimization across different markets.</p>
-<p><strong>Adaptive Mechanism (AdaptSpeed)</strong></p>
-<p>To maintain stability, the Interest Rate Model includes an Adaptive Mechanism governed by the adaptSpeed parameter. When the actual utilization deviates significantly from the target for a prolonged period, the system automatically adjusts the entire interest rate curve at a controlled rate.
+<p><strong>Adaptive Mechanism</strong></p>
+<p>To maintain stability, the Interest Rate Model includes an Adaptive Mechanism. When the actual utilization deviates significantly from the target for a prolonged period, the system automatically adjusts the entire interest rate curve at a controlled rate.
 * If utilization &lt; target → rateAtTarget decreases to encourage borrowing.
 * If utilization &gt; target → rateAtTarget increases to promote repayments.
-This time-based adaptive mechanism enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.</p>
+This adaptive mechanism, driven by target utilization and time, enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.</p>
 <h3 id="comparison-justlend-dao-v1-vs-v2">Comparison: JustLend DAO V1 vs V2<a class="headerlink" href="#comparison-justlend-dao-v1-vs-v2" title="Permanent link">&para;</a></h3>
 <p>To provide a clearer understanding of the improvements and optimizations introduced in JustLend DAO V2, the following table presents a detailed comparison with V1. This comparison highlights the key differences in design, functionality, and performance, allowing users to quickly grasp the core enhancements made in the latest version.</p>
 <table>
