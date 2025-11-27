@@ -51,7 +51,7 @@ To maintain stability, the Interest Rate Model includes an Adaptive Mechanism. W
 * If utilization > target → rateAtTarget increases to promote repayments.
 This adaptive mechanism, driven by target utilization and time, enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.
 
-### Liquidations
+## Liquidations
 The core liquidation logic of the SBM V2 protocol remains consistent with the mechanism used in SBM V1. A borrower becomes eligible for liquidation when the value of their debt exceeds the value of their collateral adjusted by the Collateral Factor (CF). This condition is evaluated using the **Liquidation Loan-to-Value (LLTV) threshold**, which varies by market based on the underlying collateral asset.
 
 Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (e.g., 80%).
@@ -63,7 +63,7 @@ A position becomes liquidatable once the Risk Level equals to 100%.
 However, unlike V1, SBM V2 introduces a significant improvement through its isolated-lending model, where each market operates independently with its own risk parameters (e.g., LLTV.). This architecture ensures that risk events are contained within individual markets, preventing unwanted spillover effects and reducing systemic liquidation risk across the protocol. As a result, users benefit from enhanced safety, more predictable outcomes, and a more robust overall risk framework.
 
 
-###  Comparison: JustLend SBM V1 vs V2
+##  Comparison: JustLend SBM V1 vs V2
 To provide a clearer understanding of the improvements and optimizations introduced in JustLend DAO SBM V2, the following table presents a detailed comparison with V1. This comparison highlights the key differences in design, functionality, and performance, allowing users to quickly grasp the core enhancements made in the latest version.
 
 | Aspect | JustLend DAO SBM V1 | JustLend DAO SBM V2 |
