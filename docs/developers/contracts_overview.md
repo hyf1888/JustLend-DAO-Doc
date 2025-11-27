@@ -4,7 +4,7 @@ JustLend DAO Protocol contracts are divided in these repositories:
 
 * **Supply and Borrow Market:** contains core contracts for JustLend DAO, including logic for supply and borrow market (SBM), supply and borrow market V2 (SBM V2)，interest rate model, governance, price oracle and comptroller.
   * **SBM:** enables supplying of crypto assets as collateral in order to borrow the base asset. Accounts can also earn interest by supplying the base asset to the protocol.
-  * **SBM V2:** a dual-layer isolated-lending model composed of Vaults and Markets, along with an Adaptive Curve Interest Rate Model (IRM) for dynamic rate adjustment.
+  * **SBM V2:** a dual-layer isolated-collateral lending protocol composed of Vaults and Markets, along with an Adaptive Curve Interest Rate Model (IRM) for dynamic rate adjustment.
   * **Interest Rate Model:** users with a positive balance of the base asset earn interest, denominated in the base asset, based on a supply rate model.
   * **Price-Oracle:** contains the price oracle contracts we support, along with the logic validation for prices returned by these oracles.
   * **Governance:** contracts used for proposing, voting and executing proposals.
