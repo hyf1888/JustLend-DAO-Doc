@@ -12,7 +12,7 @@ Borrowers can repay their loans using the same tokens they borrowed or through j
 * Navigate to **“SBM V1”**, choose the asset you wish to repay, then click **「Repay」** under borrowed assets;
 * Enter the amount you want to repay, then click **「Repay」** and confirm the transaction.
 3. To Repay Asset on SBM V2:
-* Navigate to **“SBM V2”**, select the repay asset under All Borrow Markets, then click **「Details」**.
+* Navigate to **“SBM V2”**, select the repay asset under **All Borrow Markets**, then click **「Details」**.
 * Choose **Repay/Redeem**, enter the repay amount and redeem amount.
   
     * You may choose to complete only the Repay operation first. After entering the amount, then click **「Repay」**.
