@@ -31,13 +31,14 @@ SBM V2:
 #### Borrow Assets
 1. Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
 2. To borrow Asset on SBM V1:
-* Navigate to “SBM V1”, choose the asset you wish to borrow, then click「Borrow」 in the corresponding  market.
-* Enter the borrowing amount you want to borrow, then click「Borrow」and confirm the transaction.
+* Navigate to **“SBM V1”**, choose the asset you wish to borrow, then click **「Borrow」** in the corresponding  market.
+* Enter the borrowing amount you want to borrow, then click **「Borrow」** and confirm the transaction.
 3. To borrow Asset on SBM V2:
-* Navigate to “SBM V2”, select the market under All Borrow Markets, then click 「Details」.
-* Choose Borrow/Collateralize, enter the borrowed amount and collateral amount.
-    * You may choose to complete only the Collateralize operation first, but note that collateral does not generate any interest, then click 「Collateralize」.
-    * If you already have sufficient collateral, you may complete only the Borrow operation, but ensure that your Risk Level remains within a healthy range, then click 「Borrow」.
-    * You may also complete both the Collateralize and Borrow operations at the same time. In this case as well, make sure your Risk Level stays within a healthy range, then click 「Borrow & Collateralize」.
+* Navigate to **“SBM V2”**, select the market under **All Borrow Markets**, then click **「Details」**.
+* Choose **Borrow/Collateralize**, enter the borrowed amount and collateral amount.
+  
+    * You may choose to complete only the Collateralize operation first, but note that collateral does not generate any interest, then click **「Collateralize」**.
+    * If you already have sufficient collateral, you may complete only the Borrow operation, but ensure that your Risk Level remains within a healthy range, then click **「Borrow」**.
+    * You may also complete both the Collateralize and Borrow operations at the same time. In this case as well, make sure your Risk Level stays within a healthy range, then click **「Borrow & Collateralize」**.
 
 **Please note** that borrowing assets on the web interface may require up to two signature confirmations in certain cases (an additional signature may be needed when the process involves increasing collateral). Depending on your situation, there may also be signature steps beyond the initial approval. These signature requirements are part of the website’s interaction flow and are not enforced by the underlying smart contract logic.
