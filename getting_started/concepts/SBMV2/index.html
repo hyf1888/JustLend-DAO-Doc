@@ -1452,8 +1452,8 @@
 <p><strong>Adaptive Mechanism</strong></p>
 <p>To maintain stability, the Interest Rate Model includes an Adaptive Mechanism. When the actual utilization deviates significantly from the target for a prolonged period, the system automatically adjusts the entire interest rate curve at a controlled rate.
 * If utilization &lt; target → rateAtTarget decreases to encourage borrowing.
-* If utilization &gt; target → rateAtTarget increases to promote repayments.
-This adaptive mechanism, driven by target utilization and time, enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.</p>
+* If utilization &gt; target → rateAtTarget increases to promote repayments.</p>
+<p>This adaptive mechanism, driven by target utilization and time, enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.</p>
 <h2 id="liquidations">Liquidations<a class="headerlink" href="#liquidations" title="Permanent link">&para;</a></h2>
 <p>The core liquidation logic of the SBM V2 protocol remains consistent with the mechanism used in SBM V1. A borrower becomes eligible for liquidation when the value of their debt exceeds the value of their collateral adjusted by the Collateral Factor (CF). This condition is evaluated using the <strong>Liquidation Loan-to-Value (LLTV) threshold</strong>, which varies by market based on the underlying collateral asset.</p>
 <p>Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (e.g., 80%).</p>
