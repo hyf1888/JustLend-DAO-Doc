@@ -29,6 +29,7 @@ JustLend DAO SBM V2 is a fully upgraded decentralized lending protocol built on 
 JustLend DAO SBM V2 introduces the **AdaptiveCurve Interest Rate Model**. It builds upon the Jump Curve model used in SBM V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level (e.g., 90%). This design ensures both rate stability and maximum capital efficiency.
 
 Just Like SBM V1, SBM V2 uses a jump-style rate curve, where the borrow rate rises sharply once utilization exceeds the kink point. However, V2 introduces a dynamic vertical shift:
+
 * When utilization is low → the entire curve shifts downward, lowering borrow rates to stimulate borrowing;
 * When utilization is high → the curve shifts upward, raising rates to encourage repayments.
 
