@@ -56,11 +56,11 @@ The core liquidation logic of the SBM V2 protocol remains consistent with the me
 
 Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (e.g., 80%).
 
-                                                          LTV = (Borrow Amount * Borrow Price) / (Collateral Amount * Collateral Price) ​
+LTV = (Borrow Amount * Borrow Price) / (Collateral Amount * Collateral Price) ​
                                                           
 This is equivalent to the SBM V1 risk metric:
 
-                                                          Risk Level = Total Borrow / Borrow Limit * 100 = Total Borrow / ∑ (Asset supplied * Collateral Factor)
+Risk Level = Total Borrow / Borrow Limit * 100 = Total Borrow / ∑ (Asset supplied * Collateral Factor)
                                                           
 A position becomes liquidatable once the Risk Level equals to 100%.
 
