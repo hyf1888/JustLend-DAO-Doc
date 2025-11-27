@@ -38,7 +38,7 @@ Just Like SBM V1, SBM V2 uses a jump-style rate curve, where the borrow rate ris
 
 The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve, typically set at 90%. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:
 
-  Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)
+    Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)
                                                             
 When the utilization level reaches the target, the market is considered stable, meaning borrowing and liquidity levels are appropriately balanced.
 
