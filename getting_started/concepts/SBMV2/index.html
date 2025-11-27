@@ -1440,9 +1440,9 @@
 * When utilization is high → the curve shifts upward, raising rates to encourage repayments.</p>
 <h3 id="key-concepts">Key Concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h3>
 <p><strong>Target Utilization</strong></p>
-<p>The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve, typically set at 90%. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:
-                                                            Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)
-When the utilization level reaches the target, the market is considered stable, meaning borrowing and liquidity levels are appropriately balanced.</p>
+<p>The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve, typically set at 90%. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:</p>
+<p>Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)</p>
+<p>When the utilization level reaches the target, the market is considered stable, meaning borrowing and liquidity levels are appropriately balanced.</p>
 <p><strong>Rate at Target</strong></p>
 <p>The Rate at Target defines the borrowing interest rate when utilization equals the target (e.g., 90%). It is initially configured by the protocol (for example, at 4% annualized) and is dynamically adjusted over time based on market conditions. Each market maintains its own rateAtTarget parameter, allowing for fine-grained control and independent optimization across different markets.</p>
 <p><strong>Adaptive Mechanism</strong></p>
