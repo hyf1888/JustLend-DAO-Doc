@@ -29,7 +29,6 @@ SBM V2:
 2. To Supply Asset on SBM V1:
 * Navigate to **“SBM V1”**, choose the asset you wish to supply, then click **「Supply」** in the corresponding  market.
 * Enter the amount you want to supply and click **「Supply」**.
-
 3. To supply Asset on SBM V2:
 * Navigate to **“SBM V2”**, select the asset under All Supply Vaults, then click **「Details」**.
 * Choose **Supply**, enter the supply amount, then click **「Supply」**.
