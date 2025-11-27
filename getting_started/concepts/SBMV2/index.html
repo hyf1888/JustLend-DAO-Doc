@@ -1452,11 +1452,15 @@ When the utilization level reaches the target, the market is considered stable, 
 This adaptive mechanism, driven by target utilization and time, enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.</p>
 <h2 id="liquidations">Liquidations<a class="headerlink" href="#liquidations" title="Permanent link">&para;</a></h2>
 <p>The core liquidation logic of the SBM V2 protocol remains consistent with the mechanism used in SBM V1. A borrower becomes eligible for liquidation when the value of their debt exceeds the value of their collateral adjusted by the Collateral Factor (CF). This condition is evaluated using the <strong>Liquidation Loan-to-Value (LLTV) threshold</strong>, which varies by market based on the underlying collateral asset.</p>
-<p>Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (e.g., 80%).
-                                                          LTV = (Borrow Amount * Borrow Price) / (Collateral Amount * Collateral Price) ​
-This is equivalent to the SBM V1 risk metric:
-                                                          Risk Level = Total Borrow / Borrow Limit * 100 = Total Borrow / ∑ (Asset supplied * Collateral Factor)
-A position becomes liquidatable once the Risk Level equals to 100%.</p>
+<p>Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (e.g., 80%).</p>
+<div class="codehilite"><pre><span></span><code>                                                      LTV = (Borrow Amount <span class="gs">* Borrow Price) / (Collateral Amount *</span> Collateral Price) ​
+</code></pre></div>
+
+<p>This is equivalent to the SBM V1 risk metric:</p>
+<div class="codehilite"><pre><span></span><code>                                                      Risk Level = Total Borrow / Borrow Limit <span class="gs">* 100 = Total Borrow / ∑ (Asset supplied *</span> Collateral Factor)
+</code></pre></div>
+
+<p>A position becomes liquidatable once the Risk Level equals to 100%.</p>
 <p>However, unlike V1, SBM V2 introduces a significant improvement through its isolated-lending model, where each market operates independently with its own risk parameters (e.g., LLTV.). This architecture ensures that risk events are contained within individual markets, preventing unwanted spillover effects and reducing systemic liquidation risk across the protocol. As a result, users benefit from enhanced safety, more predictable outcomes, and a more robust overall risk framework.</p>
 <h2 id="comparison-justlend-sbm-v1-vs-v2">Comparison: JustLend SBM V1 vs V2<a class="headerlink" href="#comparison-justlend-sbm-v1-vs-v2" title="Permanent link">&para;</a></h2>
 <p>To provide a clearer understanding of the improvements and optimizations introduced in JustLend DAO SBM V2, the following table presents a detailed comparison with V1. This comparison highlights the key differences in design, functionality, and performance, allowing users to quickly grasp the core enhancements made in the latest version.</p>
