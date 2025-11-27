@@ -55,9 +55,13 @@ This adaptive mechanism, driven by target utilization and time, enables the prot
 The core liquidation logic of the SBM V2 protocol remains consistent with the mechanism used in SBM V1. A borrower becomes eligible for liquidation when the value of their debt exceeds the value of their collateral adjusted by the Collateral Factor (CF). This condition is evaluated using the **Liquidation Loan-to-Value (LLTV) threshold**, which varies by market based on the underlying collateral asset.
 
 Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (e.g., 80%).
+
                                                           LTV = (Borrow Amount * Borrow Price) / (Collateral Amount * Collateral Price) ​
+                                                          
 This is equivalent to the SBM V1 risk metric:
+
                                                           Risk Level = Total Borrow / Borrow Limit * 100 = Total Borrow / ∑ (Asset supplied * Collateral Factor)
+                                                          
 A position becomes liquidatable once the Risk Level equals to 100%.
 
 However, unlike V1, SBM V2 introduces a significant improvement through its isolated-lending model, where each market operates independently with its own risk parameters (e.g., LLTV.). This architecture ensures that risk events are contained within individual markets, preventing unwanted spillover effects and reducing systemic liquidation risk across the protocol. As a result, users benefit from enhanced safety, more predictable outcomes, and a more robust overall risk framework.
