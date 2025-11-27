@@ -56,7 +56,7 @@ JustLend DAO Protocol contracts are divided in these repositories:
 * Interest Rate Model
 
 #### Moolah Market
-`Moolah Market:` the Moolsh Lending Market adopts a isolated-lending model, where each market supports a single collateral asset paired with a single borrowable asset.
+`Moolah Market:` the Moolah Lending Market adopts an isolated-collateral lending protocol, where each market supports a single collateral asset paired with a single borrowable asset.
 
 #### Moolah Vault
 `Moolah Vault:` each Vault serves as a single-asset management contract that provides liquidity to various lending markets.
