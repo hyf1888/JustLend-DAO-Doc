@@ -1435,9 +1435,11 @@
 </ul>
 <h2 id="interest-rate-model">Interest Rate Model<a class="headerlink" href="#interest-rate-model" title="Permanent link">&para;</a></h2>
 <p>JustLend DAO SBM V2 introduces the <strong>AdaptiveCurve Interest Rate Model</strong>. It builds upon the Jump Curve model used in SBM V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level (e.g., 90%). This design ensures both rate stability and maximum capital efficiency.</p>
-<p>Just Like SBM V1, SBM V2 uses a jump-style rate curve, where the borrow rate rises sharply once utilization exceeds the kink point. However, V2 introduces a dynamic vertical shift:
-* When utilization is low → the entire curve shifts downward, lowering borrow rates to stimulate borrowing;
-* When utilization is high → the curve shifts upward, raising rates to encourage repayments.</p>
+<p>Just Like SBM V1, SBM V2 uses a jump-style rate curve, where the borrow rate rises sharply once utilization exceeds the kink point. However, V2 introduces a dynamic vertical shift:</p>
+<ul>
+<li>When utilization is low → the entire curve shifts downward, lowering borrow rates to stimulate borrowing;</li>
+<li>When utilization is high → the curve shifts upward, raising rates to encourage repayments.</li>
+</ul>
 <h3 id="key-concepts">Key Concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h3>
 <p><strong>Target Utilization</strong></p>
 <p>The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve, typically set at 90%. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:</p>
