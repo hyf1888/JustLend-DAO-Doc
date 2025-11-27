@@ -1528,7 +1528,7 @@
 <p><br></p>
 <h2 id="contracts-abi"><strong>Contracts ABI</strong><a class="headerlink" href="#contracts-abi" title="Permanent link">&para;</a></h2>
 <h3 id="moolah-market"><strong>Moolah Market</strong><a class="headerlink" href="#moolah-market" title="Permanent link">&para;</a></h3>
-<p>The JustLend DAO V2 market adopts an isolated-lending model, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.</p>
+<p>The JustLend DAO V2 market adopts an isolated-collateral lending protocol, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.</p>
 <h4 id="1-supply"><strong>1. Supply</strong><a class="headerlink" href="#1-supply" title="Permanent link">&para;</a></h4>
 <p>The supply function allows users to provide liquidity to the market for lending.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supply</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsSupplied</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesSupplied</span><span class="p">)</span>
@@ -1575,7 +1575,7 @@
     * <code>assets:</code> the amount of tokens withdrawn from the market.
     * <code>shares:</code> the number of supply shares redeemed corresponding to the withdrawn assets.</p>
 <h4 id="3-borrow"><strong>3. Borrow</strong><a class="headerlink" href="#3-borrow" title="Permanent link">&para;</a></h4>
-<p>The borrow function allows users to borrow funds from the JustLend DAO V2 market.
+<p>The borrow function allows users to borrow funds from the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsBorrowed</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesBorrowed</span><span class="p">)</span>
 </code></pre></div>
 * <strong>Parameter description:</strong>
@@ -1598,7 +1598,7 @@
     * <code>assets:</code> the amount of tokens borrowed from the market.
     * <code>shares:</code> the number of borrowed shares corresponding to the borrowed assets.</p>
 <h4 id="4-repay"><strong>4. Repay</strong><a class="headerlink" href="#4-repay" title="Permanent link">&para;</a></h4>
-<p>The repay function allows users to repay the funds borrowed from the JustLend DAO V2 market.
+<p>The repay function allows users to repay the funds borrowed from the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repay</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsRepaid</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesRepaid</span><span class="p">)</span>
 </code></pre></div>
 * <strong>Parameter description:</strong>
@@ -1620,7 +1620,7 @@
     * <code>assets:</code> the amount of tokens repaid to the market.
     * <code>shares:</code> the number of borrowed shares corresponding to the repaid assets.</p>
 <h4 id="5-supply-collateral"><strong>5. Supply Collateral</strong><a class="headerlink" href="#5-supply-collateral" title="Permanent link">&para;</a></h4>
-<p>The supply collateral function allows users to supply collateral assets to the JustLend DAO V2 market.
+<p>The supply collateral function allows users to supply collateral assets to the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span>
 </code></pre></div>
 * <strong>Parameter description:</strong>
@@ -1638,7 +1638,7 @@
     * <code>onBehalf:</code> the address whose collateral balance is credited.
     * <code>assets:</code> the amount of collateral tokens supplied to the market.</p>
 <h4 id="6-withdraw-collateral"><strong>6. Withdraw Collateral</strong><a class="headerlink" href="#6-withdraw-collateral" title="Permanent link">&para;</a></h4>
-<p>The withdraw collateral function allows users to withdraw their previously supplied collateral from the JustLend DAO V2 market.
+<p>The withdraw collateral function allows users to withdraw their previously supplied collateral from the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span>
 </code></pre></div>
 * <strong>Parameter description:</strong>
@@ -1706,7 +1706,7 @@
     * <code>signature:</code> the ECDSA signature proving that the authorization was signed by the authorizer.
 * <strong>Returns:</strong> None, reverts on error.</p>
 <h4 id="10-accrue-interest"><strong>10. Accrue Interest</strong><a class="headerlink" href="#10-accrue-interest" title="Permanent link">&para;</a></h4>
-<p>The accrueInterest function updates the interest accrued in the JustLend DAO V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
+<p>The accrueInterest function updates the interest accrued in the SBM V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">accrueInterest</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span>
 </code></pre></div>
 * <strong>Parameter description:</strong>
@@ -2061,7 +2061,7 @@
 * <strong>Returns:</strong> the current price of the token (with 18-decimal precision).</p>
 <p><br> </p>
 <h3 id="interest-rate-model"><strong>Interest Rate Model</strong><a class="headerlink" href="#interest-rate-model" title="Permanent link">&para;</a></h3>
-<p>JustLend DAO V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.</p>
+<p>JustLend DAO SBM V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO SBM V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.</p>
 <h4 id="1-default-targetutilization"><strong>1. Default TargetUtilization</strong><a class="headerlink" href="#1-default-targetutilization" title="Permanent link">&para;</a></h4>
 <p>This value defines the optimal utilization level that the interest rate model aims to maintain. Under normal circumstances, it remains constant and only changes when the underlying interest rate model implementation is replaced.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">defaultTargetUtilization</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">int256</span><span class="p">)</span>
