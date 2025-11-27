@@ -37,7 +37,9 @@ Just Like SBM V1, SBM V2 uses a jump-style rate curve, where the borrow rate ris
 **Target Utilization**
 
 The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve, typically set at 90%. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:
-                                                            Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)
+
+  Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)
+                                                            
 When the utilization level reaches the target, the market is considered stable, meaning borrowing and liquidity levels are appropriately balanced.
 
 **Rate at Target**
@@ -56,11 +58,11 @@ The core liquidation logic of the SBM V2 protocol remains consistent with the me
 
 Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (e.g., 80%).
 
-LTV = (Borrow Amount * Borrow Price) / (Collateral Amount * Collateral Price) ​
+  LTV = (Borrow Amount * Borrow Price) / (Collateral Amount * Collateral Price) ​
                                                           
 This is equivalent to the SBM V1 risk metric:
 
-Risk Level = Total Borrow / Borrow Limit * 100 = Total Borrow / ∑ (Asset supplied * Collateral Factor)
+  Risk Level = Total Borrow / Borrow Limit * 100 = Total Borrow / ∑ (Asset supplied * Collateral Factor)
                                                           
 A position becomes liquidatable once the Risk Level equals to 100%.
 
