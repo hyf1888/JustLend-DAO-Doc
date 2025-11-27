@@ -74,7 +74,7 @@ However, unlike V1, SBM V2 introduces a significant improvement through its isol
 ##  Comparison: JustLend SBM V1 vs V2
 To provide a clearer understanding of the improvements and optimizations introduced in JustLend DAO SBM V2, the following table presents a detailed comparison with V1. This comparison highlights the key differences in design, functionality, and performance, allowing users to quickly grasp the core enhancements made in the latest version.
 
-| Aspect | JustLend DAO SBM V1 | JustLend DAO SBM V2 |
+| Aspect | SBM V1 | SBM V2 |
 |:------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|-------|
 | **Structure**                 | Cross-Collateral Market: Multiple assets can be used as collateral and borrowed against each other.                                              | Isolated Markets: 1-to-1 asset mapping; each market only supports one collateral and one borrowable asset. |
 | **Lending Flexibility**       | Users can use any asset in their portfolio as collateral and borrow any supported asset. A unified large market allows cross-collateral lending. | Single market: Only one collateral type can be used to borrow a specific asset. Multiple markets are used to enable lending of different assets. |
