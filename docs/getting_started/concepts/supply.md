@@ -11,7 +11,7 @@ In return, users receive jTokens, TRC-20 tokens representing their supplied asse
 **Dynamic Rate Updates:** As tokens are supplied, borrowed, repaid, or withdrawn from the liquidity pool, interest rates are updated in real time. These adjustments are guided by on-chain data, including token balances, oracle-determined prices, and the borrow utilization ratio.
 
 ### **How Do I Supply Assets**
-Supplying can be done with a user interface [JustLend SBM](https://app.justlend.org/homeNew?lang=en-US) or SBM V2. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:
+Supplying can be done with a user interface [SBM V1](https://app.justlend.org/homeNew?lang=en-US) or SBM V2. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:
 
 SBM:
 * `Supply APY:` the annual rewards from the jTokens users receive by supplying assets, which influenced by the borrow utilization rate and fluctuated by the time;
@@ -21,13 +21,17 @@ SBM:
 SBM V2:
 * `Supply APY:` the annualized return earned from supplying assets to the Vault. It is influenced by the market’s borrow utilization rate and may fluctuate over time;
 * `Total Supply:` the total amount of assets supplied in the market. As the total supply changes, the Supply APY will adjust accordingly;
-* `Collateral Support:` indicates whether the supplied asset can be used as collateral to borrow other assets on the JustLend DAO platform.
+* `Collateral Support:` refers to the types of assets supported across the underlying Markets connected to this Vault. While you only deposit a single asset into the Vault, your liquidity may be lent out to borrowers who pledge these supported collateral tokens.
 
 
 #### Supply Assets
 1. Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
-2. Navigate to “SBM” or “SBM V2”, and choose the asset you wish to supply.
-* To supply TRX on SBM, click 「Supply」 in the TRX market.
-* To supply TRX on SBM V2, select the TRX market under Supply Vaults, then click 「Details」.
-3. Enter the amount you want to supply and click 「Supply」.
-* The assets will be transferred directly from your wallet to the JustLend DAO protocol, where they will immediately start earning interest. This interest will be automatically added to your Supply Balance.
+2. To Supply Asset on SBM V1:
+* Navigate to **“SBM V1”**, choose the asset you wish to supply, then click **「Supply」** in the corresponding  market.
+* Enter the amount you want to supply and click **「Supply」**.
+
+3. To supply Asset on SBM V2:
+* Navigate to **“SBM V2”**, select the asset under All Supply Vaults, then click **「Details」**.
+* Choose **Supply**, enter the supply amount, then click **「Supply」**.
+
+After the contract is successfully approved, the assets will be transferred from your wallet to the JustLend DAO protocol. Once they are borrowed by other users, they will begin generating interest. This interest will be automatically added to your Supply Balance.
