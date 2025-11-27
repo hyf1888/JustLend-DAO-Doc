@@ -149,7 +149,7 @@ struct Signature {
 ## **Contracts ABI**
 
 ### **Moolah Market**
-The JustLend DAO V2 market adopts an isolated-lending model, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.
+The JustLend DAO V2 market adopts an isolated-collateral lending protocol, where each market consists of a single collateral asset paired with a single borrowable asset. All markets are managed within the Moolah contract. Each market is uniquely identified by a Market ID, which is composed of the borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor.
 
 
 #### **1. Supply**
@@ -208,7 +208,7 @@ Withdraw(Id indexed id, address caller, address indexed onBehalf, address indexe
 
 
 #### **3. Borrow**
-The borrow function allows users to borrow funds from the JustLend DAO V2 market.
+The borrow function allows users to borrow funds from the SBM V2 market.
 ``` solidity
 function borrow(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver) returns (uint256 assetsBorrowed, uint256 sharesBorrowed)
 ```
@@ -236,7 +236,7 @@ Borrow(Id indexed id, address caller, address indexed onBehalf, address indexed 
  
 
 #### **4. Repay**
-The repay function allows users to repay the funds borrowed from the JustLend DAO V2 market.
+The repay function allows users to repay the funds borrowed from the SBM V2 market.
 ``` solidity
 function repay(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external returns (uint256 assetsRepaid, uint256 sharesRepaid)
 ```
@@ -263,7 +263,7 @@ Repay(Id indexed id, address indexed caller, address indexed onBehalf, uint256 a
 
 
 #### **5. Supply Collateral**
-The supply collateral function allows users to supply collateral assets to the JustLend DAO V2 market.
+The supply collateral function allows users to supply collateral assets to the SBM V2 market.
 ``` solidity
 function supplyCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, bytes calldata data)
 ```
@@ -286,7 +286,7 @@ SupplyCollateral(Id indexed id, address indexed caller, address indexed onBehalf
 
 
 #### **6. Withdraw Collateral**
-The withdraw collateral function allows users to withdraw their previously supplied collateral from the JustLend DAO V2 market.
+The withdraw collateral function allows users to withdraw their previously supplied collateral from the SBM V2 market.
 ``` solidity
 function withdrawCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, address receiver)
 ```
@@ -372,7 +372,7 @@ function setAuthorizationWithSig(Authorization memory authorization, Signature c
 
 
 #### **10. Accrue Interest**
-The accrueInterest function updates the interest accrued in the JustLend DAO V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
+The accrueInterest function updates the interest accrued in the SBM V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
 ``` solidity
 function accrueInterest(MarketParams memory marketParams)
 ```
@@ -843,7 +843,7 @@ function peek(address asset) external view override returns (uint256)
 <br> 
 
 ### **Interest Rate Model**
-JustLend DAO V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.
+JustLend DAO SBM V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO SBM V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.
 
 
 #### **1. Default TargetUtilization**
