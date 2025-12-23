@@ -5,13 +5,14 @@ nav:
         - Overview: getting_started/overview.md
         - Concepts: 
             - Supply: getting_started/concepts/supply.md
-            - Borrow: getting_started/concepts/borrow.md
             - Withdraw: getting_started/concepts/withdraw.md
+            - Borrow: getting_started/concepts/borrow.md
             - Repay: getting_started/concepts/repay.md
             - Liquidations: getting_started/concepts/liquidations.md
             - Risks: getting_started/concepts/risks.md
             - Staked TRX: getting_started/concepts/staked_trx.md
             - Energy Rental: getting_started/concepts/energy_rental.md
+            - SBM V2: getting_started/concepts/SBMV2.md
         - Whitepaper: https://justlend.org/docs/justlend_whitepaper_en.pdf
         - FAQs:
             - Wallet Connection Questions: getting_started/faqs/wallet_connection_questions.md
@@ -25,6 +26,7 @@ nav:
         - Contracts Overview: developers/contracts_overview.md
         - Supply and Borrow Market:
             - SBM: developers/supply_and_borrow_market/sbm.md
+            - SBM V2: developers/supply_and_borrow_market/sbmV2.md
             - Interest Rate Model: developers/supply_and_borrow_market/interest_rate_model.md
             - Governance: developers/supply_and_borrow_market/governance.md
             - Price Oracle: developers/supply_and_borrow_market/price_oracle.md
