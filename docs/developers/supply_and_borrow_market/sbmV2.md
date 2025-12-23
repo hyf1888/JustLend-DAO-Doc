@@ -194,12 +194,14 @@ The withdraw  function allows users to withdraw the previously supplied liquidit
 ``` solidity
 function withdraw(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver) external returns (uint256 assetsWithdrawn, uint256 sharesWithdrawn)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `assets:` the amount of tokens to withdraw from the market.
     * `shares:` the number of supply shares to redeem for the corresponding assets.
     * `onBehalf:` the address whose position will be reduced. This enables withdrawals to be made on behalf of another account.
     * `receiver:` the address that will receive the withdrawn assets.
+
 * **Returns:**
     * `assetsWithdrawn:` the actual amount of tokens supplied.
     * `sharesWithdrawn:` the actual number of shares burned corresponding to the withdrawn assets.
@@ -208,6 +210,7 @@ function withdraw(MarketParams memory marketParams, uint256 assets, uint256 shar
 ``` solidity
 Withdraw(Id indexed id, address caller, address indexed onBehalf, address indexed receiver, uint256 assets, uint256 shares)
 ```
+
 * This event is emitted when assets are withdrawn from a market.
     * `id:` the unique market identifier (bytes32), representing the market from which the withdrawal occurred.
     * `caller:` the address that submitted the transaction.
@@ -222,12 +225,14 @@ The borrow function allows users to borrow funds from the SBM V2 market.
 ``` solidity
 function borrow(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, address receiver) returns (uint256 assetsBorrowed, uint256 sharesBorrowed)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `assets:` the amount of tokens the user intends to borrow from the market.
     * `shares:` the number of borrowing shares to mint corresponding to the borrowed assets.
     * `onBehalf:` the address whose position will be increased. This allows borrowing on behalf of another account.
     * `receiver:` the address that will receive the borrowed assets.
+
 * **Returns:**
     * `assetsBorrowed:` the actual amount of tokens borrowed.
     * `sharesBorrowed:` the actual number of shares minted corresponding to the borrowed tokens.
@@ -236,6 +241,7 @@ function borrow(MarketParams memory marketParams, uint256 assets, uint256 shares
 ``` solidity
 Borrow(Id indexed id, address caller, address indexed onBehalf, address indexed receiver, uint256 assets, uint256 shares)
 ```
+
 * This event is emitted when assets are borrowed from a market.
     * `id:` the unique market identifier (bytes32), representing the market from which the borrowing occurred.
     * `caller:` the address that submitted the transaction.
@@ -250,12 +256,14 @@ The repay function allows users to repay the funds borrowed from the SBM V2 mark
 ``` solidity
 function repay(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external returns (uint256 assetsRepaid, uint256 sharesRepaid)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `assets:` the amount of tokens to repay to the market.
     * `shares:` the number of borrowing shares to burn corresponding to the repaid assets.
     * `onBehalf:` the address whose borrowing position will be reduced. This enables repayments to be made on behalf of another account.
     * `data:` additional encoded data for interaction logic or integrations.
+
 * **Returns:**
     * `assetsRepaid:` the actual amount of tokens repaid.
     * `sharesRepaid:` the actual number of shares repaid corresponding to the repaid tokens.
@@ -264,6 +272,7 @@ function repay(MarketParams memory marketParams, uint256 assets, uint256 shares,
 ``` solidity
 Repay(Id indexed id, address indexed caller, address indexed onBehalf, uint256 assets, uint256 shares)
 ```
+
 * This event is emitted when borrowed assets are repaid to the market.
     * `id:` the unique market identifier (bytes32), representing the market where the repayment occurred.
     * `caller:` the address that submitted the transaction.
@@ -277,17 +286,20 @@ The supply collateral function allows users to supply collateral assets to the S
 ``` solidity
 function supplyCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, bytes calldata data)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `assets:` the amount of collateral tokens to deposit into the market.
     * `onBehalf:` the address whose collateral position will be increased. This allows users to add collateral on behalf of another account.
     * `data:` additional encoded data for interaction logic or integrations.
+
 * **Returns:** None, reverts on error.
 
 **Event**
 ``` solidity
 SupplyCollateral(Id indexed id, address indexed caller, address indexed onBehalf, uint256 assets)
 ```
+
 * This event is emitted when collateral is supplied to the market.
     * `id:` the unique market identifier (bytes32), representing the market where the collateral is supplied.
     * `caller:` the address that submitted the transaction.
@@ -300,17 +312,20 @@ The withdraw collateral function allows users to withdraw their previously suppl
 ``` solidity
 function withdrawCollateral(MarketParams memory marketParams, uint256 assets, address onBehalf, address receiver)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `assets:` the amount of collateral tokens to withdraw from the market.
     * `onBehalf:` the address whose collateral position will be reduced. This allows collateral to be withdrawn on behalf of another account.
     * `receiver:` the address that will receive the withdrawn collateral assets.
+
 * **Returns:** None, reverts on error.
 
 **Event**
 ``` solidity
 WithdrawCollateral(Id indexed id, address caller, address indexed onBehalf, address indexed receiver, uint256 assets)
 ```
+
 * This event is emitted when collateral is withdrawn from the market.
     * `id:` the unique market identifier (bytes32), representing the market where the collateral is withdrawn.
     * `caller:` the address that submitted the transaction.
@@ -324,12 +339,14 @@ The liquidate function allows liquidators to repay a portion of a borrower's deb
 ``` solidity
 function liquidate(MarketParams memory marketParams, address borrower, uint256 seizedAssets, uint256 repaidShares, bytes calldata data) external returns(uint256 seizedAssets, uint256 repaidAssets)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `borrower:` the address of the user whose position is being liquidated.
     * `seizedAssets:` the amount of collateral assets to be seized from the borrower.
     * `repaidShares:` the number of borrowing shares repaid on behalf of the borrower.
     * `data:` additional encoded data for custom liquidation logic or integrations.
+
 * **Returns:**
     * `seizedAssets:` the actual amount of collateral tokens seized.
     * `repaidAssets:` the actual amount of debt tokens repaid.
@@ -338,6 +355,7 @@ function liquidate(MarketParams memory marketParams, address borrower, uint256 s
 ``` solidity
 Liquidate(Id indexed id, address indexed caller, address indexed borrower, uint256 repaidAssets, uint256 repaidShares, uint256 seizedAssets, uint256 badDebtAssets, uint256 badDebtShares)
 ```
+
 * This event is emitted when a liquidation occurs in the market.
     * `id:` the unique market identifier (bytes32), representing the market where the liquidation takes place.
     * `caller:` the address that submitted the transaction (the liquidator).
@@ -354,15 +372,18 @@ Sets or updates the authorization status for a specific address.
 ``` solidity
 function setAuthorization(address authorized, bool newIsAuthorized)
 ```
+
 * **Parameter description:**
     * `authorized:` the address to grant or revoke authorization.
     * `newIsAuthorized:` a boolean indicating the authorization status, true to authorize, false to revoke.
+
 * **Returns:** None, reverts on error.
 
 **Event**
 ``` solidity
 SetAuthorization(address indexed caller, address indexed authorizer, address indexed authorized, bool newIsAuthorized)
 ```
+
 * This event is emitted when authorization status for an address is updated.
     * `caller:` the address that initiated the transaction.
     * `authorizer:` the address granting the authorization.
@@ -375,9 +396,11 @@ Sets authorization for an address using an off-chain signature, while recording 
 ``` solidity
 function setAuthorizationWithSig(Authorization memory authorization, Signature calldata signature)
 ```
+
 * **Parameter description:**
     * `authorization:` the authorization data structure containing the authorization details.
     * `signature:` the ECDSA signature proving that the authorization was signed by the authorizer.
+
 * **Returns:** None, reverts on error.
 
 
@@ -386,14 +409,17 @@ The accrueInterest function updates the interest accrued in the SBM V2 market ba
 ``` solidity
 function accrueInterest(MarketParams memory marketParams)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+
 * **Returns:** None, reverts on error.
 
 **Event**
 ``` solidity
 AccrueInterest(Id indexed id, uint256 prevBorrowRate, uint256 interest, uint256 feeShares)
 ```
+
 * This event is emitted during the execution of functions such as borrow, repay, and supply, which update the market’s borrowing state.
     * `id:` the unique market identifier (bytes32), representing the market where the interest is accrued.
     * `prevBorrowRate:` the previous borrowing rate before the update.
@@ -406,10 +432,12 @@ Checks whether a borrower’s account in a specific market is healthy.
 ``` solidity
 function isHealthy(MarketParams memory marketParams, Id id, address borrower) external view returns (bool)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `id:` the market’s unique identifier.
     * `borrower:` the address of the borrower whose account health is being checked.
+
 * **Returns:** 
     * **true** means the position is sufficiently collateralized under the current price and LLTV.
     * **false** means the position is undercollateralized and eligible for liquidation, but it does not necessarily mean there is “bad debt” remaining after liquidation.
@@ -419,8 +447,10 @@ Retrieves the relative price between the collateral token and the loan token in 
 ``` solidity
 function getPrice(MarketParams memory marketParams) public view returns (uint256)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+
 * **Returns:** the value of one collateral token expressed in loan token units.
 
 
@@ -429,8 +459,10 @@ Retrieves the whitelist of a specified market.
 ``` solidity
 function getWhiteList(Id id) external view returns (address[])
 ```
+
 * **Parameter description:**
     * `id:` the market’s unique identifier.
+
 * **Returns:** the list of addresses included in the whitelist for the specified market.
 
 
@@ -439,9 +471,11 @@ Checks whether a specific account is included in the whitelist of the market ide
 ``` solidity
 function isWhiteList(Id id, address account) public view returns (bool)
 ```
+
 * **Parameter description:**
     * `id:` the market’s unique identifier.
     * `account:` the address to check for whitelist eligibility.
+
 * **Returns:** true if the whitelist is not set or if the account is included in it; otherwise, false.
 
 
@@ -450,8 +484,10 @@ Retrieves the list of addresses in the liquidation whitelist for the specified m
 ``` solidity
 function getLiquidationWhitelist(Id id) external view returns (address[])
 ```
+
 * **Parameter description:**
     * `id:` the unique identifier of the market.
+
 * **Returns:** a list of addresses authorized to perform liquidation operations in the specified market.
 
 
@@ -460,9 +496,11 @@ Checks whether a given account is included in the liquidation whitelist for the 
 ``` solidity
 function isLiquidationWhitelist(Id id, address account) external view returns (bool)
 ```
+
 * **Parameter description:**
     * `id:` the unique identifier of the market.
     * `account:` the address to be checked in the liquidation whitelist.
+
 * **Returns:** returns true if the account is in the whitelist; otherwise, returns false.
 
 
@@ -471,8 +509,10 @@ Retrieves the minimum loan amount allowed in the specified market.
 ``` solidity
 function minLoan(MarketParams memory marketParams) public view returns (uint256)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+
 * **Returns:** the minimum amount of loan assets that can be borrowed from the market.
 
 
@@ -481,8 +521,10 @@ Returns the unique identifier (ID) corresponding to the specified market.
 ``` solidity
 function getId(MarketParams memory marketParams) external pure returns (bytes32 id)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
+
 * **Returns:**
     * `id:` the unique market ID, calculated as keccak256(marketParams).
  
@@ -492,7 +534,9 @@ Checks whether the market is globally paused.
 ``` solidity
 function paused() public view virtual returns (bool)
 ```
+
 * **Parameter description:** N/A.
+
 * **Returns:** true if the protocol is globally paused and all markets are disabled; false otherwise.
 
 
@@ -501,8 +545,10 @@ Retrieves both the average borrow rate of a given market since the last update a
 ``` solidity
 function borrowRateFullView(Id id) public view returns (uint256 avgBorrowRate, int256 targetBorrowRate)
 ```
+
 * **Parameter description:**
     * `id:` the unique market ID.
+
 * **Returns:**
     * `avgBorrowRate:` the average borrow rate since the last interest update.
     * `targetBorrowRate:` the current borrow rate at the target utilization level.
@@ -517,6 +563,7 @@ Creates a new MoolahVault and returns the addresses of the created vault and rel
 ``` solidity
 function createMoolahVault(address manager, address curator, address guardian, uint256 timeLockDelay, address asset, string memory name, string memory symbol) external returns (address vault, address managerTimeLock, address curatorTimeLock)
 ```
+
 * **Parameter description:**
     * `manager:` the address with manager privileges in the MoolahVault’s TimeLock contract.
     * `curator:` the address with curator privileges in the TimeLock contract.
@@ -525,6 +572,7 @@ function createMoolahVault(address manager, address curator, address guardian, u
     * `asset:` the address of the asset managed by MoolahVault.
     * `name:` the name of the MoolahVault token.
     * `symbol:` the symbol of the MoolahVault token.
+
 * **Returns:**
     * `vault:` the address of the newly created MoolahVault contract.
     * `managerTimeLock:` the address of the Manager Timelock contract for the vault.
@@ -534,6 +582,7 @@ function createMoolahVault(address manager, address curator, address guardian, u
 ``` solidity
 CreateMoolahVault(address indexed moolahVault, address implementation, address managerTimeLock, address curatorTimeLock, uint256 timeLockDelay, address indexed caller, address manager, address curator, address guardian, address indexed asset, string name, string symbol)
 ```
+
 * This event is emitted when a new MoolahVault is created.
     * `moolahVault:` the address of the newly created MoolahVault.
     * `implementation:` the implementation contract address used by the vault.
@@ -554,14 +603,17 @@ Sets the address of the Vault Administrator.
 ``` solidity
 function setVaultAdmin(address _vaultAdmin)
 ```
+
 * **Parameter description:**
     * `_vaultAdmin:` the address to be assigned as the Vault Administrator.
+
 * **Returns:** None, reverts on error.
 
 **Event**
 ``` solidity
 SetVaultAdmin(address vaultAdmin)
 ```
+
 * This event is emitted when the Vault Administrator address is set.
     * `vaultAdmin:` the address assigned as the new Vault Administrator.
  
@@ -571,9 +623,11 @@ Deposits assets into the vault.
 ``` solidity
 function deposit(uint256 assets, address receiver) public returns (uint256 shares)
 ```
+
 * **Parameter description:**
     * `assets:` the amount of assets to deposit into the vault.
     * `receiver:` the address that will receive the minted vault shares.
+
 * **Returns:**
     * `shares:` the number of vault shares minted to the receiver in exchange for the deposited assets.
 
@@ -581,6 +635,7 @@ function deposit(uint256 assets, address receiver) public returns (uint256 share
 ``` solidity
 Deposit(address indexed sender, address indexed owner, uint256 assets, uint256 shares)
 ```
+
 * This event is emitted when a user deposits assets into the vault.
     * `sender:` the address that initiated the deposit transaction.
     * `owner:` the address that owns the deposited assets.
@@ -593,9 +648,11 @@ Mints vault shares by depositing the corresponding amount of assets.
 ``` solidity
 function mint(uint256 shares, address receiver) public override returns (uint256 assets)
 ```
+
 * **Parameter description:**
     * `shares:` the number of vault shares to mint.
     * `receiver:` the address that will receive the minted shares.
+
 * **Returns:**
     * `assets:` the amount of assets required to mint the specified number of shares.
 
@@ -605,10 +662,12 @@ Withdraws assets from the vault by burning the corresponding number of shares.
 ``` solidity
 function withdraw(uint256 assets, address receiver, address owner) public override returns (uint256 shares)
 ```
+
 * **Parameter description:**
     * `assets:` the amount of assets to withdraw from the vault.
     * `receiver:` the address that will receive the withdrawn assets.
     * `owner:` the address that owns the withdrawn assets.
+
 * **Returns:**
     * `shares:` the  number of shares burned corresponding to the withdrawn assets.
 
@@ -616,6 +675,7 @@ function withdraw(uint256 assets, address receiver, address owner) public overri
 ``` solidity
 Withdraw(address indexed sender, address indexed receiver, address indexed owner, uint256 assets, uint256 shares)
 ```
+
 * This event is emitted when a user withdraws assets from the vault.
     * `sender:` the address that initiated the withdrawal transaction.
     * `receiver:` the address that receives the withdrawn assets.
@@ -629,8 +689,10 @@ Checks whether a specific account is included in the whitelist.
 ``` solidity
 function isWhiteList(address account) public view returns (bool)
 ```
+
 * **Parameter description:**
     * `account:` the address to check.
+
 * **Returns:** returns true if the account is on the whitelist; otherwise, returns false.
 
 
@@ -639,7 +701,9 @@ Retrieves the list of addresses currently included in the whitelist.
 ``` solidity
 function getWhiteList() external view returns (address[])
 ```
+
 * **Parameter description:** N/A.
+
 * **Returns:** an array containing all addresses that are on the whitelist.
 
 
@@ -648,7 +712,9 @@ Returns the total number of markets currently in the supply queue.
 ``` solidity
 function supplyQueueLength() external view returns (uint256)
 ```
+
 * **Parameter description:** N/A.
+
 * **Returns:** the length of the supply queue.
 
 
@@ -657,7 +723,9 @@ Returns the total number of markets currently in the withdrawal queue.
 ``` solidity
 function withdrawQueueLength() external view returns (uint256)
 ```
+
 * **Parameter description:** N/A.
+
 * **Returns:** the length of the withdrawal queue.
 
 
@@ -666,8 +734,10 @@ Returns the maximum amount of assets that can be deposited into the vault.
 ``` solidity
 function maxDeposit(address) public view override returns (uint256)
 ```
+
 * **Parameter description:**
     * `address:` the address of the depositor. 
+
 * **Returns:** the maximum amount of assets that can be deposited.
 
 
@@ -676,8 +746,10 @@ Returns the maximum number of shares that can be minted, corresponding to maxDep
 ``` solidity
 function maxMint(address) public view override returns (uint256)
 ```
+
 * **Parameter description:**
     * `address:` the address of the minter.
+
 * **Returns:** the maximum number of shares that can be minted.
 
 
@@ -686,8 +758,10 @@ Returns the maximum amount of assets that a user can withdraw from the vault.
 ``` solidity
 function maxWithdraw(address owner) public view override returns (uint256 assets)
 ```
+
 * **Parameter description:**
     * `owner:` the address of the user whose withdrawable balance is being queried.
+
 * **Returns:** 
     * `assets:` the maximum amount of assets that can be withdrawn by the specified user.
 
@@ -697,8 +771,10 @@ Returns the maximum number of shares that a user can redeem from the vault.
 ``` solidity
 function maxRedeem(address owner) public view override returns (uint256)
 ```
+
 * **Parameter description:**
     * `owner:`  the address of the user whose redeemable shares are being queried.
+
 * **Returns:** the maximum number of shares that can be redeemed by the specified user.
 
 
@@ -717,9 +793,11 @@ function deposit(address receiver) external payable returns (uint256 shares)
 // Deposit with a specified vault
 function deposit(address vault, address receiver) public payable returns (uint256 shares)
 ```
+
 * **Parameter description:**
     * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
     * `receiver:` the address that will receive the minted vault shares corresponding to the deposited assets.
+
 * **Returns:**
     * `shares:` the number of vault shares minted for the receiver based on the amount of TRX (converted to WTRX) deposited into the specified vault.
 
@@ -733,10 +811,12 @@ function mint(uint256 shares, address receiver) external payable returns (uint25
 // Mint with a specified vault
 function mint(address vault, uint256 shares, address receiver) public payable returns (uint256 assets)
 ```
+
 * **Parameter description:**
     * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
     * `shares:` the number of vault shares to mint.
     * `receiver:` the address that will receive the minted vault shares corresponding to the deposited assets.
+
 * **Returns:**
     * `assets:` the amount of TRX (converted to WTRX) required to mint the specified number of shares.
 
@@ -750,11 +830,13 @@ function withdraw(uint256 assets, address payable receiver, address owner) exter
 // Withdraw with a specified vault
 function withdraw(address vault, uint256 assets, address payable receiver, address owner) external returns (uint256 shares)
 ```
+
 * **Parameter description:**
     * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
     * `assets:` the amount of TRX to withdraw (converted from WTRX).
     * `receiver:` the address that will receive the withdrawn TRX.
     * `owner:` the address that owns the withdrawn assets (payer of the shares).
+
 * **Returns:**
     * `shares:` the number of shares burned in exchange for the specified amount of TRX.
 
@@ -768,11 +850,13 @@ function redeem(uint256 shares, address payable receiver, address owner) externa
 // Redeem with a specified vault
 function redeem(address vault, uint256 shares, address payable receiver, address owner) external returns (uint256 assets)
 ```
+
 * **Parameter description:**
     * `valut:` the address of the vault from which WTRX will be redeemed. If not specified, the default vault is used.
     * `shares:` the number of shares to redeem.
     * `receiver:` the address that will receive the redeemed TRX.
     * `owner:` the address that owns the redeemed shares.
+
 * **Returns:**
     * `assets:` the amount of TRX received from redeeming the specified shares.
 
@@ -782,12 +866,14 @@ Borrows TRX from the specified market. The TRXProvider interacts with the underl
 ``` solidity
 function borrow(MarketParams calldata marketParams, uint256 assets, uint256 shares, address onBehalf, address payable receiver) external returns (uint256 _assets, uint256 _shares)
 ```
+
 * **Parameter description:**
     * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
     * `assets:` the amount of TRX to borrow.
     * `shares:` the corresponding share amount representing the borrowed position.
     * `onBehalf:` the address on whose behalf the borrowing is executed.
     * `receiver:` the address that will receive the borrowed TRX.
+
 * **Returns:**
     * `_assets:` the actual amount of TRX borrowed.
     * `_shares:` the number of shares corresponding to the borrowed assets.
@@ -798,12 +884,14 @@ Repays borrowed TRX. When a user repays, the TRXProvider converts the sent TRX i
 ``` solidity
 function repay(MarketParams calldata marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external payable returns (uint256 _assets, uint256 _shares)
 ```
+
 * **Parameter description:**
     * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
     * `assets:` the amount of TRX to repay.
     * `shares:` the share amount corresponding to the repaid assets.
     * `onBehalf:` the address on whose behalf the repayment is made.
     * `data:` additional data that can be used for callback or custom logic.
+
 * **Returns:**
     * `_assets:` the actual amount of TRX repaid.
     * `_shares:` the number of shares corresponding to the repaid amount.
@@ -814,10 +902,12 @@ Supplies TRX as collateral. When a user provides collateral in TRX, the TRXProvi
 ``` solidity
 function supplyCollateral(MarketParams calldata marketParams, address onBehalf, bytes calldata data) external payable
 ```
+
 * **Parameter description:**
     * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
     * `onBehalf:` the address on whose behalf the collateral is supplied.
     * `data:` additional data that can be used for callback or custom logic.
+
 * **Returns:** None, reverts on error.
 
 
@@ -826,11 +916,13 @@ Withdraws TRX collateral. When a user withdraws collateral, the TRXProvider retr
 ``` solidity
 function withdrawCollateral(MarketParams calldata marketParams, uint256 assets, address onBehalf, address payable receiver)
 ```
+
 * **Parameter description:**
     * `marketParams:` the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
     * `assets:` the amount of collateral (in TRX) to withdraw.
     * `onBehalf:` the address from which the collateral is withdrawn.
     * `receiver:` the address that receives the withdrawn TRX.
+
 * **Returns:** None, reverts on error.
 
 
@@ -845,8 +937,10 @@ Retrieves the price of a specified token.
 ``` solidity
 function peek(address asset) external view override returns (uint256)
 ```
+
 * **Parameter description:**
     * `asset:` the token address to query.
+
 * **Returns:** the current price of the token (with 18-decimal precision).
 
 
@@ -861,7 +955,9 @@ This value defines the optimal utilization level that the interest rate model ai
 ``` solidity
 function defaultTargetUtilization() external view returns (int256)
 ```
+
 * **Parameter description:** N/A.
+
 * **Returns:** the default target utilization rate of the market.
 
 
@@ -870,6 +966,8 @@ If the market has a non-zero target utilization rate configured, that value is r
 ``` solidity
 function targetUtilization(Id id) public view returns (int256)
 ```
+
 * **Parameter description:**
     * `id:` the unique identifier of the market.   
+
 * **Returns:** the target utilization rate for a specific market.
