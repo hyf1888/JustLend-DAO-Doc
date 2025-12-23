@@ -13,12 +13,14 @@ In return, users receive jTokens, TRC-20 tokens representing their supplied asse
 ### **How Do I Supply Assets**
 Supplying can be done with a user interface [SBM V1](https://app.justlend.org/homeNew?lang=en-US) or SBM V2. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:
 
-SBM:
+**SBM:**
+
 * `Supply APY:` the annual rewards from the jTokens users receive by supplying assets, which influenced by the borrow utilization rate and fluctuated by the time;
 * `Total Supply:` the total supply in the market. As the total supply changes, the Supply APY will also change accordingly;
 * `Suppliers:` the amount of users participating in the supply market.
 
-SBM V2:
+**SBM V2:**
+
 * `Supply APY:` the annualized return earned from supplying assets to the Vault. It is influenced by the market’s borrow utilization rate and may fluctuate over time;
 * `Total Supply:` the total amount of assets supplied in the market. As the total supply changes, the Supply APY will adjust accordingly;
 * `Collateral Support:` refers to the types of assets supported across the underlying Markets connected to this Vault. While you only deposit a single asset into the Vault, your liquidity may be lent out to borrowers who pledge these supported collateral tokens.
@@ -26,10 +28,13 @@ SBM V2:
 
 #### Supply Assets
 1. Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
-2. To Supply Asset on SBM V1:
+2. To Supply Asset on SBM V1：
+   
 * Navigate to **“SBM V1”**, choose the asset you wish to supply, then click **「Supply」** in the corresponding  market.
 * Enter the amount you want to supply and click **「Supply」**.
+  
 3. To supply Asset on SBM V2:
+
 * Navigate to **“SBM V2”**, select the asset under **All Supply Vaults**, then click **「Details」**.
 * Choose **Supply**, enter the supply amount, then click **「Supply」**.
 
