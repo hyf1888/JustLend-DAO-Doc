@@ -42,6 +42,7 @@ struct Position {
   uint128 collateral;
 }
 ```
+
 * `supplyShares:` the number of shares representing the assets a user has supplied to the market.
 * `borrowShares:` the number of shares representing the assets a user has borrowed from the market.
 * `collateral:` the amount of assets a user has deposited as collateral in the market.
@@ -58,6 +59,7 @@ struct Market {
   uint128 fee;
 }
 ```
+
 * `totalSupplyAssets:` the total amount of assets supplied to the market and available for lending.
 * `totalSupplyShares:` the total number of supply shares in the market.
 * `totalBorrowAssets:` the total amount of assets borrowed from the market.
@@ -78,6 +80,7 @@ struct MarketParams {
   uint256 lltv;
 }
 ```
+
 * `loanToken:` the address of the token used for borrowing.
 * `collateralToken:` the address of the token used as collateral.
 * `oracle:` the address of the price oracle contract.
@@ -95,6 +98,7 @@ struct MarketConfig {
   uint64 removableAt;
 }
 ```
+
 * `cap:` the maximum amount of assets that the vault can supply to this market.
 * `enabled:` indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
 * `marketType:` the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
@@ -109,6 +113,7 @@ struct MarketAllocation {
   uint256 assets;
 }
 ```
+
 * `marketParams:` specifies the target market to which the allocation is applied.
 * `assets:` the amount of assets allocated to the specified market.
 
@@ -124,6 +129,7 @@ struct Authorization {
     uint256 deadline;    
 }
 ```
+
 * `authorizer:` the address that is granting authorization or revocation.
 * `authorized:` the address that is being granted or revoked the authorization.
 * `isAuthorized:` a boolean indicating whether the authorization is being granted (true) or revoked (false).
@@ -140,6 +146,7 @@ struct Signature {
     bytes32 s;   
 }
 ```
+
 * `v:` the recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
 * `r:` the "r" component of the ECDSA signature, which is derived from the elliptic curve.
 * `s:` the "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.
