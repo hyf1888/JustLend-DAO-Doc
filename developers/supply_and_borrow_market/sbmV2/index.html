@@ -1813,396 +1813,716 @@
 <h4 id="2-withdraw"><strong>2. Withdraw</strong><a class="headerlink" href="#2-withdraw" title="Permanent link">&para;</a></h4>
 <p>The withdraw  function allows users to withdraw the previously supplied liquidity from the market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsWithdrawn</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesWithdrawn</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>assets:</code> the amount of tokens to withdraw from the market.
-    * <code>shares:</code> the number of supply shares to redeem for the corresponding assets.
-    * <code>onBehalf:</code> the address whose position will be reduced. This enables withdrawals to be made on behalf of another account.
-    * <code>receiver:</code> the address that will receive the withdrawn assets.
-* <strong>Returns:</strong>
-    * <code>assetsWithdrawn:</code> the actual amount of tokens supplied.
-    * <code>sharesWithdrawn:</code> the actual number of shares burned corresponding to the withdrawn assets.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>assets:</code> the amount of tokens to withdraw from the market.</li>
+<li><code>shares:</code> the number of supply shares to redeem for the corresponding assets.</li>
+<li><code>onBehalf:</code> the address whose position will be reduced. This enables withdrawals to be made on behalf of another account.</li>
+<li><code>receiver:</code> the address that will receive the withdrawn assets.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>assetsWithdrawn:</code> the actual amount of tokens supplied.</li>
+<li><code>sharesWithdrawn:</code> the actual number of shares burned corresponding to the withdrawn assets.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>Withdraw<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">caller</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when assets are withdrawn from a market.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market from which the withdrawal occurred.
-    * <code>caller:</code> the address that submitted the transaction.
-    * <code>onBehalf:</code> the address whose supply shares are being withdrawn.
-    * <code>receiver:</code> the address that receives the withdrawn assets.
-    * <code>assets:</code> the amount of tokens withdrawn from the market.
-    * <code>shares:</code> the number of supply shares redeemed corresponding to the withdrawn assets.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when assets are withdrawn from a market.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market from which the withdrawal occurred.</li>
+<li><code>caller:</code> the address that submitted the transaction.</li>
+<li><code>onBehalf:</code> the address whose supply shares are being withdrawn.</li>
+<li><code>receiver:</code> the address that receives the withdrawn assets.</li>
+<li><code>assets:</code> the amount of tokens withdrawn from the market.</li>
+<li><code>shares:</code> the number of supply shares redeemed corresponding to the withdrawn assets.</li>
+</ul>
+</li>
+</ul>
 <h4 id="3-borrow"><strong>3. Borrow</strong><a class="headerlink" href="#3-borrow" title="Permanent link">&para;</a></h4>
 <p>The borrow function allows users to borrow funds from the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsBorrowed</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesBorrowed</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>assets:</code> the amount of tokens the user intends to borrow from the market.
-    * <code>shares:</code> the number of borrowing shares to mint corresponding to the borrowed assets.
-    * <code>onBehalf:</code> the address whose position will be increased. This allows borrowing on behalf of another account.
-    * <code>receiver:</code> the address that will receive the borrowed assets.
-* <strong>Returns:</strong>
-    * <code>assetsBorrowed:</code> the actual amount of tokens borrowed.
-    * <code>sharesBorrowed:</code> the actual number of shares minted corresponding to the borrowed tokens.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>assets:</code> the amount of tokens the user intends to borrow from the market.</li>
+<li><code>shares:</code> the number of borrowing shares to mint corresponding to the borrowed assets.</li>
+<li><code>onBehalf:</code> the address whose position will be increased. This allows borrowing on behalf of another account.</li>
+<li><code>receiver:</code> the address that will receive the borrowed assets.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>assetsBorrowed:</code> the actual amount of tokens borrowed.</li>
+<li><code>sharesBorrowed:</code> the actual number of shares minted corresponding to the borrowed tokens.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>Borrow<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">caller</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when assets are borrowed from a market.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market from which the borrowing occurred.
-    * <code>caller:</code> the address that submitted the transaction.
-    * <code>onBehalf:</code> the address whose borrowed shares are recorded.
-    * <code>receiver:</code> the address that receives the borrowed assets.
-    * <code>assets:</code> the amount of tokens borrowed from the market.
-    * <code>shares:</code> the number of borrowed shares corresponding to the borrowed assets.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when assets are borrowed from a market.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market from which the borrowing occurred.</li>
+<li><code>caller:</code> the address that submitted the transaction.</li>
+<li><code>onBehalf:</code> the address whose borrowed shares are recorded.</li>
+<li><code>receiver:</code> the address that receives the borrowed assets.</li>
+<li><code>assets:</code> the amount of tokens borrowed from the market.</li>
+<li><code>shares:</code> the number of borrowed shares corresponding to the borrowed assets.</li>
+</ul>
+</li>
+</ul>
 <h4 id="4-repay"><strong>4. Repay</strong><a class="headerlink" href="#4-repay" title="Permanent link">&para;</a></h4>
 <p>The repay function allows users to repay the funds borrowed from the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repay</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsRepaid</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesRepaid</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>assets:</code> the amount of tokens to repay to the market.
-    * <code>shares:</code> the number of borrowing shares to burn corresponding to the repaid assets.
-    * <code>onBehalf:</code> the address whose borrowing position will be reduced. This enables repayments to be made on behalf of another account.
-    * <code>data:</code> additional encoded data for interaction logic or integrations.
-* <strong>Returns:</strong>
-    * <code>assetsRepaid:</code> the actual amount of tokens repaid.
-    * <code>sharesRepaid:</code> the actual number of shares repaid corresponding to the repaid tokens.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>assets:</code> the amount of tokens to repay to the market.</li>
+<li><code>shares:</code> the number of borrowing shares to burn corresponding to the repaid assets.</li>
+<li><code>onBehalf:</code> the address whose borrowing position will be reduced. This enables repayments to be made on behalf of another account.</li>
+<li><code>data:</code> additional encoded data for interaction logic or integrations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>assetsRepaid:</code> the actual amount of tokens repaid.</li>
+<li><code>sharesRepaid:</code> the actual number of shares repaid corresponding to the repaid tokens.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>Repay<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when borrowed assets are repaid to the market.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market where the repayment occurred.
-    * <code>caller:</code> the address that submitted the transaction.
-    * <code>onBehalf:</code> the address whose borrowed assets are being repaid.
-    * <code>assets:</code> the amount of tokens repaid to the market.
-    * <code>shares:</code> the number of borrowed shares corresponding to the repaid assets.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when borrowed assets are repaid to the market.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market where the repayment occurred.</li>
+<li><code>caller:</code> the address that submitted the transaction.</li>
+<li><code>onBehalf:</code> the address whose borrowed assets are being repaid.</li>
+<li><code>assets:</code> the amount of tokens repaid to the market.</li>
+<li><code>shares:</code> the number of borrowed shares corresponding to the repaid assets.</li>
+</ul>
+</li>
+</ul>
 <h4 id="5-supply-collateral"><strong>5. Supply Collateral</strong><a class="headerlink" href="#5-supply-collateral" title="Permanent link">&para;</a></h4>
 <p>The supply collateral function allows users to supply collateral assets to the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>assets:</code> the amount of collateral tokens to deposit into the market.
-    * <code>onBehalf:</code> the address whose collateral position will be increased. This allows users to add collateral on behalf of another account.
-    * <code>data:</code> additional encoded data for interaction logic or integrations.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>assets:</code> the amount of collateral tokens to deposit into the market.</li>
+<li><code>onBehalf:</code> the address whose collateral position will be increased. This allows users to add collateral on behalf of another account.</li>
+<li><code>data:</code> additional encoded data for interaction logic or integrations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>SupplyCollateral<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when collateral is supplied to the market.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market where the collateral is supplied.
-    * <code>caller:</code> the address that submitted the transaction.
-    * <code>onBehalf:</code> the address whose collateral balance is credited.
-    * <code>assets:</code> the amount of collateral tokens supplied to the market.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when collateral is supplied to the market.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market where the collateral is supplied.</li>
+<li><code>caller:</code> the address that submitted the transaction.</li>
+<li><code>onBehalf:</code> the address whose collateral balance is credited.</li>
+<li><code>assets:</code> the amount of collateral tokens supplied to the market.</li>
+</ul>
+</li>
+</ul>
 <h4 id="6-withdraw-collateral"><strong>6. Withdraw Collateral</strong><a class="headerlink" href="#6-withdraw-collateral" title="Permanent link">&para;</a></h4>
 <p>The withdraw collateral function allows users to withdraw their previously supplied collateral from the SBM V2 market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>assets:</code> the amount of collateral tokens to withdraw from the market.
-    * <code>onBehalf:</code> the address whose collateral position will be reduced. This allows collateral to be withdrawn on behalf of another account.
-    * <code>receiver:</code> the address that will receive the withdrawn collateral assets.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>assets:</code> the amount of collateral tokens to withdraw from the market.</li>
+<li><code>onBehalf:</code> the address whose collateral position will be reduced. This allows collateral to be withdrawn on behalf of another account.</li>
+<li><code>receiver:</code> the address that will receive the withdrawn collateral assets.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>WithdrawCollateral<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">caller</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when collateral is withdrawn from the market.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market where the collateral is withdrawn.
-    * <code>caller:</code> the address that submitted the transaction.
-    * <code>onBehalf:</code> the address whose collateral balance is reduced.
-    * <code>receiver:</code> the address that receives the withdrawn collateral assets.
-    * <code>assets:</code> the amount of collateral tokens withdrawn from the market.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when collateral is withdrawn from the market.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market where the collateral is withdrawn.</li>
+<li><code>caller:</code> the address that submitted the transaction.</li>
+<li><code>onBehalf:</code> the address whose collateral balance is reduced.</li>
+<li><code>receiver:</code> the address that receives the withdrawn collateral assets.</li>
+<li><code>assets:</code> the amount of collateral tokens withdrawn from the market.</li>
+</ul>
+</li>
+</ul>
 <h4 id="7-liquidate"><strong>7. Liquidate</strong><a class="headerlink" href="#7-liquidate" title="Permanent link">&para;</a></h4>
 <p>The liquidate function allows liquidators to repay a portion of a borrower's debt in exchange for seizing the borrower's collateral when their position becomes undercollateralized.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidate</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">seizedAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidShares</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">seizedAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidAssets</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>borrower:</code> the address of the user whose position is being liquidated.
-    * <code>seizedAssets:</code> the amount of collateral assets to be seized from the borrower.
-    * <code>repaidShares:</code> the number of borrowing shares repaid on behalf of the borrower.
-    * <code>data:</code> additional encoded data for custom liquidation logic or integrations.
-* <strong>Returns:</strong>
-    * <code>seizedAssets:</code> the actual amount of collateral tokens seized.
-    * <code>repaidAssets:</code> the actual amount of debt tokens repaid.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>borrower:</code> the address of the user whose position is being liquidated.</li>
+<li><code>seizedAssets:</code> the amount of collateral assets to be seized from the borrower.</li>
+<li><code>repaidShares:</code> the number of borrowing shares repaid on behalf of the borrower.</li>
+<li><code>data:</code> additional encoded data for custom liquidation logic or integrations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>seizedAssets:</code> the actual amount of collateral tokens seized.</li>
+<li><code>repaidAssets:</code> the actual amount of debt tokens repaid.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>Liquidate<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>borrower<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidShares</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">seizedAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">badDebtAssets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">badDebtShares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when a liquidation occurs in the market.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market where the liquidation takes place.
-    * <code>caller:</code> the address that submitted the transaction (the liquidator).
-    * <code>borrower:</code> the address of the borrower being liquidated.
-    * <code>repaidAssets:</code> the amount of borrowed assets repaid during the liquidation.
-    * <code>repaidShares:</code> the number of borrowed shares repaid.
-    * <code>seizedAssets:</code> the amount of collateral assets seized by the liquidator.
-    * <code>badDebtAssets:</code> the amount of assets classified as bad debt after liquidation.
-    * <code>badDebtShares:</code> the number of borrowed shares corresponding to the bad debt.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when a liquidation occurs in the market.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market where the liquidation takes place.</li>
+<li><code>caller:</code> the address that submitted the transaction (the liquidator).</li>
+<li><code>borrower:</code> the address of the borrower being liquidated.</li>
+<li><code>repaidAssets:</code> the amount of borrowed assets repaid during the liquidation.</li>
+<li><code>repaidShares:</code> the number of borrowed shares repaid.</li>
+<li><code>seizedAssets:</code> the amount of collateral assets seized by the liquidator.</li>
+<li><code>badDebtAssets:</code> the amount of assets classified as bad debt after liquidation.</li>
+<li><code>badDebtShares:</code> the number of borrowed shares corresponding to the bad debt.</li>
+</ul>
+</li>
+</ul>
 <h4 id="8-set-authorization"><strong>8. Set Authorization</strong><a class="headerlink" href="#8-set-authorization" title="Permanent link">&para;</a></h4>
 <p>Sets or updates the authorization status for a specific address.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setAuthorization</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">authorized</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">newIsAuthorized</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>authorized:</code> the address to grant or revoke authorization.
-    * <code>newIsAuthorized:</code> a boolean indicating the authorization status, true to authorize, false to revoke.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>authorized:</code> the address to grant or revoke authorization.</li>
+<li><code>newIsAuthorized:</code> a boolean indicating the authorization status, true to authorize, false to revoke.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>SetAuthorization<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>authorizer<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>authorized<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">newIsAuthorized</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when authorization status for an address is updated.
-    * <code>caller:</code> the address that initiated the transaction.
-    * <code>authorizer:</code> the address granting the authorization.
-    * <code>authorized:</code> the address receiving the authorization.
-    * <code>newIsAuthorized:</code> the new authorization status, true for granted, false for revoked.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when authorization status for an address is updated.<ul>
+<li><code>caller:</code> the address that initiated the transaction.</li>
+<li><code>authorizer:</code> the address granting the authorization.</li>
+<li><code>authorized:</code> the address receiving the authorization.</li>
+<li><code>newIsAuthorized:</code> the new authorization status, true for granted, false for revoked.</li>
+</ul>
+</li>
+</ul>
 <h4 id="9-set-authorization-with-signature"><strong>9. Set Authorization With Signature</strong><a class="headerlink" href="#9-set-authorization-with-signature" title="Permanent link">&para;</a></h4>
 <p>Sets authorization for an address using an off-chain signature, while recording a nonce to prevent replay attacks.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setAuthorizationWithSig</span><span class="p">(</span>Authorization<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>authorization<span class="p">,</span><span class="w"> </span>Signature<span class="w"> </span>calldata<span class="w"> </span>signature<span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>authorization:</code> the authorization data structure containing the authorization details.
-    * <code>signature:</code> the ECDSA signature proving that the authorization was signed by the authorizer.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>authorization:</code> the authorization data structure containing the authorization details.</li>
+<li><code>signature:</code> the ECDSA signature proving that the authorization was signed by the authorizer.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <h4 id="10-accrue-interest"><strong>10. Accrue Interest</strong><a class="headerlink" href="#10-accrue-interest" title="Permanent link">&para;</a></h4>
 <p>The accrueInterest function updates the interest accrued in the SBM V2 market based on the latest block timestamp. It synchronizes the market’s supply and borrow states to reflect the most recent interest calculations.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">accrueInterest</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>AccrueInterest<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">prevBorrowRate</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">feeShares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted during the execution of functions such as borrow, repay, and supply, which update the market’s borrowing state.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market where the interest is accrued.
-    * <code>prevBorrowRate:</code> the previous borrowing rate before the update.
-    * <code>interest:</code> the number of interest accrued in this update.
-    * <code>feeShares:</code> the portion of accrued interest distributed to the fee recipient, represented in shares.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted during the execution of functions such as borrow, repay, and supply, which update the market’s borrowing state.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market where the interest is accrued.</li>
+<li><code>prevBorrowRate:</code> the previous borrowing rate before the update.</li>
+<li><code>interest:</code> the number of interest accrued in this update.</li>
+<li><code>feeShares:</code> the portion of accrued interest distributed to the fee recipient, represented in shares.</li>
+</ul>
+</li>
+</ul>
 <h4 id="11-is-healthy"><strong>11. Is Healthy</strong><a class="headerlink" href="#11-is-healthy" title="Permanent link">&para;</a></h4>
 <p>Checks whether a borrower’s account in a specific market is healthy. 
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isHealthy</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span>Id<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>id:</code> the market’s unique identifier.
-    * <code>borrower:</code> the address of the borrower whose account health is being checked.
-* <strong>Returns:</strong> 
-    * <strong>true</strong> means the position is sufficiently collateralized under the current price and LLTV.
-    * <strong>false</strong> means the position is undercollateralized and eligible for liquidation, but it does not necessarily mean there is “bad debt” remaining after liquidation.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>id:</code> the market’s unique identifier.</li>
+<li><code>borrower:</code> the address of the borrower whose account health is being checked.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> </p>
+<ul>
+<li><strong>true</strong> means the position is sufficiently collateralized under the current price and LLTV.</li>
+<li><strong>false</strong> means the position is undercollateralized and eligible for liquidation, but it does not necessarily mean there is “bad debt” remaining after liquidation.</li>
+</ul>
+</li>
+</ul>
 <h4 id="12-get-price"><strong>12. Get Price</strong><a class="headerlink" href="#12-get-price" title="Permanent link">&para;</a></h4>
 <p>Retrieves the relative price between the collateral token and the loan token in a specific market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getPrice</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-* <strong>Returns:</strong> the value of one collateral token expressed in loan token units.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the value of one collateral token expressed in loan token units.</p>
+</li>
+</ul>
 <h4 id="13-get-whitelist"><strong>13. Get WhiteList</strong><a class="headerlink" href="#13-get-whitelist" title="Permanent link">&para;</a></h4>
 <p>Retrieves the whitelist of a specified market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getWhiteList</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[])</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>id:</code> the market’s unique identifier.
-* <strong>Returns:</strong> the list of addresses included in the whitelist for the specified market.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>id:</code> the market’s unique identifier.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the list of addresses included in the whitelist for the specified market.</p>
+</li>
+</ul>
 <h4 id="14-is-whitelist"><strong>14. Is WhiteList</strong><a class="headerlink" href="#14-is-whitelist" title="Permanent link">&para;</a></h4>
 <p>Checks whether a specific account is included in the whitelist of the market identified by id.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isWhiteList</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>id:</code> the market’s unique identifier.
-    * <code>account:</code> the address to check for whitelist eligibility.
-* <strong>Returns:</strong> true if the whitelist is not set or if the account is included in it; otherwise, false.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>id:</code> the market’s unique identifier.</li>
+<li><code>account:</code> the address to check for whitelist eligibility.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> true if the whitelist is not set or if the account is included in it; otherwise, false.</p>
+</li>
+</ul>
 <h4 id="15-get-liquidation-whitelist"><strong>15. Get Liquidation Whitelist</strong><a class="headerlink" href="#15-get-liquidation-whitelist" title="Permanent link">&para;</a></h4>
 <p>Retrieves the list of addresses in the liquidation whitelist for the specified market identified by id.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getLiquidationWhitelist</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[])</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>id:</code> the unique identifier of the market.
-* <strong>Returns:</strong> a list of addresses authorized to perform liquidation operations in the specified market.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>id:</code> the unique identifier of the market.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> a list of addresses authorized to perform liquidation operations in the specified market.</p>
+</li>
+</ul>
 <h4 id="16-is-liquidation-whitelist"><strong>16. Is Liquidation Whitelist</strong><a class="headerlink" href="#16-is-liquidation-whitelist" title="Permanent link">&para;</a></h4>
 <p>Checks whether a given account is included in the liquidation whitelist for the specified market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isLiquidationWhitelist</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>id:</code> the unique identifier of the market.
-    * <code>account:</code> the address to be checked in the liquidation whitelist.
-* <strong>Returns:</strong> returns true if the account is in the whitelist; otherwise, returns false.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>id:</code> the unique identifier of the market.</li>
+<li><code>account:</code> the address to be checked in the liquidation whitelist.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> returns true if the account is in the whitelist; otherwise, returns false.</p>
+</li>
+</ul>
 <h4 id="17-minimum-loan"><strong>17. Minimum Loan</strong><a class="headerlink" href="#17-minimum-loan" title="Permanent link">&para;</a></h4>
 <p>Retrieves the minimum loan amount allowed in the specified market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">minLoan</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-* <strong>Returns:</strong> the minimum amount of loan assets that can be borrowed from the market.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the minimum amount of loan assets that can be borrowed from the market.</p>
+</li>
+</ul>
 <h4 id="18-get-id"><strong>18. Get Id</strong><a class="headerlink" href="#18-get-id" title="Permanent link">&para;</a></h4>
 <p>Returns the unique identifier (ID) corresponding to the specified market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getId</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">id</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-* <strong>Returns:</strong>
-    * <code>id:</code> the unique market ID, calculated as keccak256(marketParams).</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>id:</code> the unique market ID, calculated as keccak256(marketParams).</li>
+</ul>
+</li>
+</ul>
 <h4 id="19-paused"><strong>19. Paused</strong><a class="headerlink" href="#19-paused" title="Permanent link">&para;</a></h4>
 <p>Checks whether the market is globally paused.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">paused</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>virtual<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A.
-* <strong>Returns:</strong> true if the protocol is globally paused and all markets are disabled; false otherwise.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong> N/A.</p>
+</li>
+<li>
+<p><strong>Returns:</strong> true if the protocol is globally paused and all markets are disabled; false otherwise.</p>
+</li>
+</ul>
 <h4 id="20-borrow-rate-full-view"><strong>20. Borrow Rate Full View</strong><a class="headerlink" href="#20-borrow-rate-full-view" title="Permanent link">&para;</a></h4>
 <p>Retrieves both the average borrow rate of a given market since the last update and the current borrow rate at the target utilization level.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrowRateFullView</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">avgBorrowRate</span><span class="p">,</span><span class="w"> </span><span class="kt">int256</span><span class="w"> </span><span class="nv">targetBorrowRate</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>id:</code> the unique market ID.
-* <strong>Returns:</strong>
-    * <code>avgBorrowRate:</code> the average borrow rate since the last interest update.
-    * <code>targetBorrowRate:</code> the current borrow rate at the target utilization level.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>id:</code> the unique market ID.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>avgBorrowRate:</code> the average borrow rate since the last interest update.</li>
+<li><code>targetBorrowRate:</code> the current borrow rate at the target utilization level.</li>
+</ul>
+</li>
+</ul>
 <p><br> </p>
 <h3 id="moolah-valut"><strong>Moolah Valut</strong><a class="headerlink" href="#moolah-valut" title="Permanent link">&para;</a></h3>
 <p>A Vault is a single-asset management contract that provides borrowable assets to the market and can be created by anyone. Each vault operates as an independent contract managed by a designated fund manager, who can configure which markets to supply liquidity to. When users deposit assets into the vault, the funds are automatically allocated to the configured markets. The fund manager also has the ability to reallocate funds across markets. The vault follows the ERC-4626 standard (an extension of ERC-20 for tokenized vaults), allowing users to mint transferable shares upon depositing assets.</p>
 <h4 id="1-create-moolah-vault"><strong>1. Create Moolah Vault</strong><a class="headerlink" href="#1-create-moolah-vault" title="Permanent link">&para;</a></h4>
 <p>Creates a new MoolahVault and returns the addresses of the created vault and related contracts. The MoolahVault itself acts as a token. Users receive transferable vault shares when depositing assets.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createMoolahVault</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">manager</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">curator</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">guardian</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeLockDelay</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">asset</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">managerTimeLock</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">curatorTimeLock</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>manager:</code> the address with manager privileges in the MoolahVault’s TimeLock contract.
-    * <code>curator:</code> the address with curator privileges in the TimeLock contract.
-    * <code>guardian:</code> the address responsible for emergency control or protection actions.
-    * <code>timeLockDelay:</code> the delay period for executing TimeLock transactions.
-    * <code>asset:</code> the address of the asset managed by MoolahVault.
-    * <code>name:</code> the name of the MoolahVault token.
-    * <code>symbol:</code> the symbol of the MoolahVault token.
-* <strong>Returns:</strong>
-    * <code>vault:</code> the address of the newly created MoolahVault contract.
-    * <code>managerTimeLock:</code> the address of the Manager Timelock contract for the vault.
-    * <code>curatorTimeLock:</code> the address of the Curator Timelock contract for the vault.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>manager:</code> the address with manager privileges in the MoolahVault’s TimeLock contract.</li>
+<li><code>curator:</code> the address with curator privileges in the TimeLock contract.</li>
+<li><code>guardian:</code> the address responsible for emergency control or protection actions.</li>
+<li><code>timeLockDelay:</code> the delay period for executing TimeLock transactions.</li>
+<li><code>asset:</code> the address of the asset managed by MoolahVault.</li>
+<li><code>name:</code> the name of the MoolahVault token.</li>
+<li><code>symbol:</code> the symbol of the MoolahVault token.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>vault:</code> the address of the newly created MoolahVault contract.</li>
+<li><code>managerTimeLock:</code> the address of the Manager Timelock contract for the vault.</li>
+<li><code>curatorTimeLock:</code> the address of the Curator Timelock contract for the vault.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>CreateMoolahVault<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>moolahVault<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">implementation</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">managerTimeLock</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">curatorTimeLock</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeLockDelay</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">manager</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">curator</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">guardian</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>asset<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when a new MoolahVault is created.
-    * <code>moolahVault:</code> the address of the newly created MoolahVault.
-    * <code>implementation:</code> the implementation contract address used by the vault.
-    * <code>managerTimeLock:</code> the TimeLock contract address for the manager.
-    * <code>curatorTimeLock:</code> the TimeLock contract address for the curator.
-    * <code>timeLockDelay:</code> the delay period (in seconds) for executing TimeLock transactions.
-    * <code>caller:</code> the address that initiated the creation transaction.
-    * <code>manager:</code> the address assigned as the manager in the TimeLock contract.
-    * <code>curator:</code> the address assigned as the curator in the TimeLock contract.
-    * <code>guardian:</code> the guardian address responsible for vault protection or emergency actions.
-    * <code>asset:</code> the address of the underlying asset managed by the vault.
-    * <code>name:</code> the name of the MoolahVault token.
-    * <code>symbol:</code> the symbol of the MoolahVault token.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when a new MoolahVault is created.<ul>
+<li><code>moolahVault:</code> the address of the newly created MoolahVault.</li>
+<li><code>implementation:</code> the implementation contract address used by the vault.</li>
+<li><code>managerTimeLock:</code> the TimeLock contract address for the manager.</li>
+<li><code>curatorTimeLock:</code> the TimeLock contract address for the curator.</li>
+<li><code>timeLockDelay:</code> the delay period (in seconds) for executing TimeLock transactions.</li>
+<li><code>caller:</code> the address that initiated the creation transaction.</li>
+<li><code>manager:</code> the address assigned as the manager in the TimeLock contract.</li>
+<li><code>curator:</code> the address assigned as the curator in the TimeLock contract.</li>
+<li><code>guardian:</code> the guardian address responsible for vault protection or emergency actions.</li>
+<li><code>asset:</code> the address of the underlying asset managed by the vault.</li>
+<li><code>name:</code> the name of the MoolahVault token.</li>
+<li><code>symbol:</code> the symbol of the MoolahVault token.</li>
+</ul>
+</li>
+</ul>
 <h4 id="2-set-vault-admin"><strong>2. Set Vault Admin</strong><a class="headerlink" href="#2-set-vault-admin" title="Permanent link">&para;</a></h4>
 <p>Sets the address of the Vault Administrator.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setVaultAdmin</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_vaultAdmin</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>_vaultAdmin:</code> the address to be assigned as the Vault Administrator.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>_vaultAdmin:</code> the address to be assigned as the Vault Administrator.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>SetVaultAdmin<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vaultAdmin</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when the Vault Administrator address is set.
-    * <code>vaultAdmin:</code> the address assigned as the new Vault Administrator.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when the Vault Administrator address is set.<ul>
+<li><code>vaultAdmin:</code> the address assigned as the new Vault Administrator.</li>
+</ul>
+</li>
+</ul>
 <h4 id="3-deposit"><strong>3. Deposit</strong><a class="headerlink" href="#3-deposit" title="Permanent link">&para;</a></h4>
 <p>Deposits assets into the vault.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>assets:</code> the amount of assets to deposit into the vault.
-    * <code>receiver:</code> the address that will receive the minted vault shares.
-* <strong>Returns:</strong>
-    * <code>shares:</code> the number of vault shares minted to the receiver in exchange for the deposited assets.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>assets:</code> the amount of assets to deposit into the vault.</li>
+<li><code>receiver:</code> the address that will receive the minted vault shares.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>shares:</code> the number of vault shares minted to the receiver in exchange for the deposited assets.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>Deposit<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>sender<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when a user deposits assets into the vault.
-    * <code>sender:</code> the address that initiated the deposit transaction.
-    * <code>owner:</code> the address that owns the deposited assets.
-    * <code>assets:</code> the amount of assets deposited by the user.
-    * <code>shares:</code> the number of vault shares minted to the user corresponding to the deposited assets.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when a user deposits assets into the vault.<ul>
+<li><code>sender:</code> the address that initiated the deposit transaction.</li>
+<li><code>owner:</code> the address that owns the deposited assets.</li>
+<li><code>assets:</code> the amount of assets deposited by the user.</li>
+<li><code>shares:</code> the number of vault shares minted to the user corresponding to the deposited assets.</li>
+</ul>
+</li>
+</ul>
 <h4 id="4-mint"><strong>4. Mint</strong><a class="headerlink" href="#4-mint" title="Permanent link">&para;</a></h4>
 <p>Mints vault shares by depositing the corresponding amount of assets.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>shares:</code> the number of vault shares to mint.
-    * <code>receiver:</code> the address that will receive the minted shares.
-* <strong>Returns:</strong>
-    * <code>assets:</code> the amount of assets required to mint the specified number of shares.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>shares:</code> the number of vault shares to mint.</li>
+<li><code>receiver:</code> the address that will receive the minted shares.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>assets:</code> the amount of assets required to mint the specified number of shares.</li>
+</ul>
+</li>
+</ul>
 <h4 id="5-withdraw"><strong>5. Withdraw</strong><a class="headerlink" href="#5-withdraw" title="Permanent link">&para;</a></h4>
 <p>Withdraws assets from the vault by burning the corresponding number of shares.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>assets:</code> the amount of assets to withdraw from the vault.
-    * <code>receiver:</code> the address that will receive the withdrawn assets.
-    * <code>owner:</code> the address that owns the withdrawn assets.
-* <strong>Returns:</strong>
-    * <code>shares:</code> the  number of shares burned corresponding to the withdrawn assets.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>assets:</code> the amount of assets to withdraw from the vault.</li>
+<li><code>receiver:</code> the address that will receive the withdrawn assets.</li>
+<li><code>owner:</code> the address that owns the withdrawn assets.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>shares:</code> the  number of shares burned corresponding to the withdrawn assets.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>Withdraw<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>sender<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when a user withdraws assets from the vault.
-    * <code>sender:</code> the address that initiated the withdrawal transaction.
-    * <code>receiver:</code> the address that receives the withdrawn assets.
-    * <code>owner:</code> the address that owns the withdrawn assets.
-    * <code>assets:</code> the amount of assets withdrawn from the vault.
-    * <code>shares:</code> the number of vault shares burned to redeem the withdrawn assets.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when a user withdraws assets from the vault.<ul>
+<li><code>sender:</code> the address that initiated the withdrawal transaction.</li>
+<li><code>receiver:</code> the address that receives the withdrawn assets.</li>
+<li><code>owner:</code> the address that owns the withdrawn assets.</li>
+<li><code>assets:</code> the amount of assets withdrawn from the vault.</li>
+<li><code>shares:</code> the number of vault shares burned to redeem the withdrawn assets.</li>
+</ul>
+</li>
+</ul>
 <h4 id="6-is-whitelist"><strong>6. Is WhiteList</strong><a class="headerlink" href="#6-is-whitelist" title="Permanent link">&para;</a></h4>
 <p>Checks whether a specific account is included in the whitelist.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isWhiteList</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>account:</code> the address to check.
-* <strong>Returns:</strong> returns true if the account is on the whitelist; otherwise, returns false.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>account:</code> the address to check.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> returns true if the account is on the whitelist; otherwise, returns false.</p>
+</li>
+</ul>
 <h4 id="7-get-whitelist"><strong>7. Get WhiteList</strong><a class="headerlink" href="#7-get-whitelist" title="Permanent link">&para;</a></h4>
 <p>Retrieves the list of addresses currently included in the whitelist.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getWhiteList</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[])</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A.
-* <strong>Returns:</strong> an array containing all addresses that are on the whitelist.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong> N/A.</p>
+</li>
+<li>
+<p><strong>Returns:</strong> an array containing all addresses that are on the whitelist.</p>
+</li>
+</ul>
 <h4 id="8-supply-queue-length"><strong>8. Supply Queue Length</strong><a class="headerlink" href="#8-supply-queue-length" title="Permanent link">&para;</a></h4>
 <p>Returns the total number of markets currently in the supply queue.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyQueueLength</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A.
-* <strong>Returns:</strong> the length of the supply queue.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong> N/A.</p>
+</li>
+<li>
+<p><strong>Returns:</strong> the length of the supply queue.</p>
+</li>
+</ul>
 <h4 id="9-withdraw-queue-length"><strong>9. Withdraw Queue Length</strong><a class="headerlink" href="#9-withdraw-queue-length" title="Permanent link">&para;</a></h4>
 <p>Returns the total number of markets currently in the withdrawal queue.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawQueueLength</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A.
-* <strong>Returns:</strong> the length of the withdrawal queue.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong> N/A.</p>
+</li>
+<li>
+<p><strong>Returns:</strong> the length of the withdrawal queue.</p>
+</li>
+</ul>
 <h4 id="10-maximum-deposit"><strong>10. Maximum Deposit</strong><a class="headerlink" href="#10-maximum-deposit" title="Permanent link">&para;</a></h4>
 <p>Returns the maximum amount of assets that can be deposited into the vault.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxDeposit</span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>address:</code> the address of the depositor. 
-* <strong>Returns:</strong> the maximum amount of assets that can be deposited.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>address:</code> the address of the depositor. </li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the maximum amount of assets that can be deposited.</p>
+</li>
+</ul>
 <h4 id="11-maximum-mint"><strong>11. Maximum Mint</strong><a class="headerlink" href="#11-maximum-mint" title="Permanent link">&para;</a></h4>
 <p>Returns the maximum number of shares that can be minted, corresponding to maxDeposit, with the asset amount converted into shares.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxMint</span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>address:</code> the address of the minter.
-* <strong>Returns:</strong> the maximum number of shares that can be minted.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>address:</code> the address of the minter.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the maximum number of shares that can be minted.</p>
+</li>
+</ul>
 <h4 id="12-maximum-withdraw"><strong>12. Maximum Withdraw</strong><a class="headerlink" href="#12-maximum-withdraw" title="Permanent link">&para;</a></h4>
 <p>Returns the maximum amount of assets that a user can withdraw from the vault.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxWithdraw</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>owner:</code> the address of the user whose withdrawable balance is being queried.
-* <strong>Returns:</strong> 
-    * <code>assets:</code> the maximum amount of assets that can be withdrawn by the specified user.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>owner:</code> the address of the user whose withdrawable balance is being queried.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> </p>
+<ul>
+<li><code>assets:</code> the maximum amount of assets that can be withdrawn by the specified user.</li>
+</ul>
+</li>
+</ul>
 <h4 id="13-maximum-redeem"><strong>13. Maximum Redeem</strong><a class="headerlink" href="#13-maximum-redeem" title="Permanent link">&para;</a></h4>
 <p>Returns the maximum number of shares that a user can redeem from the vault.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">maxRedeem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>owner:</code>  the address of the user whose redeemable shares are being queried.
-* <strong>Returns:</strong> the maximum number of shares that can be redeemed by the specified user.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>owner:</code>  the address of the user whose redeemable shares are being queried.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the maximum number of shares that can be redeemed by the specified user.</p>
+</li>
+</ul>
 <p><br> </p>
 <h3 id="trx-provider"><strong>TRX Provider</strong><a class="headerlink" href="#trx-provider" title="Permanent link">&para;</a></h3>
 <p>Since both the Moolah Market and MoolahVault operate with TRC20 tokens, WTRX is used as a wrapped version of TRX. Users can interact directly with TRX through the TRXProvider, which internally handles the conversion between TRX and WTRX before executing the corresponding operations in the market or vault.</p>
@@ -2213,12 +2533,22 @@
 
 <span class="c1">// Deposit with a specified vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
-    * <code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.
-* <strong>Returns:</strong>
-    * <code>shares:</code> the number of vault shares minted for the receiver based on the amount of TRX (converted to WTRX) deposited into the specified vault.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.</li>
+<li><code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>shares:</code> the number of vault shares minted for the receiver based on the amount of TRX (converted to WTRX) deposited into the specified vault.</li>
+</ul>
+</li>
+</ul>
 <h4 id="2-mint"><strong>2. Mint</strong><a class="headerlink" href="#2-mint" title="Permanent link">&para;</a></h4>
 <p>This function stakes TRX similar to the deposit function, but instead of specifying the asset amount, users specify the number of shares they wish to mint. The TRXProvider converts the provided TRX into WTRX and deposits it into the vault.
 <div class="highlight"><pre><span></span><code><span class="c1">// Mint without specifying a vault</span>
@@ -2226,13 +2556,23 @@
 
 <span class="c1">// Mint with a specified vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
-    * <code>shares:</code> the number of vault shares to mint.
-    * <code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.
-* <strong>Returns:</strong>
-    * <code>assets:</code> the amount of TRX (converted to WTRX) required to mint the specified number of shares.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.</li>
+<li><code>shares:</code> the number of vault shares to mint.</li>
+<li><code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>assets:</code> the amount of TRX (converted to WTRX) required to mint the specified number of shares.</li>
+</ul>
+</li>
+</ul>
 <h4 id="3-withdraw"><strong>3. Withdraw</strong><a class="headerlink" href="#3-withdraw" title="Permanent link">&para;</a></h4>
 <p>Withdraws TRX. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
 <div class="highlight"><pre><span></span><code><span class="c1">// Withdraw without specifying a vault</span>
@@ -2240,14 +2580,24 @@
 
 <span class="c1">// Withdraw with a specified vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
-    * <code>assets:</code> the amount of TRX to withdraw (converted from WTRX).
-    * <code>receiver:</code> the address that will receive the withdrawn TRX.
-    * <code>owner:</code> the address that owns the withdrawn assets (payer of the shares).
-* <strong>Returns:</strong>
-    * <code>shares:</code> the number of shares burned in exchange for the specified amount of TRX.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.</li>
+<li><code>assets:</code> the amount of TRX to withdraw (converted from WTRX).</li>
+<li><code>receiver:</code> the address that will receive the withdrawn TRX.</li>
+<li><code>owner:</code> the address that owns the withdrawn assets (payer of the shares).</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>shares:</code> the number of shares burned in exchange for the specified amount of TRX.</li>
+</ul>
+</li>
+</ul>
 <h4 id="4-redeem"><strong>4. Redeem</strong><a class="headerlink" href="#4-redeem" title="Permanent link">&para;</a></h4>
 <p>Withdraws TRX. Similar to withdrawal, but instead of specifying the withdrawal amount, the user specifies the number of shares to redeem. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
 <div class="highlight"><pre><span></span><code><span class="c1">// Redeem without specifying a vault</span>
@@ -2255,85 +2605,153 @@
 
 <span class="c1">// Redeem with a specified vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">redeem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">vault</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>valut:</code> the address of the vault from which WTRX will be redeemed. If not specified, the default vault is used.
-    * <code>shares:</code> the number of shares to redeem.
-    * <code>receiver:</code> the address that will receive the redeemed TRX.
-    * <code>owner:</code> the address that owns the redeemed shares.
-* <strong>Returns:</strong>
-    * <code>assets:</code> the amount of TRX received from redeeming the specified shares.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>valut:</code> the address of the vault from which WTRX will be redeemed. If not specified, the default vault is used.</li>
+<li><code>shares:</code> the number of shares to redeem.</li>
+<li><code>receiver:</code> the address that will receive the redeemed TRX.</li>
+<li><code>owner:</code> the address that owns the redeemed shares.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>assets:</code> the amount of TRX received from redeeming the specified shares.</li>
+</ul>
+</li>
+</ul>
 <h4 id="5-borrow"><strong>5. Borrow</strong><a class="headerlink" href="#5-borrow" title="Permanent link">&para;</a></h4>
 <p>Borrows TRX from the specified market. The TRXProvider interacts with the underlying vault and market contracts to withdraw the corresponding WTRX, converts it to TRX, and sends it to the user.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_shares</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
-    * <code>assets:</code> the amount of TRX to borrow.
-    * <code>shares:</code> the corresponding share amount representing the borrowed position.
-    * <code>onBehalf:</code> the address on whose behalf the borrowing is executed.
-    * <code>receiver:</code> the address that will receive the borrowed TRX.
-* <strong>Returns:</strong>
-    * <code>_assets:</code> the actual amount of TRX borrowed.
-    * <code>_shares:</code> the number of shares corresponding to the borrowed assets.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).</li>
+<li><code>assets:</code> the amount of TRX to borrow.</li>
+<li><code>shares:</code> the corresponding share amount representing the borrowed position.</li>
+<li><code>onBehalf:</code> the address on whose behalf the borrowing is executed.</li>
+<li><code>receiver:</code> the address that will receive the borrowed TRX.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>_assets:</code> the actual amount of TRX borrowed.</li>
+<li><code>_shares:</code> the number of shares corresponding to the borrowed assets.</li>
+</ul>
+</li>
+</ul>
 <h4 id="6-repay"><strong>6. Repay</strong><a class="headerlink" href="#6-repay" title="Permanent link">&para;</a></h4>
 <p>Repays borrowed TRX. When a user repays, the TRXProvider converts the sent TRX into WTRX internally and uses it to repay the corresponding market debt.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repay</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_shares</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
-    * <code>assets:</code> the amount of TRX to repay.
-    * <code>shares:</code> the share amount corresponding to the repaid assets.
-    * <code>onBehalf:</code> the address on whose behalf the repayment is made.
-    * <code>data:</code> additional data that can be used for callback or custom logic.
-* <strong>Returns:</strong>
-    * <code>_assets:</code> the actual amount of TRX repaid.
-    * <code>_shares:</code> the number of shares corresponding to the repaid amount.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).</li>
+<li><code>assets:</code> the amount of TRX to repay.</li>
+<li><code>shares:</code> the share amount corresponding to the repaid assets.</li>
+<li><code>onBehalf:</code> the address on whose behalf the repayment is made.</li>
+<li><code>data:</code> additional data that can be used for callback or custom logic.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>_assets:</code> the actual amount of TRX repaid.</li>
+<li><code>_shares:</code> the number of shares corresponding to the repaid amount.</li>
+</ul>
+</li>
+</ul>
 <h4 id="7-supply-collateral"><strong>7. Supply Collateral</strong><a class="headerlink" href="#7-supply-collateral" title="Permanent link">&para;</a></h4>
 <p>Supplies TRX as collateral. When a user provides collateral in TRX, the TRXProvider automatically wraps TRX into WTRX and deposits it into the corresponding market as collateral.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
-    * <code>onBehalf:</code> the address on whose behalf the collateral is supplied.
-    * <code>data:</code> additional data that can be used for callback or custom logic.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).</li>
+<li><code>onBehalf:</code> the address on whose behalf the collateral is supplied.</li>
+<li><code>data:</code> additional data that can be used for callback or custom logic.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <h4 id="8-withdraw-collateral"><strong>8. Withdraw Collateral</strong><a class="headerlink" href="#8-withdraw-collateral" title="Permanent link">&para;</a></h4>
 <p>Withdraws TRX collateral. When a user withdraws collateral, the TRXProvider retrieves WTRX from the market, unwraps it into TRX, and transfers it to the specified receiver.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).
-    * <code>assets:</code> the amount of collateral (in TRX) to withdraw.
-    * <code>onBehalf:</code> the address from which the collateral is withdrawn.
-    * <code>receiver:</code> the address that receives the withdrawn TRX.
-* <strong>Returns:</strong> None, reverts on error.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the parameters identifying the market (including borrowable asset, collateral asset, oracle, interest rate model, and liquidation factor).</li>
+<li><code>assets:</code> the amount of collateral (in TRX) to withdraw.</li>
+<li><code>onBehalf:</code> the address from which the collateral is withdrawn.</li>
+<li><code>receiver:</code> the address that receives the withdrawn TRX.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None, reverts on error.</p>
+</li>
+</ul>
 <p><br> </p>
 <h3 id="resilient-oracle"><strong>Resilient Oracle</strong><a class="headerlink" href="#resilient-oracle" title="Permanent link">&para;</a></h3>
 <p>The Resilient Oracle is an aggregated price feed contract that supports configuring up to three price sources (in Chainlink API format) for each token. It allows querying the price of any token, with a precision of 18 decimals.</p>
 <h4 id="1-peek"><strong>1. Peek</strong><a class="headerlink" href="#1-peek" title="Permanent link">&para;</a></h4>
 <p>Retrieves the price of a specified token.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">peek</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">asset</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>asset:</code> the token address to query.
-* <strong>Returns:</strong> the current price of the token (with 18-decimal precision).</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>asset:</code> the token address to query.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the current price of the token (with 18-decimal precision).</p>
+</li>
+</ul>
 <p><br> </p>
 <h3 id="interest-rate-model"><strong>Interest Rate Model</strong><a class="headerlink" href="#interest-rate-model" title="Permanent link">&para;</a></h3>
 <p>JustLend DAO SBM V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO SBM V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.</p>
 <h4 id="1-default-targetutilization"><strong>1. Default TargetUtilization</strong><a class="headerlink" href="#1-default-targetutilization" title="Permanent link">&para;</a></h4>
 <p>This value defines the optimal utilization level that the interest rate model aims to maintain. Under normal circumstances, it remains constant and only changes when the underlying interest rate model implementation is replaced.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">defaultTargetUtilization</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">int256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong> N/A.
-* <strong>Returns:</strong> the default target utilization rate of the market.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong> N/A.</p>
+</li>
+<li>
+<p><strong>Returns:</strong> the default target utilization rate of the market.</p>
+</li>
+</ul>
 <h4 id="2-target-utilization"><strong>2. Target Utilization</strong><a class="headerlink" href="#2-target-utilization" title="Permanent link">&para;</a></h4>
 <p>If the market has a non-zero target utilization rate configured, that value is returned. Otherwise, the function returns the default target utilization rate.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">targetUtilization</span><span class="p">(</span>Id<span class="w"> </span>id<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">int256</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>id:</code> the unique identifier of the market. <br />
-<em> </em><em>Returns:</em>* the target utilization rate for a specific market.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>id:</code> the unique identifier of the market.   </li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> the target utilization rate for a specific market.</p>
+</li>
+</ul>
 
 
 
