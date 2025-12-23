@@ -1471,22 +1471,36 @@
 <p><strong>Dynamic Rate Updates:</strong> As tokens are supplied, borrowed, repaid, or withdrawn from the liquidity pool, interest rates are updated in real time. These adjustments are guided by on-chain data, including token balances, oracle-determined prices, and the borrow utilization ratio.</p>
 <h3 id="how-do-i-supply-assets"><strong>How Do I Supply Assets</strong><a class="headerlink" href="#how-do-i-supply-assets" title="Permanent link">&para;</a></h3>
 <p>Supplying can be done with a user interface <a href="https://app.justlend.org/homeNew?lang=en-US">SBM V1</a> or SBM V2. Before we walk through the steps of a supplying sequence, let’s cover some key parameters:</p>
-<p>SBM:
-* <code>Supply APY:</code> the annual rewards from the jTokens users receive by supplying assets, which influenced by the borrow utilization rate and fluctuated by the time;
-* <code>Total Supply:</code> the total supply in the market. As the total supply changes, the Supply APY will also change accordingly;
-* <code>Suppliers:</code> the amount of users participating in the supply market.</p>
-<p>SBM V2:
-* <code>Supply APY:</code> the annualized return earned from supplying assets to the Vault. It is influenced by the market’s borrow utilization rate and may fluctuate over time;
-* <code>Total Supply:</code> the total amount of assets supplied in the market. As the total supply changes, the Supply APY will adjust accordingly;
-* <code>Collateral Support:</code> refers to the types of assets supported across the underlying Markets connected to this Vault. While you only deposit a single asset into the Vault, your liquidity may be lent out to borrowers who pledge these supported collateral tokens.</p>
+<p><strong>SBM:</strong></p>
+<ul>
+<li><code>Supply APY:</code> the annual rewards from the jTokens users receive by supplying assets, which influenced by the borrow utilization rate and fluctuated by the time;</li>
+<li><code>Total Supply:</code> the total supply in the market. As the total supply changes, the Supply APY will also change accordingly;</li>
+<li><code>Suppliers:</code> the amount of users participating in the supply market.</li>
+</ul>
+<p><strong>SBM V2:</strong></p>
+<ul>
+<li><code>Supply APY:</code> the annualized return earned from supplying assets to the Vault. It is influenced by the market’s borrow utilization rate and may fluctuate over time;</li>
+<li><code>Total Supply:</code> the total amount of assets supplied in the market. As the total supply changes, the Supply APY will adjust accordingly;</li>
+<li><code>Collateral Support:</code> refers to the types of assets supported across the underlying Markets connected to this Vault. While you only deposit a single asset into the Vault, your liquidity may be lent out to borrowers who pledge these supported collateral tokens.</li>
+</ul>
 <h4 id="supply-assets">Supply Assets<a class="headerlink" href="#supply-assets" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</li>
-<li>To Supply Asset on SBM V1:</li>
-<li>Navigate to <strong>“SBM V1”</strong>, choose the asset you wish to supply, then click <strong>「Supply」</strong> in the corresponding  market.</li>
-<li>Enter the amount you want to supply and click <strong>「Supply」</strong>.</li>
-<li>To supply Asset on SBM V2:</li>
-<li>Navigate to <strong>“SBM V2”</strong>, select the asset under <strong>All Supply Vaults</strong>, then click <strong>「Details」</strong>.</li>
+<li>
+<p>To Supply Asset on SBM V1：</p>
+</li>
+<li>
+<p>Navigate to <strong>“SBM V1”</strong>, choose the asset you wish to supply, then click <strong>「Supply」</strong> in the corresponding  market.</p>
+</li>
+<li>
+<p>Enter the amount you want to supply and click <strong>「Supply」</strong>.</p>
+</li>
+<li>
+<p>To supply Asset on SBM V2:</p>
+</li>
+<li>
+<p>Navigate to <strong>“SBM V2”</strong>, select the asset under <strong>All Supply Vaults</strong>, then click <strong>「Details」</strong>.</p>
+</li>
 <li>Choose <strong>Supply</strong>, enter the supply amount, then click <strong>「Supply」</strong>.</li>
 </ol>
 <p>After the contract is successfully approved, the assets will be transferred from your wallet to the JustLend DAO protocol. Once they are borrowed by other users, they will begin generating interest. This interest will be automatically added to your Supply Balance.</p>
