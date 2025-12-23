@@ -1471,26 +1471,42 @@
 <p><strong>Liquidation Risk:</strong> Borrowers face liquidation if their risk value over the required threshold. To mitigate this, it’s essential to monitor collateralisation levels and maintain a healthy health factor.</p>
 <h3 id="how-do-i-borrow-assets"><strong>How Do I Borrow Assets</strong><a class="headerlink" href="#how-do-i-borrow-assets" title="Permanent link">&para;</a></h3>
 <p>Borrowing can be done with a user interface <a href="https://app.justlend.org/homeNew?lang=en-US">SBM V1</a> or SBM V2. Before we walk through the steps of a borrowing sequence, let’s cover some key parameters:</p>
-<p>SBM:
-* <code>Borrow APY:</code> the cost of borrowing assets in the JustLend DAO Protocol, which can vary based on the overall utilization of the liquidity pool;
-* <code>Total Borrow:</code> the total borrow amount in the market. As the total borrow changes, the borrow APY will also change accordingly;
-* <code>Borrowers:</code> the amount of users participating in the borrow market;
-* <code>Collateral Factor:</code> the percentage of a supplied asset’s value that can be used as borrowing power within a given market. A higher collateral factor allows users to borrow more against their deposited assets;
-* <code>Borrow limit:</code> the maximum amount of assets that can be borrowed within a specific market;
-* <code>Liquidation:</code> a borrowing account becomes insolvent when the borrow balance exceeds the amount allowed by the collateral factor. Other users can repay a portion of its outstanding borrow in exchange for a portion of its collateral, with a liquidation incentive.</p>
-<p>SBM V2:
-* <code>Borrow Rate:</code> the interest rate borrowers pay for borrowing a specific asset. It fluctuates based on the market’s borrow utilization rate — as utilization increases, the borrow rate typically rises;
-* <code>Collateral:</code> the asset a user supplies and designates as collateral to secure their borrowings. If the collateral value falls below the required threshold, liquidation may occur;
-* <code>LLTV:</code> the maximum borrowing ratio before a position becomes subject to liquidation. For example, an LLTV of 80% means liquidation will occur if the loan value reaches 80% of the collateral value;
-* <code>Liquidity:</code> the amount of assets currently available in the market for borrowing. High liquidity means more assets are available to borrow; low liquidity may indicate limited borrowing capacity.</p>
+<p><strong>SBM:</strong></p>
+<ul>
+<li><code>Borrow APY:</code> the cost of borrowing assets in the JustLend DAO Protocol, which can vary based on the overall utilization of the liquidity pool;</li>
+<li><code>Total Borrow:</code> the total borrow amount in the market. As the total borrow changes, the borrow APY will also change accordingly;</li>
+<li><code>Borrowers:</code> the amount of users participating in the borrow market;</li>
+<li><code>Collateral Factor:</code> the percentage of a supplied asset’s value that can be used as borrowing power within a given market. A higher collateral factor allows users to borrow more against their deposited assets;</li>
+<li><code>Borrow limit:</code> the maximum amount of assets that can be borrowed within a specific market;</li>
+<li><code>Liquidation:</code> a borrowing account becomes insolvent when the borrow balance exceeds the amount allowed by the collateral factor. Other users can repay a portion of its outstanding borrow in exchange for a portion of its collateral, with a liquidation incentive.</li>
+</ul>
+<p><strong>SBM V2:</strong></p>
+<ul>
+<li><code>Borrow Rate:</code> the interest rate borrowers pay for borrowing a specific asset. It fluctuates based on the market’s borrow utilization rate — as utilization increases, the borrow rate typically rises;</li>
+<li><code>Collateral:</code> the asset a user supplies and designates as collateral to secure their borrowings. If the collateral value falls below the required threshold, liquidation may occur;</li>
+<li><code>LLTV:</code> the maximum borrowing ratio before a position becomes subject to liquidation. For example, an LLTV of 80% means liquidation will occur if the loan value reaches 80% of the collateral value;</li>
+<li><code>Liquidity:</code> the amount of assets currently available in the market for borrowing. High liquidity means more assets are available to borrow; low liquidity may indicate limited borrowing capacity.</li>
+</ul>
 <h4 id="borrow-assets">Borrow Assets<a class="headerlink" href="#borrow-assets" title="Permanent link">&para;</a></h4>
 <ol>
-<li>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</li>
-<li>To borrow Asset on SBM V1:</li>
-<li>Navigate to <strong>“SBM V1”</strong>, choose the asset you wish to borrow, then click <strong>「Borrow」</strong> in the corresponding  market.</li>
-<li>Enter the borrowing amount you want to borrow, then click <strong>「Borrow」</strong> and confirm the transaction.</li>
-<li>To borrow Asset on SBM V2:</li>
-<li>Navigate to <strong>“SBM V2”</strong>, select the market under <strong>All Borrow Markets</strong>, then click <strong>「Details」</strong>.</li>
+<li>
+<p>Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO (<a href="https://justlend.org">https://justlend.org</a>).</p>
+</li>
+<li>
+<p>To borrow Asset on SBM V1:</p>
+</li>
+<li>
+<p>Navigate to <strong>“SBM V1”</strong>, choose the asset you wish to borrow, then click <strong>「Borrow」</strong> in the corresponding  market.</p>
+</li>
+<li>
+<p>Enter the borrowing amount you want to borrow, then click <strong>「Borrow」</strong> and confirm the transaction.</p>
+</li>
+<li>
+<p>To borrow Asset on SBM V2:</p>
+</li>
+<li>
+<p>Navigate to <strong>“SBM V2”</strong>, select the market under <strong>All Borrow Markets</strong>, then click <strong>「Details」</strong>.</p>
+</li>
 <li>
 <p>Choose <strong>Borrow/Collateralize</strong>, enter the borrowed amount and collateral amount.</p>
 <ul>
