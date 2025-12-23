@@ -1777,25 +1777,39 @@
 <h4 id="1-supply"><strong>1. Supply</strong><a class="headerlink" href="#1-supply" title="Permanent link">&para;</a></h4>
 <p>The supply function allows users to provide liquidity to the market for lending.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supply</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsSupplied</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesSupplied</span><span class="p">)</span>
-</code></pre></div>
-* <strong>Parameter description:</strong>
-    * <code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
-    * <code>assets:</code> the amount of tokens the user wants to supply to the market.
-    * <code>shares:</code> the number of supply shares to mint corresponding to the deposited assets.
-    * <code>onBehalf:</code> the address that will receive the supply shares. This allows users to supply assets on behalf of another account.
-    * <code>data:</code> additional encoded data for interaction logic or integrations.
-* <strong>Returns:</strong>
-    * <code>assetsSupplied:</code> the actual amount of tokens supplied.
-    * <code>sharesSupplied:</code> the actual number of supply shares minted corresponding to the supplied assets.</p>
+</code></pre></div></p>
+<ul>
+<li>
+<p><strong>Parameter description:</strong></p>
+<ul>
+<li><code>marketParams:</code> the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).</li>
+<li><code>assets:</code> the amount of tokens the user wants to supply to the market.</li>
+<li><code>shares:</code> the number of supply shares to mint corresponding to the deposited assets.</li>
+<li><code>onBehalf:</code> the address that will receive the supply shares. This allows users to supply assets on behalf of another account.</li>
+<li><code>data:</code> additional encoded data for interaction logic or integrations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>assetsSupplied:</code> the actual amount of tokens supplied.</li>
+<li><code>sharesSupplied:</code> the actual number of supply shares minted corresponding to the supplied assets.</li>
+</ul>
+</li>
+</ul>
 <p><strong>Event</strong>
 <div class="highlight"><pre><span></span><code>Supply<span class="p">(</span>Id<span class="w"> </span>indexed<span class="w"> </span>id<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>caller<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>onBehalf<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
-</code></pre></div>
-* This event is emitted when assets are supplied to a market.
-    * <code>id:</code> the unique market identifier (bytes32), representing the market where the supply occurred.
-    * <code>caller:</code> the address that submitted the transaction.
-    * <code>onBehalf:</code> the address on whose behalf the assets were supplied, the supply shares are credited to this address.
-    * <code>assets:</code> the amount of tokens supplied to the market.
-    * <code>shares:</code> the number of supply shares minted corresponding to the supplied assets.</p>
+</code></pre></div></p>
+<ul>
+<li>This event is emitted when assets are supplied to a market.<ul>
+<li><code>id:</code> the unique market identifier (bytes32), representing the market where the supply occurred.</li>
+<li><code>caller:</code> the address that submitted the transaction.</li>
+<li><code>onBehalf:</code> the address on whose behalf the assets were supplied, the supply shares are credited to this address.</li>
+<li><code>assets:</code> the amount of tokens supplied to the market.</li>
+<li><code>shares:</code> the number of supply shares minted corresponding to the supplied assets.</li>
+</ul>
+</li>
+</ul>
 <h4 id="2-withdraw"><strong>2. Withdraw</strong><a class="headerlink" href="#2-withdraw" title="Permanent link">&para;</a></h4>
 <p>The withdraw  function allows users to withdraw the previously supplied liquidity from the market.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span>MarketParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetsWithdrawn</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharesWithdrawn</span><span class="p">)</span>
