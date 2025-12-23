@@ -164,12 +164,14 @@ The supply function allows users to provide liquidity to the market for lending.
 ``` solidity
 function supply(MarketParams memory marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external returns (uint256 assetsSupplied, uint256 sharesSupplied)
 ```
+
 * **Parameter description:**
     * `marketParams:` the configuration parameters of the target market (includes loan token, collateral token, oracle, interest rate model, and LTV ratio).
     * `assets:` the amount of tokens the user wants to supply to the market.
     * `shares:` the number of supply shares to mint corresponding to the deposited assets.
     * `onBehalf:` the address that will receive the supply shares. This allows users to supply assets on behalf of another account.
     * `data:` additional encoded data for interaction logic or integrations.
+
 * **Returns:**
     * `assetsSupplied:` the actual amount of tokens supplied.
     * `sharesSupplied:` the actual number of supply shares minted corresponding to the supplied assets.
@@ -178,6 +180,7 @@ function supply(MarketParams memory marketParams, uint256 assets, uint256 shares
 ``` solidity
 Supply(Id indexed id, address indexed caller, address indexed onBehalf, uint256 assets, uint256 shares)
 ```
+
 * This event is emitted when assets are supplied to a market.
     * `id:` the unique market identifier (bytes32), representing the market where the supply occurred.
     * `caller:` the address that submitted the transaction.
