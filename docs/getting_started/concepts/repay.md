@@ -7,14 +7,14 @@ Borrowers can repay their loans using the same tokens they borrowed or through j
 * Repayment allows borrowers to safely withdraw a portion of their collateral, offering greater flexibility in managing their assets.
 
 ### **How Do I Repay Assets**
-1. Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
-2. To Repay Asset on SBM V1:
-* Navigate to **“SBM V1”**, choose the asset you wish to repay, then click **「Repay」** under borrowed assets;
-* Enter the amount you want to repay, then click **「Repay」** and confirm the transaction.
-3. To Repay Asset on SBM V2:
-* Navigate to **“SBM V2”**, select the repay asset under **All Borrow Markets**, then click **「Details」**.
-* Choose **Repay/Redeem**, enter the repay amount and redeem amount.
-  
-    * You may choose to complete only the Repay operation first. After entering the amount, then click **「Repay」**.
-    * You may also complete only the Redeem operation, but ensure that your Risk Level remains within a healthy range, then click **「Redeem」**.
-    * Alternatively, you can complete both Repay and Redeem operations simultaneously. In this case, also make sure your Risk Level stays within a healthy range, then click **「Repay & Redeem」**.
+
+* Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
+* To Repay Asset on SBM V1:
+    * Navigate to **“SBM V1”**, choose the asset you wish to repay, then click **「Repay」** under borrowed assets;
+    * Enter the amount you want to repay, then click **「Repay」** and confirm the transaction.
+* To Repay Asset on SBM V2:
+    * Navigate to **“SBM V2”**, select the repay asset under **All Borrow Markets**, then click **「Details」**.
+    * Choose **Repay/Redeem**, enter the repay amount and redeem amount.
+        * You may choose to complete only the Repay operation first. After entering the amount, then click **「Repay」**.
+        * You may also complete only the Redeem operation, but ensure that your Risk Level remains within a healthy range, then click **「Redeem」**.
+        * Alternatively, you can complete both Repay and Redeem operations simultaneously. In this case, also make sure your Risk Level stays within a healthy range, then click **「Repay & Redeem」**.
