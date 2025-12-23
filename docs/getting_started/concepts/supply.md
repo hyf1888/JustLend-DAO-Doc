@@ -27,15 +27,13 @@ Supplying can be done with a user interface [SBM V1](https://app.justlend.org/ho
 
 
 #### Supply Assets
-1. Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
-2. To Supply Asset on SBM V1：
-   
-  * Navigate to **“SBM V1”**, choose the asset you wish to supply, then click **「Supply」** in the corresponding  market.
-  * Enter the amount you want to supply and click **「Supply」**.
-  
-3. To supply Asset on SBM V2:
 
-  * Navigate to **“SBM V2”**, select the asset under **All Supply Vaults**, then click **「Details」**.
-  * Choose **Supply**, enter the supply amount, then click **「Supply」**.
+* Connect your Web3 wallet on TronLink or other supported wallet app to the JustLend DAO ([https://justlend.org](https://justlend.org)).
+* To Supply Asset on SBM V1：
+    * Navigate to **“SBM V1”**, choose the asset you wish to supply, then click **「Supply」** in the corresponding  market.
+    * Enter the amount you want to supply and click **「Supply」**.
+* To supply Asset on SBM V2:
+    * Navigate to **“SBM V2”**, select the asset under **All Supply Vaults**, then click **「Details」**.
+    * Choose **Supply**, enter the supply amount, then click **「Supply」**.
 
 After the contract is successfully approved, the assets will be transferred from your wallet to the JustLend DAO protocol. Once they are borrowed by other users, they will begin generating interest. This interest will be automatically added to your Supply Balance.
