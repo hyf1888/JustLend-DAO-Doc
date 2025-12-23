@@ -1673,12 +1673,14 @@
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">borrowShares</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">collateral</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-* <code>supplyShares:</code> the number of shares representing the assets a user has supplied to the market.
-* <code>borrowShares:</code> the number of shares representing the assets a user has borrowed from the market.
-* <code>collateral:</code> the amount of assets a user has deposited as collateral in the market.</p>
+</code></pre></div></p>
+<ul>
+<li><code>supplyShares:</code> the number of shares representing the assets a user has supplied to the market.</li>
+<li><code>borrowShares:</code> the number of shares representing the assets a user has borrowed from the market.</li>
+<li><code>collateral:</code> the amount of assets a user has deposited as collateral in the market.</li>
+</ul>
 <h3 id="2-market"><strong>2. Market</strong><a class="headerlink" href="#2-market" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Market</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Market</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalSupplyAssets</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalSupplyShares</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">totalBorrowAssets</span><span class="p">;</span>
@@ -1687,15 +1689,17 @@
 <span class="w">  </span><span class="kt">uint128</span><span class="w"> </span><span class="nv">fee</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-* <code>totalSupplyAssets:</code> the total amount of assets supplied to the market and available for lending.
-* <code>totalSupplyShares:</code> the total number of supply shares in the market.
-* <code>totalBorrowAssets:</code> the total amount of assets borrowed from the market.
-* <code>totalBorrowShares:</code> the total number of borrowed shares in the market.
-* <code>lastUpdate:</code> the timestamp of the last market state update.
-* <code>fee:</code> the fee rate charged by the market.</p>
+<ul>
+<li><code>totalSupplyAssets:</code> the total amount of assets supplied to the market and available for lending.</li>
+<li><code>totalSupplyShares:</code> the total number of supply shares in the market.</li>
+<li><code>totalBorrowAssets:</code> the total amount of assets borrowed from the market.</li>
+<li><code>totalBorrowShares:</code> the total number of borrowed shares in the market.</li>
+<li><code>lastUpdate:</code> the timestamp of the last market state update.</li>
+<li><code>fee:</code> the fee rate charged by the market.</li>
+</ul>
 <p><strong>Relationship between assets and shares:</strong> At the beginning, one token corresponds to one share. Over time, as the market generates interest income, the total amount of tokens increases while the total number of shares remains constant. Consequently, each share becomes redeemable for more tokens, allowing users to earn yield when they withdraw their funds.</p>
 <h3 id="3-marketparams"><strong>3. MarketParams</strong><a class="headerlink" href="#3-marketparams" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketParams</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketParams</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">address</span><span class="w"> </span><span class="nv">loanToken</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralToken</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">address</span><span class="w"> </span><span class="nv">oracle</span><span class="p">;</span>
@@ -1703,11 +1707,13 @@
 <span class="w">  </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lltv</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-* <code>loanToken:</code> the address of the token used for borrowing.
-* <code>collateralToken:</code> the address of the token used as collateral.
-* <code>oracle:</code> the address of the price oracle contract.
-* <code>irm:</code> the address of the interest rate model contract.
-* <code>lltv:</code> the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.</p>
+<ul>
+<li><code>loanToken:</code> the address of the token used for borrowing.</li>
+<li><code>collateralToken:</code> the address of the token used as collateral.</li>
+<li><code>oracle:</code> the address of the price oracle contract.</li>
+<li><code>irm:</code> the address of the interest rate model contract.</li>
+<li><code>lltv:</code> the loan-to-value ratio (LTV) that determines the maximum borrowing limit based on the collateral value.</li>
+</ul>
 <h3 id="4-marketconfig"><strong>4. MarketConfig</strong><a class="headerlink" href="#4-marketconfig" title="Permanent link">&para;</a></h3>
 <p>Represents the configuration of each market within the vault.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketConfig</span><span class="w"> </span><span class="p">{</span>
@@ -1716,20 +1722,24 @@
 <span class="w">  </span>MarketType<span class="w"> </span>marketType<span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64</span><span class="w"> </span><span class="nv">removableAt</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-* <code>cap:</code> the maximum amount of assets that the vault can supply to this market.
-* <code>enabled:</code> indicates whether the market is active; serves as a switch to control whether investments can be made to the market.
-* <code>marketType:</code> the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.
-* <code>removableAt:</code> a timestamp indicating when the market can be immediately removed from the withdrawal queue.</p>
+</code></pre></div></p>
+<ul>
+<li><code>cap:</code> the maximum amount of assets that the vault can supply to this market.</li>
+<li><code>enabled:</code> indicates whether the market is active; serves as a switch to control whether investments can be made to the market.</li>
+<li><code>marketType:</code> the type of the market. This is used for compatibility with other lending protocols. Currently, only the Moolah market type is supported.</li>
+<li><code>removableAt:</code> a timestamp indicating when the market can be immediately removed from the withdrawal queue.</li>
+</ul>
 <h3 id="5-marketallocation"><strong>5. MarketAllocation</strong><a class="headerlink" href="#5-marketallocation" title="Permanent link">&para;</a></h3>
 <p>Used when reallocating asset investments across different markets.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketAllocation</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span>MarketParams<span class="w"> </span>marketParams<span class="p">;</span>
 <span class="w">  </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-* <code>marketParams:</code> specifies the target market to which the allocation is applied.
-* <code>assets:</code> the amount of assets allocated to the specified market.</p>
+</code></pre></div></p>
+<ul>
+<li><code>marketParams:</code> specifies the target market to which the allocation is applied.</li>
+<li><code>assets:</code> the amount of assets allocated to the specified market.</li>
+</ul>
 <h3 id="6-authorization"><strong>6. Authorization</strong><a class="headerlink" href="#6-authorization" title="Permanent link">&para;</a></h3>
 <p>The Authorization struct represents the data required to grant or revoke authorization for a specific address.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Authorization</span><span class="w"> </span><span class="p">{</span>
@@ -1739,12 +1749,14 @@
 <span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">nonce</span><span class="p">;</span><span class="w">        </span>
 <span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">deadline</span><span class="p">;</span><span class="w">    </span>
 <span class="p">}</span>
-</code></pre></div>
-* <code>authorizer:</code> the address that is granting authorization or revocation.
-* <code>authorized:</code> the address that is being granted or revoked the authorization.
-* <code>isAuthorized:</code> a boolean indicating whether the authorization is being granted (true) or revoked (false).
-* <code>nonce:</code> a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.
-* <code>deadline:</code> a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.</p>
+</code></pre></div></p>
+<ul>
+<li><code>authorizer:</code> the address that is granting authorization or revocation.</li>
+<li><code>authorized:</code> the address that is being granted or revoked the authorization.</li>
+<li><code>isAuthorized:</code> a boolean indicating whether the authorization is being granted (true) or revoked (false).</li>
+<li><code>nonce:</code> a unique number to prevent replay attacks. This value must be incremented each time a new authorization is signed.</li>
+<li><code>deadline:</code> a timestamp indicating when the authorization will expire. If the current block timestamp exceeds this value, the authorization is no longer valid.</li>
+</ul>
 <h3 id="7-signature"><strong>7. Signature</strong><a class="headerlink" href="#7-signature" title="Permanent link">&para;</a></h3>
 <p>The Signature struct represents the ECDSA (Elliptic Curve Digital Signature Algorithm) signature used to verify that a particular authorization was signed by the authorizer.
 <div class="highlight"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Signature</span><span class="w"> </span><span class="p">{</span>
@@ -1752,10 +1764,12 @@
 <span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">r</span><span class="p">;</span><span class="w">    </span>
 <span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">s</span><span class="p">;</span><span class="w">   </span>
 <span class="p">}</span>
-</code></pre></div>
-* <code>v:</code> the recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.
-* <code>r:</code> the "r" component of the ECDSA signature, which is derived from the elliptic curve.
-* <code>s:</code> the "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.</p>
+</code></pre></div></p>
+<ul>
+<li><code>v:</code> the recovery id (0 or 1) used to recover the public key from the signature. It indicates which of the two possible curve points was used for signing.</li>
+<li><code>r:</code> the "r" component of the ECDSA signature, which is derived from the elliptic curve.</li>
+<li><code>s:</code> the "s" component of the ECDSA signature, which is another part of the signature that helps uniquely identify it.</li>
+</ul>
 <p><br></p>
 <h2 id="contracts-abi"><strong>Contracts ABI</strong><a class="headerlink" href="#contracts-abi" title="Permanent link">&para;</a></h2>
 <h3 id="moolah-market"><strong>Moolah Market</strong><a class="headerlink" href="#moolah-market" title="Permanent link">&para;</a></h3>
