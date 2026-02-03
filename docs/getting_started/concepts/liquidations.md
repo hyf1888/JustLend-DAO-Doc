@@ -51,7 +51,7 @@ Before starting, ensure you have met the following requirements:
 
 * **Step 1: Monitor High-Risk Accounts**
 
-Navigate to the [Liquidation Page](https://app.justlend.org/liquidate?lang=en-US) on the JustLend DAO official website. Review the list of accounts with a **Risk Value exceeding 95**. These are potential candidates for liquidation.
+    Navigate to the [Liquidation Page](https://app.justlend.org/liquidate?lang=en-US) on the JustLend DAO official website. Review the list of accounts with a **Risk Value exceeding 95**. These are   potential candidates for liquidation.
 
 * **Step 2: Select a Target Account**
 
