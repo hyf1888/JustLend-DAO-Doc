@@ -40,14 +40,14 @@ This manual provides a step-by-step guide for participating in the liquidation p
 * **Observation Threshold:** Accounts with a **Risk Value > 95** will be listed on the Liquidation page.
 * **Liquidation Threshold:** Liquidation becomes executable only when the Risk Value is ≥ 100.
 
-#### 1. Preparation
+#### 1. **Preparation**
 
 Before starting, ensure you have met the following requirements:
 
 * **Wallet Connection:**  Connect your compatible wallet (e.g., TronLink) to the JustLend [Liquidation Page](https://app.justlend.org/liquidate?lang=en-US).
 * **Token Reserves:** Identify the specific debt token of the target borrower. You must have **sufficient balances** of that specific token in your wallet to cover the repayment.
 
-#### 2. Step-by-Step Liquidation Process
+#### 2. **Liquidation Process**
 
 * **Monitor High-Risk Accounts:** Navigate to the [Liquidation Page](https://app.justlend.org/liquidate?lang=en-US) on the JustLend DAO official website. Review the list of accounts with a **Risk Value exceeding 95**. These are   potential candidates for liquidation.
 
@@ -65,7 +65,7 @@ Before starting, ensure you have met the following requirements:
 
 * **Receive Liquidation Rewards:** Once the transaction is confirmed on-chain, the debt is partially or fully repaid on behalf of the borrower. The corresponding collateral, including the reward, will be automatically transferred to your account.
 
-#### 3. Critical Reminders
+#### 3. **Critical Reminders**
 
 * **First-Come, First-Served:** Liquidation is a competitive process. Multiple liquidators may target the same account simultaneously.
 * **Accuracy:** Always double-check the debt token type before the transaction to avoid execution failure due to insufficient specific token balances.
