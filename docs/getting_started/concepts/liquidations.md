@@ -55,24 +55,23 @@ Before starting, ensure you have met the following requirements:
 
 * **Step 2: Select a Target Account**
 
-Identify an account where the **Risk Value is ≥ 100**. At this stage, the「Liquidate」button will become active and clickable.
+    Identify an account where the **Risk Value is ≥ 100**. At this stage, the **「Liquidate」** button will become active and clickable.
 
 * **Step 3: Configure Liquidation Parameters**
 
-Click the「Liquidate」button. A pop-up window will appear displaying:
-    - The type and amount of collateral you will get.
-    - The type and amount of debt to be repaid.
-    - Select the asset you wish to repay and the collateral you wish to seize.
+    Click the **「Liquidate」** button. A pop-up window will appear displaying:
+        - The type and amount of collateral you will get.
+        - The type and amount of debt to be repaid.
+        - Select the asset you wish to repay and the collateral you wish to seize.
 
 * **Step 4: Execute the Transaction**
 
-Confirm the repayment amount. The system will prompt you to sign the transaction via your wallet.
-
-    - **Note:** Ensure your wallet has enough TRX to cover the energy/bandwidth fees for the smart contract execution.
+    Confirm the repayment amount. The system will prompt you to sign the transaction via your wallet.
+            - **Note:** Ensure your wallet has enough TRX to cover the energy/bandwidth fees for the smart contract execution.
 
 * **Step 5: Receive Liquidation Rewards**
 
-Once the transaction is confirmed on-chain, the debt is partially or fully repaid on behalf of the borrower. The corresponding collateral, including the reward, will be automatically transferred to your account.
+    Once the transaction is confirmed on-chain, the debt is partially or fully repaid on behalf of the borrower. The corresponding collateral, including the reward, will be automatically transferred to your account.
 
 #### 3. Critical Reminders
 
