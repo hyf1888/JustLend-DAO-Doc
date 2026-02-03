@@ -57,7 +57,8 @@ Before starting, ensure you have met the following requirements:
 
     * The type and amount of collateral you will get.
     * The type and amount of debt to be repaid.
-  Select the asset you wish to repay and the collateral you wish to claim, then enter the repayment amount.
+      
+    Select the asset you wish to repay and the collateral you wish to claim, then enter the repayment amount.
 
 * **Execute the Transaction:** Confirm the repayment amount. The system will prompt you to sign the transaction via your wallet.
     
