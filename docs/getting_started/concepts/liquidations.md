@@ -35,7 +35,7 @@ By proceeding to use the liquidation tool, you confirm that you have read, under
 
 ## **Liquidation Manual**
 
-This manual provides a step-by-step guide for participating in the liquidation process on the JustLend DAO platform to maintain market stability and earn liquidation rewards. Liquidation is triggered when a borrower's **Risk Value** exceeds a critical threshold. As a liquidator, you repay the borrower's debt in exchange for their collateral at a discounted rate, effectively earning a **liquidation reward**.
+This manual provides a step-by-step guide for participating in the liquidation process on the JustLend DAO platform to maintain market stability and earn liquidation rewards. Liquidation can be triggered when a borrower's **Risk Value** exceeds a critical threshold. As a liquidator, you repay the borrower's debt in exchange for their collateral at a discounted rate, effectively earning a **liquidation reward**.
 
 * **Observation Threshold:** Accounts with a **Risk Value > 95** will be listed on the Liquidation page.
 * **Liquidation Threshold:** Liquidation becomes executable only when the Risk Value is ≥ 100.
@@ -57,7 +57,7 @@ Before starting, ensure you have met the following requirements:
 
     * The type and amount of collateral you will get.
     * The type and amount of debt to be repaid.
-    * Select the asset you wish to repay and the collateral you wish to seize.
+  Select the asset you wish to repay and the collateral you wish to claim, then enter the repayment amount.
 
 * **Execute the Transaction:** Confirm the repayment amount. The system will prompt you to sign the transaction via your wallet.
     
