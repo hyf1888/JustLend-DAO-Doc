@@ -1132,6 +1132,15 @@
   
 </li>
       
+        <li class="md-nav__item ">
+  <a href="#liquidation-process" class="md-nav__link" >
+    <span class="md-ellipsis">
+      Liquidation Process
+    </span>
+  </a>
+  
+</li>
+      
         <li class="md-nav__item has-children">
   <a href="#error-code-and-failure-info" class="md-nav__link" onclick="toggleChildren(event)" aria-expanded="false">
     <span class="md-ellipsis">
@@ -2035,6 +2044,18 @@
 </ul>
 </li>
 </ul>
+<h2 id="liquidation-process"><strong>Liquidation Process</strong><a class="headerlink" href="#liquidation-process" title="Permanent link">&para;</a></h2>
+<p>To enable developers to determine if a user is eligible for liquidation and to facilitate the liquidation process through contract calls, the following steps outline the specific operations to be executed:
+1. <strong>Query Liquidation Incentive:</strong> Before proceeding, check the reward of the liquidation. This represents the "bonus" collateral a liquidator receives.
+    * <strong>Action:</strong> Call <code>liquidationIncentiveMantissa()</code> on the <strong>Unitroller</strong> contract.
+    * <strong>Purpose:</strong> To calculate the potential profit from the liquidation.</p>
+<ol>
+<li><strong>Assess Account Liquidity:</strong> Identify whether an account's collateral is insufficient to cover its debt.<ul>
+<li><strong>Action:</strong> Call <code>getAccountLiquidity(address account)</code> on the <strong>Unitroller</strong> contract.</li>
+<li><strong>Evaluation:</strong> This function returns three values. You are looking for the shortfall.</li>
+</ul>
+</li>
+</ol>
 <h2 id="error-code-and-failure-info"><strong>Error Code And Failure info</strong><a class="headerlink" href="#error-code-and-failure-info" title="Permanent link">&para;</a></h2>
 <h3 id="error-code"><strong>Error code</strong><a class="headerlink" href="#error-code" title="Permanent link">&para;</a></h3>
 <table>
