@@ -14,6 +14,7 @@ The SBM contract is the main user-facing contract. Most user interactions with t
 
 The source code is available on [Github](https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol).
 
+&emsp;
 
 ## **Query Interface**
 
@@ -118,6 +119,7 @@ function reserveFactorMantissa() returns (uint)
 * **Parameter description:** N/A
 * **Returns:** The current reserve factor.
 
+&emsp;
 
 ## **Write Interface**
 
@@ -244,9 +246,12 @@ function transfer(address dst, uint256 amount) external nonReentrant returns (bo
     * `amount:` amount of token to be transferred.
 * **Returns:** A boolean value indicating whether or not the transfer succeeded.
 
+&emsp;
 
 ## **Liquidation Process**
+
 To enable developers to determine if a user is eligible for liquidation and to facilitate the liquidation process through contract calls, the following steps outline the specific operations to be executed:
+
 1. **Query Liquidation Incentive:** Before proceeding, check the reward of the liquidation. This represents the "bonus" collateral a liquidator receives.
     * **Action:** Call `liquidationIncentiveMantissa()` on the **Unitroller** contract.
     * **Purpose:** To calculate the potential profit from the liquidation.
@@ -329,7 +334,9 @@ LiquidateBorrow(address liquidator, address borrower, uint repayAmount, address 
     * `cTokenCollateral:` address of the jTRX contract to set aside the collateralized asset of a borrower；
     * `seizeTokens:` the tokens need to be liquidated.
 
-
+&emsp;
+&emsp;
+&emsp;
 
 ## **Error Code And Failure info**
 
