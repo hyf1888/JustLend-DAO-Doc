@@ -2020,6 +2020,7 @@
 </ol>
 <p>In addition, JustLend DAO will continuously monitor relevant data and provide an interface for querying high-risk liquidation users. You can <strong>Identify High-Risk Users</strong> by navigating to the <a href="https://docs.justlend.org/developers/apis/">APIs</a> page and calling the <strong>/justlend/liquidate/highRiskAccountList</strong> endpoint.</p>
 <p><strong>Please note</strong> that there may be a certain delay in the availability of backend data and is for reference only.</p>
+<p>&emsp;</p>
 <h3 id="liquidation-incentive"><strong>Liquidation Incentive</strong><a class="headerlink" href="#liquidation-incentive" title="Permanent link">&para;</a></h3>
 <p>By calling the liquidationIncentiveMantissa function of the Unitroller contract, liquidation incentives can be inquired. Liquidators will be given a proportion of the borrower's collateral as an incentive, which is defined as liquidation incentive. This is to encourage liquidators to perform liquidation of underwater accounts.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">liquidationIncentiveMantissa</span><span class="p">()</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span>
