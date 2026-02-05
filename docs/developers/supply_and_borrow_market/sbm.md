@@ -270,6 +270,7 @@ In addition, JustLend DAO will continuously monitor relevant data and provide an
 
 **Please note** that there may be a certain delay in the availability of backend data and is for reference only.
 
+&emsp;
 
 ### **Liquidation Incentive**
 By calling the liquidationIncentiveMantissa function of the Unitroller contract, liquidation incentives can be inquired. Liquidators will be given a proportion of the borrower's collateral as an incentive, which is defined as liquidation incentive. This is to encourage liquidators to perform liquidation of underwater accounts.
