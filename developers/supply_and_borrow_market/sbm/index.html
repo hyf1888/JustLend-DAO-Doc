@@ -1770,6 +1770,7 @@
 <li>Liquidation</li>
 </ul>
 <p>The source code is available on <a href="https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol">Github</a>.</p>
+<p>&emsp;</p>
 <h2 id="query-interface"><strong>Query Interface</strong><a class="headerlink" href="#query-interface" title="Permanent link">&para;</a></h2>
 <h3 id="exchangerate"><strong>ExchangeRate</strong><a class="headerlink" href="#exchangerate" title="Permanent link">&para;</a></h3>
 <p>Calling this method accrues interest and returns the up-to-date exchange rate.
@@ -1857,6 +1858,7 @@
 <li><strong>Parameter description:</strong> N/A</li>
 <li><strong>Returns:</strong> The current reserve factor.</li>
 </ul>
+<p>&emsp;</p>
 <h2 id="write-interface"><strong>Write Interface</strong><a class="headerlink" href="#write-interface" title="Permanent link">&para;</a></h2>
 <h3 id="borrow"><strong>Borrow</strong><a class="headerlink" href="#borrow" title="Permanent link">&para;</a></h3>
 <p>Calling this method borrows assets from JustLend DAO protocol to the sender's owner address.
@@ -1986,12 +1988,17 @@
 </li>
 <li><strong>Returns:</strong> A boolean value indicating whether or not the transfer succeeded.</li>
 </ul>
+<p>&emsp;</p>
 <h2 id="liquidation-process"><strong>Liquidation Process</strong><a class="headerlink" href="#liquidation-process" title="Permanent link">&para;</a></h2>
-<p>To enable developers to determine if a user is eligible for liquidation and to facilitate the liquidation process through contract calls, the following steps outline the specific operations to be executed:
-1. <strong>Query Liquidation Incentive:</strong> Before proceeding, check the reward of the liquidation. This represents the "bonus" collateral a liquidator receives.
-    * <strong>Action:</strong> Call <code>liquidationIncentiveMantissa()</code> on the <strong>Unitroller</strong> contract.
-    * <strong>Purpose:</strong> To calculate the potential profit from the liquidation.</p>
+<p>To enable developers to determine if a user is eligible for liquidation and to facilitate the liquidation process through contract calls, the following steps outline the specific operations to be executed:</p>
 <ol>
+<li>
+<p><strong>Query Liquidation Incentive:</strong> Before proceeding, check the reward of the liquidation. This represents the "bonus" collateral a liquidator receives.</p>
+<ul>
+<li><strong>Action:</strong> Call <code>liquidationIncentiveMantissa()</code> on the <strong>Unitroller</strong> contract.</li>
+<li><strong>Purpose:</strong> To calculate the potential profit from the liquidation.</li>
+</ul>
+</li>
 <li>
 <p><strong>Assess Account Liquidity:</strong> Identify whether an account's collateral is insufficient to cover its debt.</p>
 <ul>
@@ -2077,6 +2084,9 @@
 </ul>
 </li>
 </ul>
+<p>&emsp;
+&emsp;
+&emsp;</p>
 <h2 id="error-code-and-failure-info"><strong>Error Code And Failure info</strong><a class="headerlink" href="#error-code-and-failure-info" title="Permanent link">&para;</a></h2>
 <h3 id="error-code"><strong>Error code</strong><a class="headerlink" href="#error-code" title="Permanent link">&para;</a></h3>
 <table>
