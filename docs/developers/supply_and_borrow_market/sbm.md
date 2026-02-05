@@ -310,6 +310,19 @@ LiquidateBorrow(address liquidator, address borrower, uint repayAmount, address 
     * `seizeTokens:` the tokens need to be liquidated.
 
 
+## **Liquidation Process**
+To enable developers to determine if a user is eligible for liquidation and to facilitate the liquidation process through contract calls, the following steps outline the specific operations to be executed:
+1. **Query Liquidation Incentive:** Before proceeding, check the reward of the liquidation. This represents the "bonus" collateral a liquidator receives.
+    * **Action:** Call `liquidationIncentiveMantissa()` on the **Unitroller** contract.
+    * **Purpose:** To calculate the potential profit from the liquidation.
+
+2. **Assess Account Liquidity:** Identify whether an account's collateral is insufficient to cover its debt.
+    * **Action:** Call `getAccountLiquidity(address account)` on the **Unitroller** contract.
+    * **Evaluation:** This function returns three values. You are looking for the shortfall.
+
+
+
+
 
 ## **Error Code And Failure info**
 
