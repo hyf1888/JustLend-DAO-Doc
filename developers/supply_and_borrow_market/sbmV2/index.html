@@ -2527,7 +2527,7 @@
 <h3 id="trx-provider"><strong>TRX Provider</strong><a class="headerlink" href="#trx-provider" title="Permanent link">&para;</a></h3>
 <p>Since both the Moolah Market and Moolah Vault operate with TRC20 tokens, WTRX is used as a wrapped version of TRX. Users can interact directly with TRX through the TRX Provider, which internally handles the conversion between TRX and WTRX before executing the corresponding operations in the market or vault.</p>
 <h4 id="1-deposit"><strong>1. Deposit</strong><a class="headerlink" href="#1-deposit" title="Permanent link">&para;</a></h4>
-<p>When users stake TRX, the TRXProvider automatically converts TRX into WTRX and deposits it into the corresponding Vault.
+<p>When users stake TRX, the TRX Provider automatically converts TRX into WTRX and deposits it into the corresponding Vault.
 <div class="highlight"><pre><span></span><code><span class="c1">// Deposit without specifying a vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">deposit</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
 
@@ -2538,7 +2538,7 @@
 <li>
 <p><strong>Parameter description:</strong></p>
 <ul>
-<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.</li>
+<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRX Provider.</li>
 <li><code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.</li>
 </ul>
 </li>
@@ -2550,7 +2550,7 @@
 </li>
 </ul>
 <h4 id="2-mint"><strong>2. Mint</strong><a class="headerlink" href="#2-mint" title="Permanent link">&para;</a></h4>
-<p>This function stakes TRX similar to the deposit function, but instead of specifying the asset amount, users specify the number of shares they wish to mint. The TRXProvider converts the provided TRX into WTRX and deposits it into the vault.
+<p>This function stakes TRX similar to the deposit function, but instead of specifying the asset amount, users specify the number of shares they wish to mint. The TRX Provider converts the provided TRX into WTRX and deposits it into the vault.
 <div class="highlight"><pre><span></span><code><span class="c1">// Mint without specifying a vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
 
@@ -2561,7 +2561,7 @@
 <li>
 <p><strong>Parameter description:</strong></p>
 <ul>
-<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.</li>
+<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRX Provider.</li>
 <li><code>shares:</code> the number of vault shares to mint.</li>
 <li><code>receiver:</code> the address that will receive the minted vault shares corresponding to the deposited assets.</li>
 </ul>
@@ -2574,7 +2574,7 @@
 </li>
 </ul>
 <h4 id="3-withdraw"><strong>3. Withdraw</strong><a class="headerlink" href="#3-withdraw" title="Permanent link">&para;</a></h4>
-<p>Withdraws TRX. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+<p>Withdraws TRX. The TRX Provider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
 <div class="highlight"><pre><span></span><code><span class="c1">// Withdraw without specifying a vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">withdraw</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span>
 
@@ -2585,7 +2585,7 @@
 <li>
 <p><strong>Parameter description:</strong></p>
 <ul>
-<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.</li>
+<li><code>valut:</code> the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRX Provider.</li>
 <li><code>assets:</code> the amount of TRX to withdraw (converted from WTRX).</li>
 <li><code>receiver:</code> the address that will receive the withdrawn TRX.</li>
 <li><code>owner:</code> the address that owns the withdrawn assets (payer of the shares).</li>
@@ -2599,7 +2599,7 @@
 </li>
 </ul>
 <h4 id="4-redeem"><strong>4. Redeem</strong><a class="headerlink" href="#4-redeem" title="Permanent link">&para;</a></h4>
-<p>Withdraws TRX. Similar to withdrawal, but instead of specifying the withdrawal amount, the user specifies the number of shares to redeem. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+<p>Withdraws TRX. Similar to withdrawal, but instead of specifying the withdrawal amount, the user specifies the number of shares to redeem. The TRX Provider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
 <div class="highlight"><pre><span></span><code><span class="c1">// Redeem without specifying a vault</span>
 <span class="kt">function</span><span class="w"> </span><span class="nv">redeem</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">)</span>
 
@@ -2624,7 +2624,7 @@
 </li>
 </ul>
 <h4 id="5-borrow"><strong>5. Borrow</strong><a class="headerlink" href="#5-borrow" title="Permanent link">&para;</a></h4>
-<p>Borrows TRX from the specified market. The TRXProvider interacts with the underlying vault and market contracts to withdraw the corresponding WTRX, converts it to TRX, and sends it to the user.
+<p>Borrows TRX from the specified market. The TRX Provider interacts with the underlying vault and market contracts to withdraw the corresponding WTRX, converts it to TRX, and sends it to the user.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">borrow</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_shares</span><span class="p">)</span>
 </code></pre></div></p>
 <ul>
@@ -2647,7 +2647,7 @@
 </li>
 </ul>
 <h4 id="6-repay"><strong>6. Repay</strong><a class="headerlink" href="#6-repay" title="Permanent link">&para;</a></h4>
-<p>Repays borrowed TRX. When a user repays, the TRXProvider converts the sent TRX into WTRX internally and uses it to repay the corresponding market debt.
+<p>Repays borrowed TRX. When a user repays, the TRX Provider converts the sent TRX into WTRX internally and uses it to repay the corresponding market debt.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">repay</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_assets</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_shares</span><span class="p">)</span>
 </code></pre></div></p>
 <ul>
@@ -2670,7 +2670,7 @@
 </li>
 </ul>
 <h4 id="7-supply-collateral"><strong>7. Supply Collateral</strong><a class="headerlink" href="#7-supply-collateral" title="Permanent link">&para;</a></h4>
-<p>Supplies TRX as collateral. When a user provides collateral in TRX, the TRXProvider automatically wraps TRX into WTRX and deposits it into the corresponding market as collateral.
+<p>Supplies TRX as collateral. When a user provides collateral in TRX, the TRX Provider automatically wraps TRX into WTRX and deposits it into the corresponding market as collateral.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">supplyCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
 </code></pre></div></p>
 <ul>
@@ -2687,7 +2687,7 @@
 </li>
 </ul>
 <h4 id="8-withdraw-collateral"><strong>8. Withdraw Collateral</strong><a class="headerlink" href="#8-withdraw-collateral" title="Permanent link">&para;</a></h4>
-<p>Withdraws TRX collateral. When a user withdraws collateral, the TRXProvider retrieves WTRX from the market, unwraps it into TRX, and transfers it to the specified receiver.
+<p>Withdraws TRX collateral. When a user withdraws collateral, the TRX Provider retrieves WTRX from the market, unwraps it into TRX, and transfers it to the specified receiver.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawCollateral</span><span class="p">(</span>MarketParams<span class="w"> </span>calldata<span class="w"> </span>marketParams<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assets</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">onBehalf</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">)</span>
 </code></pre></div></p>
 <ul>
@@ -2724,7 +2724,7 @@
 </ul>
 <p><br> </p>
 <h3 id="interest-rate-model"><strong>Interest Rate Model</strong><a class="headerlink" href="#interest-rate-model" title="Permanent link">&para;</a></h3>
-<p>JustLend DAO SBM V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO SBM V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.</p>
+<p>JustLend DAO SBM V2 adopts the Adaptive Curve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO SBM V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.</p>
 <h4 id="1-default-targetutilization"><strong>1. Default TargetUtilization</strong><a class="headerlink" href="#1-default-targetutilization" title="Permanent link">&para;</a></h4>
 <p>This value defines the optimal utilization level that the interest rate model aims to maintain. Under normal circumstances, it remains constant and only changes when the underlying interest rate model implementation is replaced.
 <div class="highlight"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">defaultTargetUtilization</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">int256</span><span class="p">)</span>
