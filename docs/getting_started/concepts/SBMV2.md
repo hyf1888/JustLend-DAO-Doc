@@ -26,9 +26,9 @@ JustLend DAO SBM V2 is a fully upgraded decentralized lending protocol built on 
 
 
 ## Interest Rate Model
-JustLend DAO SBM V2 introduces the **AdaptiveCurve Interest Rate Model**. It builds upon the Jump Curve model used in SBM V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level (e.g., 90%). This design ensures both rate stability and maximum capital efficiency.
+JustLend DAO SBM V2 introduces the **Adaptive Curve Interest Rate Model**. It builds upon the Jump Curve model used in SBM V1, but adds **dynamic adaptability**, allowing real-time rate adjustments to keep market utilization near an optimal level. This design ensures both rate stability and maximum capital efficiency.
 
-Just Like SBM V1, SBM V2 uses a jump-style rate curve, where the borrow rate rises sharply once utilization exceeds the kink point. However, V2 introduces a dynamic vertical shift:
+Just Like SBM V1, SBM V2 uses a **jump-style rate curve**, where the borrow rate rises sharply once utilization exceeds the kink point. However, V2 introduces a dynamic vertical shift:
 
 * When utilization is low → the entire curve shifts downward, lowering borrow rates to stimulate borrowing;
 * When utilization is high → the curve shifts upward, raising rates to encourage repayments.
@@ -37,7 +37,7 @@ Just Like SBM V1, SBM V2 uses a jump-style rate curve, where the borrow rate ris
 
 **Target Utilization**
 
-The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve, typically set at 90%. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:
+The Target Utilization represents the equilibrium point of the Interest Rate Model’s Jump Curve. It reflects the optimal balance between borrowed assets and available liquidity, calculated as:
 
     Utilization = BorrowedAssets / (BorrowedAssets + AvailableLiquidity)
                                                             
@@ -45,7 +45,7 @@ When the utilization level reaches the target, the market is considered stable, 
 
 **Rate at Target**
 
-The Rate at Target defines the borrowing interest rate when utilization equals the target (e.g., 90%). It is initially configured by the protocol (for example, at 4% annualized) and is dynamically adjusted over time based on market conditions. Each market maintains its own rateAtTarget parameter, allowing for fine-grained control and independent optimization across different markets.
+The Rate at Target defines the borrowing interest rate when utilization equals the target. It is initially configured by the protocol (for example, at 4% annualized) and is dynamically adjusted over time based on market conditions. Each market maintains its own rateAtTarget parameter, allowing for fine-grained control and independent optimization across different markets.
 
 **Adaptive Mechanism**
 
