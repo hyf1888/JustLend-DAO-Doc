@@ -62,12 +62,10 @@ Under V2, liquidation is triggered when LTV equals the market’s defined LLTV (
 
     LTV = (Borrow Amount * Borrow Price) / (Collateral Amount * Collateral Price) ​
                                                           
-This is equivalent to the SBM V1 risk metric:
+This is equivalent to the SBM V1 risk metric, a position becomes liquidatable once the Risk Level equals to 100%:
 
     Risk Level = Total Borrow / Borrow Limit * 100 = Total Borrow / ∑ (Asset supplied * Collateral Factor)
                                                           
-A position becomes liquidatable once the Risk Level equals to 100%.
-
 However, unlike V1, SBM V2 introduces a significant improvement through its isolated-lending model, where each market operates independently with its own risk parameters (e.g., LLTV.). This architecture ensures that risk events are contained within individual markets, preventing unwanted spillover effects and reducing systemic liquidation risk across the protocol. As a result, users benefit from enhanced safety, more predictable outcomes, and a more robust overall risk framework.
 
 
