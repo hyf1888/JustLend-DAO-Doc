@@ -1633,11 +1633,10 @@
 <div class="codehilite"><pre><span></span><code>LTV = (Borrow Amount <span class="gs">* Borrow Price) / (Collateral Amount *</span> Collateral Price) ​
 </code></pre></div>
 
-<p>This is equivalent to the SBM V1 risk metric:</p>
+<p>This is equivalent to the SBM V1 risk metric, a position becomes liquidatable once the Risk Level equals to 100%:</p>
 <div class="codehilite"><pre><span></span><code>Risk Level = Total Borrow / Borrow Limit <span class="gs">* 100 = Total Borrow / ∑ (Asset supplied *</span> Collateral Factor)
 </code></pre></div>
 
-<p>A position becomes liquidatable once the Risk Level equals to 100%.</p>
 <p>However, unlike V1, SBM V2 introduces a significant improvement through its isolated-lending model, where each market operates independently with its own risk parameters (e.g., LLTV.). This architecture ensures that risk events are contained within individual markets, preventing unwanted spillover effects and reducing systemic liquidation risk across the protocol. As a result, users benefit from enhanced safety, more predictable outcomes, and a more robust overall risk framework.</p>
 <h2 id="comparison-justlend-sbm-v1-vs-v2">Comparison: JustLend SBM V1 vs V2<a class="headerlink" href="#comparison-justlend-sbm-v1-vs-v2" title="Permanent link">&para;</a></h2>
 <p>To provide a clearer understanding of the improvements and optimizations introduced in JustLend DAO SBM V2, the following table presents a detailed comparison with V1. This comparison highlights the key differences in design, functionality, and performance, allowing users to quickly grasp the core enhancements made in the latest version.</p>
