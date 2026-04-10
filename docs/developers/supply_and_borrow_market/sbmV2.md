@@ -785,7 +785,7 @@ Since both the Moolah Market and Moolah Vault operate with TRC20 tokens, WTRX is
 
 
 #### **1. Deposit**
-When users stake TRX, the TRXProvider automatically converts TRX into WTRX and deposits it into the corresponding Vault.
+When users stake TRX, the TRX Provider automatically converts TRX into WTRX and deposits it into the corresponding Vault.
 ``` solidity
 // Deposit without specifying a vault
 function deposit(address receiver) external payable returns (uint256 shares)
@@ -795,7 +795,7 @@ function deposit(address vault, address receiver) public payable returns (uint25
 ```
 
 * **Parameter description:**
-    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRX Provider.
     * `receiver:` the address that will receive the minted vault shares corresponding to the deposited assets.
 
 * **Returns:**
@@ -803,7 +803,7 @@ function deposit(address vault, address receiver) public payable returns (uint25
 
 
 #### **2. Mint**
-This function stakes TRX similar to the deposit function, but instead of specifying the asset amount, users specify the number of shares they wish to mint. The TRXProvider converts the provided TRX into WTRX and deposits it into the vault.
+This function stakes TRX similar to the deposit function, but instead of specifying the asset amount, users specify the number of shares they wish to mint. The TRX Provider converts the provided TRX into WTRX and deposits it into the vault.
 ``` solidity
 // Mint without specifying a vault
 function mint(uint256 shares, address receiver) external payable returns (uint256 assets)
@@ -813,7 +813,7 @@ function mint(address vault, uint256 shares, address receiver) public payable re
 ```
 
 * **Parameter description:**
-    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRX Provider.
     * `shares:` the number of vault shares to mint.
     * `receiver:` the address that will receive the minted vault shares corresponding to the deposited assets.
 
@@ -822,7 +822,7 @@ function mint(address vault, uint256 shares, address receiver) public payable re
 
 
 #### **3. Withdraw**
-Withdraws TRX. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+Withdraws TRX. The TRX Provider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
 ``` solidity
 // Withdraw without specifying a vault
 function withdraw(uint256 assets, address payable receiver, address owner) external returns (uint256 shares)
@@ -832,7 +832,7 @@ function withdraw(address vault, uint256 assets, address payable receiver, addre
 ```
 
 * **Parameter description:**
-    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRXProvider.
+    * `valut:` the address of the specific Vault where the converted WTRX will be deposited. If not specified, the system automatically deposits into the default Vault configured by the TRX Provider.
     * `assets:` the amount of TRX to withdraw (converted from WTRX).
     * `receiver:` the address that will receive the withdrawn TRX.
     * `owner:` the address that owns the withdrawn assets (payer of the shares).
@@ -842,7 +842,7 @@ function withdraw(address vault, uint256 assets, address payable receiver, addre
 
 
 #### **4. Redeem**
-Withdraws TRX. Similar to withdrawal, but instead of specifying the withdrawal amount, the user specifies the number of shares to redeem. The TRXProvider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
+Withdraws TRX. Similar to withdrawal, but instead of specifying the withdrawal amount, the user specifies the number of shares to redeem. The TRX Provider retrieves the corresponding amount of WTRX from the vault, converts it back to TRX, and transfers it to the user.
 ``` solidity
 // Redeem without specifying a vault
 function redeem(uint256 shares, address payable receiver, address owner) external returns (uint256 assets)
@@ -862,7 +862,7 @@ function redeem(address vault, uint256 shares, address payable receiver, address
 
 
 #### **5. Borrow**
-Borrows TRX from the specified market. The TRXProvider interacts with the underlying vault and market contracts to withdraw the corresponding WTRX, converts it to TRX, and sends it to the user.
+Borrows TRX from the specified market. The TRX Provider interacts with the underlying vault and market contracts to withdraw the corresponding WTRX, converts it to TRX, and sends it to the user.
 ``` solidity
 function borrow(MarketParams calldata marketParams, uint256 assets, uint256 shares, address onBehalf, address payable receiver) external returns (uint256 _assets, uint256 _shares)
 ```
@@ -880,7 +880,7 @@ function borrow(MarketParams calldata marketParams, uint256 assets, uint256 shar
 
 
 #### **6. Repay**
-Repays borrowed TRX. When a user repays, the TRXProvider converts the sent TRX into WTRX internally and uses it to repay the corresponding market debt.
+Repays borrowed TRX. When a user repays, the TRX Provider converts the sent TRX into WTRX internally and uses it to repay the corresponding market debt.
 ``` solidity
 function repay(MarketParams calldata marketParams, uint256 assets, uint256 shares, address onBehalf, bytes calldata data) external payable returns (uint256 _assets, uint256 _shares)
 ```
@@ -898,7 +898,7 @@ function repay(MarketParams calldata marketParams, uint256 assets, uint256 share
 
 
 #### **7. Supply Collateral**
-Supplies TRX as collateral. When a user provides collateral in TRX, the TRXProvider automatically wraps TRX into WTRX and deposits it into the corresponding market as collateral.
+Supplies TRX as collateral. When a user provides collateral in TRX, the TRX Provider automatically wraps TRX into WTRX and deposits it into the corresponding market as collateral.
 ``` solidity
 function supplyCollateral(MarketParams calldata marketParams, address onBehalf, bytes calldata data) external payable
 ```
@@ -912,7 +912,7 @@ function supplyCollateral(MarketParams calldata marketParams, address onBehalf, 
 
 
 #### **8. Withdraw Collateral**
-Withdraws TRX collateral. When a user withdraws collateral, the TRXProvider retrieves WTRX from the market, unwraps it into TRX, and transfers it to the specified receiver.
+Withdraws TRX collateral. When a user withdraws collateral, the TRX Provider retrieves WTRX from the market, unwraps it into TRX, and transfers it to the specified receiver.
 ``` solidity
 function withdrawCollateral(MarketParams calldata marketParams, uint256 assets, address onBehalf, address payable receiver)
 ```
@@ -947,7 +947,7 @@ function peek(address asset) external view override returns (uint256)
 <br> 
 
 ### **Interest Rate Model**
-JustLend DAO SBM V2 adopts the AdaptiveCurve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO SBM V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.
+JustLend DAO SBM V2 adopts the Adaptive Curve Interest Rate Model, an enhanced version of the Jump Curve model from JustLend DAO SBM V1. This upgraded model introduces dynamic adjustments, enabling interest rates to automatically adapt in real time to maintain market utilization around the optimal target level.
 
 
 #### **1. Default TargetUtilization**
