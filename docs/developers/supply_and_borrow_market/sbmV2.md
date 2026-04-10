@@ -27,7 +27,7 @@ JustLend DAO SBM V2 is a fully upgraded decentralized lending protocol built on 
 * **Resilient Oracle** aggregates multiple price feeds (up to three per token) to ensure reliable and accurate price data for the protocol. 
 * **Interest Rate Model (IRM)** dynamically adjusts borrowing and supply rates in real time to maintain market utilization near the optimal level. 
 
-The source code is available on [Github](https://github.com/justlend/justlend-protocol/blob/main/contracts/CToken.sol).
+The source code is available on [Github](https://github.com/justlend).
 
 <br>
 
