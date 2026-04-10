@@ -117,21 +117,36 @@
     * `TrxProviderProxy:` [TMDENHFSiRzmJNSEBAFmrDbLkQ672iPN8H](https://tronscan.org/#/contract/TMDENHFSiRzmJNSEBAFmrDbLkQ672iPN8H)
 
 * **Resilient Oracle**
-    * `ResilientOracleProxy:` [TFYLvDFSEW6dKSnWb3mt76hkHAgxPktrnG](https://tronscan.org/#/address/TFYLvDFSEW6dKSnWb3mt76hkHAgxPktrnG)
-    * `TrxOracle:` [TEMs6dutw4An9wvyCdWAjjCAZasgiSZaLL](https://tronscan.org/#/address/TEMs6dutw4An9wvyCdWAjjCAZasgiSZaLL)
-    * `UsdtOracle:` [TRi3BYkjHWZWdPxH198G3XJHTxnwqPDw5s](https://tronscan.org/#/address/TRi3BYkjHWZWdPxH198G3XJHTxnwqPDw5s)
-    * `UsddOracle:` [TWiRfunrLV4ehK9gaV3tU7H8SvDQazF2kk](https://tronscan.org/#/address/TWiRfunrLV4ehK9gaV3tU7H8SvDQazF2kk)
-    * `StrxOracle:` [TQ9XK8prfEs7obcKnXPRHvERzYjFjF92WK](https://tronscan.org/#/address/TQ9XK8prfEs7obcKnXPRHvERzYjFjF92WK)
-    * `BoundValidatorProxy:` [TKngbBqSa2Vaz9LLGs37ngpwvCSJj9dbxn](https://tronscan.org/#/address/TKngbBqSa2Vaz9LLGs37ngpwvCSJj9dbxn)
+    * `ResilientOracl:` [ TN6B7nsKYySF7sqD9xzZPiPmXyoX3ZpbGD](https://tronscan.org/#/contract/TN6B7nsKYySF7sqD9xzZPiPmXyoX3ZpbGD)
+    * `ResilientOracleProxy:` [TUDXEUA6hNiWPm54cMifoxCZU28zRu6bPc](https://tronscan.org/#/contract/TUDXEUA6hNiWPm54cMifoxCZU28zRu6bPc)
+    * `BoundValidator:` [TUQJWn72TV5NuAy7oCV95mRcJgrrFjxhdc](https://tronscan.org/#/contract/TUQJWn72TV5NuAy7oCV95mRcJgrrFjxhdc)
+    * `BoundValidatorProxy:` [TEfEgB5LjkQJXYhrKp4j14xUGLGD1NK4zC](https://tronscan.org/#/contract/TEfEgB5LjkQJXYhrKp4j14xUGLGD1NK4zC)
+    * `UsddPriceOracle:` [TJt3mT8MrzxShunorzLbq3otzv1DK6Na34](https://tronscan.org/#/contract/TJt3mT8MrzxShunorzLbq3otzv1DK6Na34)
+    * `UsdtPriceOracle:` [THj72uK3LdAXAGyE4fVuAWx7HwQy4RvEhb](https://tronscan.org/#/contract/THj72uK3LdAXAGyE4fVuAWx7HwQy4RvEhb)
+    * `TrxPriceOracle:` [TMEGS6D356KWRSW3fDKmARpQS8AoXi5uCG](https://tronscan.org/#/contract/TMEGS6D356KWRSW3fDKmARpQS8AoXi5uCG)
+    * `BtcPriceOracle:` [TBcM6vym7Y2PDuaeCY7hmCsY5V3DrXENaV](https://tronscan.org/#/contract/TBcM6vym7Y2PDuaeCY7hmCsY5V3DrXENaV)
+    * `StrxOracle:` [TYEeXbju2oC4NiBbSzMvwG59nS8QCsWZZg](https://tronscan.org/#/contract/TYEeXbju2oC4NiBbSzMvwG59nS8QCsWZZg)
+    * `BttPriceOracle:` [TBByEevGPinzpVvF2dLK7WvXkE8qmrC3NH](https://tronscan.org/#/contract/TBByEevGPinzpVvF2dLK7WvXkE8qmrC3NH)
+    * `EthPriceOracle:` [TAPioY4J4t9gRt31ioTZiHu3m5mLdH38w2](https://tronscan.org/#/contract/TAPioY4J4t9gRt31ioTZiHu3m5mLdH38w2)
+    * `JstPriceOracle:` [TQxH2UdxKizxbHTTgtmfJzgwKL1ToQ53B8](https://tronscan.org/#/contract/TQxH2UdxKizxbHTTgtmfJzgwKL1ToQ53B8)
+    * `NftPriceOracle:` [TN9n41jPVfZcyEfHp69DmUsJtyy96QNRXc](https://tronscan.org/#/contract/TN9n41jPVfZcyEfHp69DmUsJtyy96QNRXc)
+    * `SunPriceOracle:` [TTDb7ghCjH9n9x7kGvni6Gvdt4DLRNaQwr](https://tronscan.org/#/contract/TTDb7ghCjH9n9x7kGvni6Gvdt4DLRNaQwr)
+    * `TusdPriceOracle:` [TXnMhh4vLsP6HxvhviKH3Tkhr55fLS9h52](https://tronscan.org/#/contract/TXnMhh4vLsP6HxvhviKH3Tkhr55fLS9h52)
+    * `Usd1PriceOracle:` [TQB7BcxFpqDTs9jC3ohBAf24ZGxGwrmSDg](https://tronscan.org/#/contract/TQB7BcxFpqDTs9jC3ohBAf24ZGxGwrmSDg)
+    * `WinPriceOracle:` [TXE1wGnzMayc2QSkgycz1uu6fu2yUpPNbL](https://tronscan.org/#/contract/TXE1wGnzMayc2QSkgycz1uu6fu2yUpPNbL)
+    * `WstusdtOracle:` [TW3Yf5mshdR2uBDuQCoyW1rsaQdnoPppub](https://tronscan.org/#/contract/TW3Yf5mshdR2uBDuQCoyW1rsaQdnoPppub)
 
 * **Interest Rate Model**
     * `InterestRateModel:` [TM96c8n7FrF9rGVg6h4MatA1ghY6tjneWD](https://tronscan.org/#/contract/TM96c8n7FrF9rGVg6h4MatA1ghY6tjneWD)
     * `IrmProxy:` [TSsuwbvUKAVgRmSghXT7i38PgHWpW12wQ1](https://tronscan.org/#/contract/TSsuwbvUKAVgRmSghXT7i38PgHWpW12wQ1)
 
 * **Liquidatio**
-    * `LiquidatorProxy:` [TEnkyjNTMdU7K997VveXQDrQGSQTi28cuj](https://tronscan.org/#/address/TEnkyjNTMdU7K997VveXQDrQGSQTi28cuj)
-    * `PublicLiquidatorProxy:` [TLvPrXHVQCA54gLQjLfoNi5XQ6WqhXCEps](https://tronscan.org/#/address/TLvPrXHVQCA54gLQjLfoNi5XQ6WqhXCEps)
-    * `LendingFeeRecipientProxy:` [TK9ZnHWK5GMvDsMKocEC22WzKW79fdQMCt](https://tronscan.org/#/address/TK9ZnHWK5GMvDsMKocEC22WzKW79fdQMCt)
+    * `Liquidator:` [TJHdh4LG9eLiGq5qW7NnyczuFU48YUCyhh](https://tronscan.org/#/contract/TJHdh4LG9eLiGq5qW7NnyczuFU48YUCyhh)
+    * `LiquidatorProxy:` [TKX8nUY8otA4d9qV1tDuN5BLSrxkr9pWa6](https://tronscan.org/#/contract/TKX8nUY8otA4d9qV1tDuN5BLSrxkr9pWa6)
+    * `PublicLiquidator:` [TUM8vMhR3MN5jmqYPxvwEV3erwJy374f6c](https://tronscan.org/#/contract/TUM8vMhR3MN5jmqYPxvwEV3erwJy374f6c)
+    * `PublicLiquidatorProxy:` [TGDuQaHtvadVL5z9PMM874CaehQnwf3qJi](https://tronscan.org/#/contract/TGDuQaHtvadVL5z9PMM874CaehQnwf3qJi)
+    * `LendingFeeRecipient:` [TAqxyXczXXFpQQiycoSDVopgBCMDmgKrK2](https://tronscan.org/#/contract/TAqxyXczXXFpQQiycoSDVopgBCMDmgKrK2)
+    * `LendingFeeRecipientProxy:` [TMzGb5Ma85oYMcnmVFjhvS1HYr6MRSspmE](https://tronscan.org/#/contract/TMzGb5Ma85oYMcnmVFjhvS1HYr6MRSspmE)
 
 
 ### **Staked TRX**
