@@ -68,7 +68,7 @@ JustLend DAO Protocol contracts are divided in these repositories:
 `Resilient Oracle:` an aggregated price feed contract that supports up to three price sources for each token. It provides reliable on-chain price data with 18-decimal precision and allows users or protocols to query the latest price of any supported token. 
 
 #### Interest Rate Model
-`IRM:` the AdaptiveCurve Interest Rate Model. It builds upon the Jump Curve model used in JustLend DAO V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level.
+`IRM:` the Adaptive Curve Interest Rate Model. It builds upon the Jump Curve model used in JustLend DAO V1, but adds dynamic adaptability, allowing real-time rate adjustments to keep market utilization near an optimal level.
 
 
 ## **Staked TRX Contracts**
