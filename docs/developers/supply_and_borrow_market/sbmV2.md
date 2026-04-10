@@ -781,7 +781,7 @@ function maxRedeem(address owner) public view override returns (uint256)
 <br> 
 
 ### **TRX Provider**
-Since both the Moolah Market and MoolahVault operate with TRC20 tokens, WTRX is used as a wrapped version of TRX. Users can interact directly with TRX through the TRXProvider, which internally handles the conversion between TRX and WTRX before executing the corresponding operations in the market or vault.
+Since both the Moolah Market and Moolah Vault operate with TRC20 tokens, WTRX is used as a wrapped version of TRX. Users can interact directly with TRX through the TRX Provider, which internally handles the conversion between TRX and WTRX before executing the corresponding operations in the market or vault.
 
 
 #### **1. Deposit**
