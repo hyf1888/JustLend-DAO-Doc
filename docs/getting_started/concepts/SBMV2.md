@@ -74,7 +74,7 @@ To provide a clearer understanding of the improvements and optimizations introdu
 
 | Aspect | SBM V1 | SBM V2 |
 |:------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|-------|
-| **Structure**                 | Cross-Collateral Market: Multiple assets can be used as collateral and borrowed against each other.                                              | Isolated Markets: 1-to-1 asset mapping; each market only supports one collateral and one borrowable asset. |
+| **Market Structure**          | Cross-Collateral Market: Multiple assets can be used as collateral and borrowed against each other.                                              | Isolated Markets: 1-to-1 asset mapping; each market only supports one collateral and one borrowable asset. |
 | **Lending Flexibility**       | Users can use any asset in their portfolio as collateral and borrow any supported asset. A unified large market allows cross-collateral lending. | Single market: Only one collateral type can be used to borrow a specific asset. Multiple markets are used to enable lending of different assets. |
 | **Risk Isolation**            | Risks are shared across assets, with collateral automatically used as borrowed assets.                                                           | Each market is independent, with complete risk isolation. |
 | **Liquidity Characteristics** | Shared liquidity across assets and larger liquidity pools; collateral can also be borrowed.                                                      | Independent liquidity for each asset pair, which may lead to fragmented liquidity; collateral cannot be borrowed. |
