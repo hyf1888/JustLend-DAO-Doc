@@ -140,7 +140,7 @@
     * `InterestRateModel:` [TM96c8n7FrF9rGVg6h4MatA1ghY6tjneWD](https://tronscan.org/#/contract/TM96c8n7FrF9rGVg6h4MatA1ghY6tjneWD)
     * `IrmProxy:` [TSsuwbvUKAVgRmSghXT7i38PgHWpW12wQ1](https://tronscan.org/#/contract/TSsuwbvUKAVgRmSghXT7i38PgHWpW12wQ1)
 
-* **Liquidatio**
+* **Liquidation**
     * `Liquidator:` [TJHdh4LG9eLiGq5qW7NnyczuFU48YUCyhh](https://tronscan.org/#/contract/TJHdh4LG9eLiGq5qW7NnyczuFU48YUCyhh)
     * `LiquidatorProxy:` [TKX8nUY8otA4d9qV1tDuN5BLSrxkr9pWa6](https://tronscan.org/#/contract/TKX8nUY8otA4d9qV1tDuN5BLSrxkr9pWa6)
     * `PublicLiquidator:` [TUM8vMhR3MN5jmqYPxvwEV3erwJy374f6c](https://tronscan.org/#/contract/TUM8vMhR3MN5jmqYPxvwEV3erwJy374f6c)
