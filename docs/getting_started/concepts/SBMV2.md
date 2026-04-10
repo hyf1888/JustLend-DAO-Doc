@@ -1,4 +1,4 @@
-JustLend DAO SBM V2 is a fully upgraded decentralized lending protocol built on the TRON network. The SBM V2 adopts an **isolated-collateral lending protocol** with a dual-layer structure of Vaults and Markets, and introduces the AdaptiveCurve Interest Rate Model. This new design aims to provide higher capital efficiency for depositors and borrowers while ensuring a robust risk isolation framework.
+JustLend DAO SBM V2 is a fully upgraded decentralized lending protocol built on the TRON network. The SBM V2 adopts an **isolated-collateral lending protocol** with a dual-layer structure of **Vaults** and **Markets**, and introduces the Adaptive Curve Interest Rate Model. This new design aims to provide higher capital efficiency for depositors and borrowers while ensuring a robust risk isolation framework.
 
 ## Protocol Architecture
 
