@@ -101,17 +101,20 @@
 ### **Supply and Borrow Market V2**
 
 * **Moolah Market**
-    * `MoolahProxy:` [TFgrgsd8c37ByaZx1YxpBzazJS8bHsoP5c](https://tronscan.org/#/address/TFgrgsd8c37ByaZx1YxpBzazJS8bHsoP5c)
+    * `Moolah:` [TKEiKtSaqUboeBmZxcSp8Z2CJUDGk4BT3a](https://tronscan.org/#/contract/TKEiKtSaqUboeBmZxcSp8Z2CJUDGk4BT3a)
+    * `MoolahProxy:` [TDH4dhmVQQNc1ZNudJwWzBcs2h6ahhWrpp](https://tronscan.org/#/contract/TDH4dhmVQQNc1ZNudJwWzBcs2h6ahhWrpp)
 
 * **Moolah Vault**
-    * `MoolahVaultFactoryProxy:` [TYBHjJ5cLnA76mLk6S6cCwUw8kR3r2mSYu](https://tronscan.org/#/address/TYBHjJ5cLnA76mLk6S6cCwUw8kR3r2mSYu)
-    * `WtrxVaultProxy:` [TWxWVxUv6FvJtWELhLmdKWQRf9eMoVs2ki](https://tronscan.org/#/address/TWxWVxUv6FvJtWELhLmdKWQRf9eMoVs2ki)
-    * `UsdtVaultProxy:` [TXfQWrF4mkq5XFaoRYv3crdhjiKkhdMEx5](https://tronscan.org/#/address/TXfQWrF4mkq5XFaoRYv3crdhjiKkhdMEx5)
-    * `btcVaultProxy:` [TGNrNvVASdcpbfoLx2qrHB7to9vJgEcr8f](https://tronscan.org/#/address/TGNrNvVASdcpbfoLx2qrHB7to9vJgEcr8f)
-    * `UsddVaultProxy:` [TR1iqZZMmHeQSUTsAcV3eWNhKFEuuAMYX9](https://tronscan.org/#/address/TR1iqZZMmHeQSUTsAcV3eWNhKFEuuAMYX9)
+    * `MoolahVaultV1:` [TVE5y9aSf1f7CiRjPJM4MgYXgCqBoJGE9z](https://tronscan.org/#/contract/TVE5y9aSf1f7CiRjPJM4MgYXgCqBoJGE9z)
+    * `MoolahVaultFactory:` [TTt6eWpEPZPBE5HiCRsgrjFfAh21kmFRcT](https://tronscan.org/#/contract/TTt6eWpEPZPBE5HiCRsgrjFfAh21kmFRcT)
+    * `MoolahVaultFactoryProxy:` [TYoUEF2jB5WdTSVKRTmbUtC9iieVUPY1XK](https://tronscan.org/#/contract/TYoUEF2jB5WdTSVKRTmbUtC9iieVUPY1XK)
+    * `usdtVault:` [TXejU9jmd1ooQyY3Zmpo15yN7MjSFYUESg](https://tronscan.org/#/contract/TXejU9jmd1ooQyY3Zmpo15yN7MjSFYUESg)
+    * `usddVault:` [TA3q7XjdBQWb4qFxaPULUsnjvVZGgC9Brz](https://tronscan.org/#/contract/TA3q7XjdBQWb4qFxaPULUsnjvVZGgC9Brz)
+    * `trxVault:` [THpxp8RpCUGk55dV7oL1LfxDeP9QvouxmM](https://tronscan.org/#/contract/THpxp8RpCUGk55dV7oL1LfxDeP9QvouxmM)
 
 * **TRX Provider**
-    * `TrxProviderProxy:` [TMRZwenUVHPvnxhwDDQLY4SEmmwXvtKRjz](https://tronscan.org/#/address/TMRZwenUVHPvnxhwDDQLY4SEmmwXvtKRjz)
+    * `TrxProvider:` [TDsc5u5h9AjYfnH3zh92SH5dJouHSxiim2](https://tronscan.org/#/contract/TDsc5u5h9AjYfnH3zh92SH5dJouHSxiim2)
+    * `TrxProviderProxy:` [TMDENHFSiRzmJNSEBAFmrDbLkQ672iPN8H](https://tronscan.org/#/contract/TMDENHFSiRzmJNSEBAFmrDbLkQ672iPN8H)
 
 * **Resilient Oracle**
     * `ResilientOracleProxy:` [TFYLvDFSEW6dKSnWb3mt76hkHAgxPktrnG](https://tronscan.org/#/address/TFYLvDFSEW6dKSnWb3mt76hkHAgxPktrnG)
@@ -122,7 +125,8 @@
     * `BoundValidatorProxy:` [TKngbBqSa2Vaz9LLGs37ngpwvCSJj9dbxn](https://tronscan.org/#/address/TKngbBqSa2Vaz9LLGs37ngpwvCSJj9dbxn)
 
 * **Interest Rate Model**
-    * `IrmProxy:` [TQYeFiTVNfJ6jfqjyfL2s93VLG1huaMEzC](https://tronscan.org/#/address/TQYeFiTVNfJ6jfqjyfL2s93VLG1huaMEzC)
+    * `InterestRateModel:` [TM96c8n7FrF9rGVg6h4MatA1ghY6tjneWD](https://tronscan.org/#/contract/TM96c8n7FrF9rGVg6h4MatA1ghY6tjneWD)
+    * `IrmProxy:` [TSsuwbvUKAVgRmSghXT7i38PgHWpW12wQ1](https://tronscan.org/#/contract/TSsuwbvUKAVgRmSghXT7i38PgHWpW12wQ1)
 
 * **Liquidatio**
     * `LiquidatorProxy:` [TEnkyjNTMdU7K997VveXQDrQGSQTi28cuj](https://tronscan.org/#/address/TEnkyjNTMdU7K997VveXQDrQGSQTi28cuj)
