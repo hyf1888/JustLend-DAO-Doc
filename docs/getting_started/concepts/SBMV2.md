@@ -50,8 +50,8 @@ The Rate at Target defines the borrowing interest rate when utilization equals t
 **Adaptive Mechanism**
 
 To maintain stability, the Interest Rate Model includes an Adaptive Mechanism. When the actual utilization deviates significantly from the target for a prolonged period, the system automatically adjusts the entire interest rate curve at a controlled rate.
-* If utilization < target → rateAtTarget decreases to encourage borrowing.
-* If utilization > target → rateAtTarget increases to promote repayments.
+* If utilization < target → **rateAtTarget** decreases to encourage borrowing.
+* If utilization > target → **rateAtTarget** increases to promote repayments.
 
 This adaptive mechanism, driven by target utilization and time, enables the protocol to continuously self-regulate utilization levels, ensuring market efficiency and sustainability without the need for governance intervention.
 
