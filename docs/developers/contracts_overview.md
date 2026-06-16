@@ -1,4 +1,18 @@
+---
+title: Contracts Overview
+description: Architecture summary of every JustLend DAO contract on TRON — SBM jTokens, Comptroller, interest rate models, price oracle, governance, sTRX, Energy Rental — with proxy mode, ABI links, and key functions in one table.
+---
+
 # Contracts Overview
+
+!!! info "About this page"
+    * **Protocol:** JustLend DAO
+    * **Network:** TRON Mainnet (Base58 addresses; see [`/developers/contracts.json`](contracts.json) for Mainnet + Nile addresses in Base58, EVM `0x` hex, and TRON-internal `41` hex) 
+    * **Architecture:** Compound V2 fork
+    * **Markets:** 17 active + 6 legacy = 23 jToken markets (authoritative list: [APIs §2](apis.md#2-jtoken-address-reference)) 
+    * **Upgrade pattern:** every contract listed below is either `Delegator → Delegate` (proxy + implementation, **upgradeable** by Governance) or **immutable**, explicitly tagged in the table. The page first gives a one-screen machine-readable summary table; deeper per-component prose follows.
+
+
 
 JustLend DAO Protocol contracts are divided in these repositories:
 
