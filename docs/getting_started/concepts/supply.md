@@ -1,3 +1,14 @@
+---
+title: Supply on JustLend DAO
+description: How users supply TRX or TRC20 assets to JustLend money markets to earn interest, receive jTokens, and use the supplied assets as collateral.
+---
+
+# Supply
+
+!!! info "About this page"
+    **Protocol:** JustLend DAO (Compound V2 fork on TRON) · **Network:** TRON Mainnet · **Scope:** user-facing supply flow — what supplying does, jToken receipts, how interest accrues, and which contract function backs it. · **Units:** supply / underlying amounts use each token's own decimals (TRX = 6, USDT = 6, USDD = 18, BTC = 8, ETH = 18); [jToken balances always use **8 decimals**](../../resources/glossary.md#jtoken-decimals); APY values are annualized decimals (multiply by 100 for %). · **Related contracts:** `CErc20Delegator` jTokens (`mint`, `redeem`, `redeemUnderlying`, see [SBM](../../developers/supply_and_borrow_market/sbm.md)). · **For developers:** [Common Pitfalls #1 (USDT approve race) and #5 (decimals mismatch)](../../developers/common_pitfalls.md).
+
+
 Supplying tokens to the JustLend DAO allows users to earn interest on their digital assets while simultaneously using them as collateral for borrowing. When users supply tokens, these assets are deposited into the JustLend DAO liquidity pool, a system of smart contracts designed to facilitate secure, over-collateralized borrowing.
 
 In return, users receive jTokens, TRC-20 tokens representing their supplied assets. jTokens can be redeemed at any time for the underlying assets. As interest accrues, the exchange rate of jTokens relative to the underlying assets increases over time, reflecting the earned interest. This ensures that users benefit from a seamless and dynamic interest compounding mechanism while maintaining liquidity through redeemable jTokens.
