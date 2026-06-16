@@ -1514,15 +1514,15 @@
 <h1 id="supply">Supply<a class="headerlink" href="#supply" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">About this page</p>
-</div>
 <ul>
 <li><strong>Protocol:</strong> JustLend DAO</li>
 <li><strong>Network:</strong> TRON Mainnet</li>
 <li><strong>Scope:</strong> user-facing supply flow — what supplying does, jToken receipts, how interest accrues, and which contract function backs it.</li>
-<li><strong>Units:</strong> supply / underlying amounts use each token's own decimals (TRX = 6, USDT = 6, USDD = 18, BTC = 8, ETH = 18); <a href="../../resources/glossary.md#jtoken-decimals">jToken balances always use <strong>8 decimals</strong></a>; APY values are annualized decimals (multiply by 100 for %).</li>
+<li><strong>Units:</strong> supply / underlying amounts use each token's own decimals (TRX = 6, USDT = 6, USDD = 18, BTC = 8, ETH = 18); [jToken balances always use <strong>8 decimals</strong>]    (../../resources/glossary.md#jtoken-decimals); APY values are annualized decimals (multiply by 100 for %).</li>
 <li><strong>Related contracts:</strong> <code>CErc20Delegator</code> jTokens (<code>mint</code>, <code>redeem</code>, <code>redeemUnderlying</code>, see <a href="../../../developers/supply_and_borrow_market/sbm/">SBM</a>).</li>
 <li><strong>For developers:</strong> <a href="../../developers/common_pitfalls.md">Common Pitfalls #1 (USDT approve race) and #5 (decimals mismatch)</a>.</li>
 </ul>
+</div>
 <p>Supplying tokens to the JustLend DAO allows users to earn interest on their digital assets while simultaneously using them as collateral for borrowing. When users supply tokens, these assets are deposited into the JustLend DAO liquidity pool, a system of smart contracts designed to facilitate secure, over-collateralized borrowing.</p>
 <p>In return, users receive jTokens, TRC-20 tokens representing their supplied assets. jTokens can be redeemed at any time for the underlying assets. As interest accrues, the exchange rate of jTokens relative to the underlying assets increases over time, reflecting the earned interest. This ensures that users benefit from a seamless and dynamic interest compounding mechanism while maintaining liquidity through redeemable jTokens.</p>
 <h3 id="how-it-works"><strong>How It Works</strong><a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
