@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="How borrowers pay back debt on JustLend — `repayBorrow`, `repayBorrowBehalf`, full-balance repay via `uint256(-1)`, and TRC20 `approve()` pre-flight.">
+      
       
       
       
@@ -20,7 +22,7 @@
     
     
       
-        <title>Repay - JustLend DAO Documentation</title>
+        <title>Repay on JustLend DAO - JustLend DAO Documentation</title>
       
     
     
@@ -66,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-do-i-repay-assets" class="md-skip">
+        <a href="#repay" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Repay
+              Repay on JustLend DAO
             
           </span>
         </div>
@@ -376,6 +378,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -405,6 +409,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -1496,8 +1502,17 @@
 
 
 
-  <h1>Repay</h1>
-
+<h1 id="repay">Repay<a class="headerlink" href="#repay" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">About this page</p>
+<ul>
+<li><strong>Protocol:</strong> JustLend DAO</li>
+<li><strong>Network:</strong> TRON Mainnet </li>
+<li><strong>Scope:</strong> user-facing repay flow — <code>repayBorrow</code> and <code>repayBorrowBehalf</code>, full-balance shortcut via <code>uint256(-1)</code>, jTRX payable variant. </li>
+<li><strong>Units:</strong> repay amounts use the underlying token's own decimals. </li>
+<li><strong>Related contracts:</strong> <a href="../../../developers/supply_and_borrow_market/sbm/">SBM <code>repayBorrow</code> / <code>repayBorrowBehalf</code></a>.</li>
+</ul>
+</div>
 <p>Repaying borrowed tokens is a critical aspect of managing borrow positions on the JustLend DAO Protocol. With flexible repayment options and user-friendly tools, JustLend DAO makes it easy for borrowers to maintain healthy collateralisation ratios and prevent liquidation risks.</p>
 <p>Borrowers can repay their loans using the same tokens they borrowed or through jTokens (collateral tokens) of the same underlying asset. Here are some benefits of repayment:</p>
 <ul>
@@ -1530,6 +1545,9 @@
 
 
 
+
+  
+  
 
 
 
