@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="How users redeem supplied assets on JustLend — by jToken amount (`redeem`) or by exact underlying amount (`redeemUnderlying`), subject to market liquidity and collateral constraints.">
+      
       
       
       
@@ -20,7 +22,7 @@
     
     
       
-        <title>Withdraw - JustLend DAO Documentation</title>
+        <title>Withdraw on JustLend DAO - JustLend DAO Documentation</title>
       
     
     
@@ -66,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-do-i-withdraw-assets" class="md-skip">
+        <a href="#withdraw" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Withdraw
+              Withdraw on JustLend DAO
             
           </span>
         </div>
@@ -332,6 +334,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -361,6 +365,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -1496,8 +1502,17 @@
 
 
 
-  <h1>Withdraw</h1>
-
+<h1 id="withdraw">Withdraw<a class="headerlink" href="#withdraw" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">About this page</p>
+<ul>
+<li><strong>Protocol:</strong> JustLend DAO (Compound V2 fork on TRON) </li>
+<li><strong>Network:</strong> TRON Mainnet </li>
+<li><strong>Scope:</strong> user-facing withdraw / redeem flow — liquidity and collateral preconditions, two redeem variants (by jToken units vs. by exact underlying). </li>
+<li><strong>Units:</strong> jToken amounts use <strong>8 decimals</strong> regardless of underlying; underlying amounts use the token's own decimals. </li>
+<li><strong>Related contracts:</strong> <a href="../../../developers/supply_and_borrow_market/sbm/">SBM <code>redeem</code> / <code>redeemUnderlying</code></a> and the <a href="../../../developers/supply_and_borrow_market/comptroller/#get-account-liquidity">Comptroller liquidity check</a>.</li>
+</ul>
+</div>
 <p>JustLend DAO empowers users to manage their assets effectively by enabling the withdrawal of supplied tokens. Suppliers can withdraw their tokens as long as there is sufficient liquidity in the reserve. The withdrawal amount is determined by the availability of underlying assets and the user’s ability to maintain a sufficient collateral ratio for any active borrow positions.</p>
 <p>When withdrawing with an active borrow position, it’s essential to carefully manage your collateralisation ratio to avoid liquidation. Reducing collateral will decrease the health status and increasing the risk of liquidation.</p>
 <h4 id="to-stay-safe">To stay safe:<a class="headerlink" href="#to-stay-safe" title="Permanent link">&para;</a></h4>
@@ -1526,6 +1541,9 @@
 
 
 
+
+  
+  
 
 
 
