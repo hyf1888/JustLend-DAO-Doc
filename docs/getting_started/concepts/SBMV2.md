@@ -3,7 +3,7 @@ JustLend DAO SBM V2 is a fully upgraded decentralized lending protocol built on 
 ## Protocol Architecture
 
 ### Vaults
-* A Vault serves as the liquidity aggregation and distribution hub. Depositors can supply a single type of asset (such as USDT or USDD) into its corresponding Vault;
+* A Vault serves as the liquidity aggregation and distribution hub. Depositors can supply a single type of asset (such as USDT) into its corresponding Vault;
 * The Vault allocates these deposits across multiple Markets, each backed by a specific collateral asset;
 * In return, depositors earn yield from all underlying markets, with interest weighted and distributed automatically according to each market’s performance.
 
